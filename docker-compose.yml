@@ -1,0 +1,24 @@
+version: "2"
+services:
+  #mysql:
+  #  image: mysql:5.7
+  #  user: 1000:1000
+  #  environment: { MYSQL_ROOT_PASSWORD: root, MYSQL_USER: root, MYSQL_PASSWORD: root }
+  #  volumes: ["./.data/mysql:/var/lib/mysql"]
+
+  handler:
+    #links: [mysql]
+    image: go1com/php:php7
+    volumes: ["./php/go1/api:/app/", "./php/go1/vendor:/vendor/"]
+
+  web:
+    image: go1com/docker-nginx:php
+    links: ["handler"]
+    ports: ["80:80"]
+    volumes: ["./php/go1/api:/app/", "./php/go1/vendor:/vendor/", ".data/nginx/conf.d/:/etc/nginx/conf.d/"]
+    environment:
+      - _DOCKER_RDS_DB_NAME=go1
+      - _DOCKER_RDS_HOSTNAME=mysql
+      - _DOCKER_RDS_PASSWORD=root
+      - _DOCKER_RDS_USERNAME=root
+      - _DOCKER_SERVICE_WILDCARD=http://localhost/SERVICES/*/

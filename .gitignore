@@ -1,0 +1,5 @@
+.data/
+~.data/.gitkeep
+php/go1/*
+~php/go1/composer.json
+~php/go1/composer.lock
