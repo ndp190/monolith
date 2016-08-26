@@ -12,6 +12,7 @@ $skipWeb = false !== strpos($cmd, '--skip-web');
 # @TODO: hostmaster, accounts, apiom, realtime
 $projects = [
     'php' => [
+        'accounts'   => 'git@code.go1.com.au:go1/accounts.git',
         'api'        => 'git@code.go1.com.au:go1/api.v3.git',
         'cloudinary' => 'git@code.go1.com.au:microservices/cloudinary.git',
         'enrolment'  => 'git@code.go1.com.au:microservices/enrolment.git',
