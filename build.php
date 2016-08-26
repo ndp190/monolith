@@ -6,7 +6,7 @@ $pwd = __DIR__;
 
 $cmd = implode(' ', $argv);
 $pull = false !== strpos($cmd, '--pull');
-$skipComposer = false !== strpos($cmd, '--skip-composer');
+$skipComposer = false !== strpos($cmd, '--skip-php');
 $skipWeb = false !== strpos($cmd, '--skip-web');
 
 # @TODO: hostmaster, accounts, apiom, realtime
@@ -93,14 +93,9 @@ if (!$skipComposer) {
 // ---------------------
 if (!$skipWeb) {
     $node = "docker run -it --rm -w='/data' -v $pwd/web/ui:/data go1com/ci-nodejs";
-    print_r("npm install\n");
     passthru("$node npm install");
-    print_r("install --allow-root\n");
     passthru("$node install --allow-root");
-    print_r("grunt install\n");
     passthru("$node grunt install");
-    print_r("grunt build --force\n");
     passthru("$node grunt build --force");
-    print_r("grunt set-env:compose\n");
     passthru("$node grunt set-env:compose");
 }
