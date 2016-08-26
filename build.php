@@ -7,7 +7,7 @@ $pwd = __DIR__;
 # @TODO: hostmaster, accounts, apiom, realtime
 $projects = [
     'php' => [
-        'api'        => 'git@code.go1.com.au:go1/api.v3.git',
+        'api'        => 'git@code.go1.com.au:api.v3.git',
         'cloudinary' => 'git@code.go1.com.au:microservices/cloudinary.git',
         'enrolment'  => 'git@code.go1.com.au:microservices/enrolment.git',
         'queue'      => 'git@code.go1.com.au:microservices/queue.git',
@@ -25,7 +25,7 @@ $projects = [
 ];
 
 $files = [
-    'https://www.adminer.org/static/download/4.2.5/adminer-4.2.5-en.php' => "$pwd/php/go1/adminer/public/index.php",
+    'https://www.adminer.org/static/download/4.2.5/adminer-4.2.5-en.php' => "$pwd/php/adminer/public/index.php",
 ];
 
 foreach ($files as $url => $file) {
@@ -36,14 +36,14 @@ foreach ($files as $url => $file) {
 
 foreach ($projects as $lang => $services) {
     foreach ($services as $name => $path) {
-        if (!is_dir("$pwd/$lang/go1/$name")) {
-            passthru("git clone --single-branch --branch=master $path $pwd/$lang/go1/$name");
+        if (!is_dir("$pwd/$lang/$name")) {
+            passthru("git clone --single-branch --branch=master $path $pwd/$lang/$name");
         }
 
         if ('php' === $lang) {
-            passthru("mkdir -p $pwd/$lang/go1/$name/vendor");
+            passthru("mkdir -p $pwd/$lang/$name/vendor");
             file_put_contents(
-                "$pwd/$lang/go1/$name/vendor/autoload.php",
+                "$pwd/$lang/$name/vendor/autoload.php",
                 '<?php return require_once "/autoload/autoload.php";'
             );
         }
@@ -51,4 +51,4 @@ foreach ($projects as $lang => $services) {
 }
 
 passthru("cd $pwd/php/go1 && composer install -vvv && cd $pwd");
-passthru("docker run --rm -v $pwd/php/go1/:/app/ go1com/php:php7 sh /app/install.sh");
+passthru("docker run --rm -v $pwd/php/:/app/ go1com/php:php7 sh /app/install.sh");
