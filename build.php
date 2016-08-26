@@ -7,7 +7,8 @@ $home = getenv('HOME');
 
 $cmd = implode(' ', $argv);
 $pull = false !== strpos($cmd, '--pull');
-$skipComposer = false !== strpos($cmd, '--skip-php');
+$skipPHP = false !== strpos($cmd, '--skip-php');
+$skipDrupal = false !== strpos($cmd, '--skip-drupal');
 $skipWeb = false !== strpos($cmd, '--skip-web');
 
 # @TODO: hostmaster, accounts, realtime
@@ -69,7 +70,7 @@ foreach ($projects as $lang => $services) {
 
 // Autoload PHP projects
 // ---------------------
-if (!$skipComposer) {
+if (!$skipPHP) {
     $composer = json_decode(file_get_contents("$pwd/php/composer.json"), true);
     foreach (array_keys($projects['php']) as $service) {
         $composer['autoload']['psr-4']["go1\\$service\\"] = "/app/$service/";
@@ -91,6 +92,32 @@ if (!$skipComposer) {
 
     passthru("cd $pwd/php && composer install -vvv && cd $pwd");
     passthru("docker run --rm -v $pwd/php/:/app/ go1com/php:php7 sh /app/install.sh");
+}
+
+// Build Gocatalyze code base
+if (!$skipDrupal) {
+    if (!file_exists("$pwd/.data/cli/drush")) {
+        passthru("mkdir $pwd/.data/cli");
+        passthru("wget https://s3.amazonaws.com/files.drush.org/drush.phar -O $pwd/.data/cli/drush");
+    }
+
+    if (!file_exists("$pwd/.data/drupal")) {
+        passthru("mkdir $pwd/.data/drupal");
+    }
+
+    $php = "docker run --rm";
+    $php .= " -v $pwd/php/:/app/";
+    $php .= " -v $pwd/.data/cli/:/cli/";
+    $php .= " -v $pwd/.data/drupal/:/drupal/";
+    $php .= " go1com/php:php7 php /cli/drush";
+    passthru("$php sh /app/install.sh");
+    exit;
+
+    # rm -rf builds/drupal
+    # drush make apps/gc/build/build.make builds/drupal
+    # cd builds/drupal/profiles && ln -s ../../../apps/gc gocatalyze && cd -
+    # cd apps/gc/vendor && composer install --ignore-platform-reqs && cd -
+    # mv sites/all/vendor builds/drupal/sites/all/vendor
 }
 
 // Build #ui
