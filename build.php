@@ -39,6 +39,9 @@ foreach ($projects as $lang => $services) {
         if (!is_dir("$pwd/$lang/$name")) {
             passthru("git clone --single-branch --branch=master $path $pwd/$lang/$name");
         }
+        else {
+            passthru("cd $pwd/$lang/$name && git pull origin master && cd $pwd");
+        }
 
         if ('php' === $lang) {
             passthru("mkdir -p $pwd/$lang/$name/vendor");
@@ -51,17 +54,25 @@ foreach ($projects as $lang => $services) {
 }
 
 // Autoload PHP projects
+// ---------------------
 $composer = json_decode(file_get_contents("$pwd/php/composer.json"), true);
 foreach (array_keys($projects['php']) as $service) {
     $composer['autoload']['psr-4']["go1\\$service\\"] = "/app/$service/";
-    if (file_exists("$pwd/php/$name/composer.json")) {
-        $sub = json_decode(file_get_contents("$pwd/php/{$name}/composer.json"), true);
+    if (file_exists("$pwd/php/$service/composer.json")) {
+        $sub = json_decode(file_get_contents("$pwd/php/{$service}/composer.json"), true);
         if (!empty($sub['require'])) {
-            $composer['require'] = array_merge($composer['require'], $sub['require']);
+            foreach ($sub['require'] as $lib => $version) {
+                $composer['require'][$lib] = $version;
+            }
         }
     }
 }
-file_put_contents("$pwd/php/composer.json", json_encode($composer, JSON_PRETTY_PRINT));
+
+ksort($composer['autoload']['psr-4']);
+ksort($composer['require']);
+$composer = json_encode($composer, JSON_PRETTY_PRINT);
+$composer = str_replace('\/', '/', $composer);
+file_put_contents("$pwd/php/composer.json", $composer);
 
 passthru("cd $pwd/php && composer install -vvv && cd $pwd");
 passthru("docker run --rm -v $pwd/php/:/app/ go1com/php:php7 sh /app/install.sh");
