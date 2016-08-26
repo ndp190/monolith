@@ -3,13 +3,14 @@
 namespace at\labs;
 
 $pwd = __DIR__;
+$home = getenv('HOME');
 
 $cmd = implode(' ', $argv);
 $pull = false !== strpos($cmd, '--pull');
 $skipComposer = false !== strpos($cmd, '--skip-php');
 $skipWeb = false !== strpos($cmd, '--skip-web');
 
-# @TODO: hostmaster, accounts, apiom, realtime
+# @TODO: hostmaster, accounts, realtime
 $projects = [
     'php'            => [
         'api'        => 'git@code.go1.com.au:go1/api.v3.git',
@@ -95,9 +96,9 @@ if (!$skipComposer) {
 // Build #ui
 // ---------------------
 if (!$skipWeb) {
-    $node = "docker run -it --rm -w='/data' -v $pwd/web/ui:/data go1com/ci-nodejs";
+    $node = "docker run -it --rm -w='/data' -v $pwd/web/ui:/data -v '$home/.ssh/id_rsa:/private-key' go1com/ci-nodejs";
     passthru("$node npm install");
-    passthru("$node install --allow-root");
+    passthru("$node bash -c 'eval $(ssh-agent -s) && ssh-add /private-key && mkdir -p ~/.ssh && echo -e \"Host *\\n\\tStrictHostKeyChecking no\\n\\n\" > ~/.ssh/config && bower install --allow-root'");
     passthru("$node grunt install");
     passthru("$node grunt build --force");
     passthru("$node grunt set-env:compose");
