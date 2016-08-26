@@ -50,5 +50,18 @@ foreach ($projects as $lang => $services) {
     }
 }
 
-passthru("cd $pwd/php/go1 && composer install -vvv && cd $pwd");
+// Autoload PHP projects
+$composer = json_decode(file_get_contents("$pwd/php/composer.json"), true);
+foreach (array_keys($projects['php']) as $service) {
+    $composer['autoload']['psr-4']["go1\\$service\\"] = "/app/$service/";
+    if (file_exists("$pwd/php/$name/composer.json")) {
+        $sub = json_decode(file_get_contents("$pwd/php/{$name}/composer.json"), true);
+        if (!empty($sub['require'])) {
+            $composer['require'] = array_merge($composer['require'], $sub['require']);
+        }
+    }
+}
+file_put_contents("$pwd/php/composer.json", json_encode($composer, JSON_PRETTY_PRINT));
+
+passthru("cd $pwd/php && composer install -vvv && cd $pwd");
 passthru("docker run --rm -v $pwd/php/:/app/ go1com/php:php7 sh /app/install.sh");
