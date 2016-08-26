@@ -1,6 +1,6 @@
 <?php
 
-namespace at;
+namespace at\labs;
 
 $pwd = __DIR__;
 
@@ -31,16 +31,15 @@ foreach ($files as $url => $file) {
 foreach ($projects as $lang => $services) {
     foreach ($services as $name => $path) {
         if (!is_dir("$pwd/$lang/go1/$name")) {
-            passthru("git clone --single-branch --branch=master $path $pwd/$lang/go1/$name -vvv");
+            passthru("git clone --single-branch --branch=master $path $pwd/$lang/go1/$name");
         }
 
-        passthru("mkdir -p $pwd/$lang/go1/$name/vendor");
-
-        file_put_contents(
-            "$pwd/$lang/go1/$name/vendor/autoload.php",
-            '<?php return require_once "/app/vendor/autoload.php";'
-        );
+        if ('php' === $lang) {
+            passthru("mkdir -p $pwd/$lang/go1/$name/vendor");
+            file_put_contents("$pwd/$lang/go1/$name/vendor/autoload.php", '<?php return require_once "/app/vendor/autoload.php";');
+        }
     }
 }
 
 passthru("cd $pwd/php/go1 && composer install -vvv && cd $pwd");
+passthru("docker run --rm -v $pwd/php/go1/:/app/ go1com/php:php7 sh /app/install.sh");
