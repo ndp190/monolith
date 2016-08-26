@@ -4,14 +4,20 @@ namespace at\labs;
 
 $pwd = __DIR__;
 
+# @TODO: hostmaster, accounts, apiom, realtime
 $projects = [
     'php' => [
         'api'        => 'git@code.go1.com.au:go1/api.v3.git',
         'cloudinary' => 'git@code.go1.com.au:microservices/cloudinary.git',
+        'enrolment'  => 'git@code.go1.com.au:microservices/enrolment.git',
         'queue'      => 'git@code.go1.com.au:microservices/queue.git',
         'history'    => 'git@code.go1.com.au:microservices/history.git',
+        'lo'         => 'git@code.go1.com.au:microservices/lo.git',
         'mail'       => 'git@code.go1.com.au:microservices/mail.git',
+        'outcome'    => 'git@code.go1.com.au:microservices/outcome.git',
+        'payment'    => 'git@code.go1.com.au:microservices/payment.git',
         'portal'     => 'git@code.go1.com.au:microservices/portal.git',
+        'quiz'       => 'git@code.go1.com.au:microservices/quiz.git',
         'uptime'     => 'git@code.go1.com.au:microservices/uptime.git',
         'user'       => 'git@code.go1.com.au:microservices/user.git',
         'status'     => 'git@code.go1.com.au:microservices/status.git',
