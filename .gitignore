@@ -1,3 +1,7 @@
 .data/
 ~.data/.gitkeep
 php/*
+web/*
+drupal/*
+infrastructure/*
+.idea/
