@@ -9,13 +9,13 @@ services:
   handler:
     #links: [mysql]
     image: go1com/php:php7
-    volumes: ["./php/go1/api:/app/", "./php/go1/vendor:/vendor/"]
+    volumes: ["./php/go1/:/app/", "./php/go1/vendor:/vendor/", ".data/nginx/autoload/:/autoload/"]
 
   web:
     image: go1com/docker-nginx:php
     links: ["handler"]
     ports: ["80:80"]
-    volumes: ["./php/go1/api:/app/", "./php/go1/vendor:/vendor/", ".data/nginx/conf.d/:/etc/nginx/conf.d/"]
+    volumes: ["./php/go1/:/app/", "./php/go1/vendor:/vendor/", ".data/nginx/conf.d/:/etc/nginx/conf.d/"]
     environment:
       - _DOCKER_RDS_DB_NAME=go1
       - _DOCKER_RDS_HOSTNAME=mysql

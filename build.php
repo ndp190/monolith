@@ -36,7 +36,10 @@ foreach ($projects as $lang => $services) {
 
         if ('php' === $lang) {
             passthru("mkdir -p $pwd/$lang/go1/$name/vendor");
-            file_put_contents("$pwd/$lang/go1/$name/vendor/autoload.php", '<?php return require_once "/app/vendor/autoload.php";');
+            file_put_contents(
+                "$pwd/$lang/go1/$name/vendor/autoload.php",
+                '<?php return require_once "/autoload/autoload.php";'
+            );
         }
     }
 }
