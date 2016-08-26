@@ -11,8 +11,7 @@ $skipWeb = false !== strpos($cmd, '--skip-web');
 
 # @TODO: hostmaster, accounts, apiom, realtime
 $projects = [
-    'php' => [
-        'accounts'   => 'git@code.go1.com.au:go1/accounts.git',
+    'php'            => [
         'api'        => 'git@code.go1.com.au:go1/api.v3.git',
         'cloudinary' => 'git@code.go1.com.au:microservices/cloudinary.git',
         'enrolment'  => 'git@code.go1.com.au:microservices/enrolment.git',
@@ -30,26 +29,27 @@ $projects = [
         'rules'      => 'git@code.go1.com.au:microservices/rules.git',
         'status'     => 'git@code.go1.com.au:microservices/status.git',
     ],
-    'web' => [
-        'ui' => 'git@code.go1.com.au:apiom/apiom-ui.git',
+    'drupal'         => [
+        'accounts' => 'git@code.go1.com.au:go1/accounts.git',
+        'gc'       => 'git@code.go1.com.au:gc/gocatalyze.git',
+    ],
+    'web'            => [
+        'ui'      => 'git@code.go1.com.au:apiom/apiom-ui.git',
+        'website' => 'git@code.go1.com.au:web/go1web.git',
+    ],
+    'infrastructure' => [
+        'haproxy' => 'git@code.go1.com.au:go1/haproxy.git',
+        'ecs'     => 'git@code.go1.com.au:go1/launch-configuration.git',
     ],
 ];
 
-$files = [
-    'https://www.adminer.org/static/download/4.2.5/adminer-4.2.5-en.php' => "$pwd/php/adminer/public/index.php",
-];
-
-foreach ($files as $url => $file) {
-    $dir = dirname($file);
-    !is_dir($dir) && passthru("mkdir -p $dir");
-    !is_file($file) && passthru("wget $url -O $file");
-}
-
+// Clone the code base
+// ---------------------
 foreach ($projects as $lang => $services) {
     foreach ($services as $name => $path) {
         if (!is_dir("$pwd/$lang/$name")) {
-            print_r("git clone -q --single-branch --branch=master $path $pwd/$lang/$name\n");
-            passthru("git clone -q --single-branch --branch=master $path $pwd/$lang/$name");
+            print_r("git clone -q --branch=master $path $pwd/$lang/$name\n");
+            passthru("git clone -q --branch=master $path $pwd/$lang/$name");
         }
         elseif ($pull) {
             print_r("git pull -q origin master\n");
@@ -101,4 +101,13 @@ if (!$skipWeb) {
     passthru("$node grunt install");
     passthru("$node grunt build --force");
     passthru("$node grunt set-env:compose");
+}
+
+// Extra tools
+// ---------------------
+$files = ['https://www.adminer.org/static/download/4.2.5/adminer-4.2.5-en.php' => "$pwd/php/adminer/public/index.php"];
+foreach ($files as $url => $file) {
+    $dir = dirname($file);
+    !is_dir($dir) && passthru("mkdir -p $dir");
+    !is_file($file) && passthru("wget $url -O $file");
 }
