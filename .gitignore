@@ -2,4 +2,3 @@
 ~.data/.gitkeep
 php/*
 ~php/composer.json
-~php/composer.lock
