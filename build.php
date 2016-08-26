@@ -4,6 +4,11 @@ namespace at\labs;
 
 $pwd = __DIR__;
 
+$cmd = implode(' ', $argv);
+$pull = false !== strpos($cmd, '--pull');
+$skipComposer = false !== strpos($cmd, '--skip-composer');
+$skipWeb = false !== strpos($cmd, '--skip-web');
+
 # @TODO: hostmaster, accounts, apiom, realtime
 $projects = [
     'php' => [
@@ -21,6 +26,9 @@ $projects = [
         'uptime'     => 'git@code.go1.com.au:microservices/uptime.git',
         'user'       => 'git@code.go1.com.au:microservices/user.git',
         'status'     => 'git@code.go1.com.au:microservices/status.git',
+    ],
+    'web' => [
+        'ui' => 'git@code.go1.com.au:apiom/apiom-ui.git',
     ],
 ];
 
@@ -40,7 +48,7 @@ foreach ($projects as $lang => $services) {
             print_r("git clone -q --single-branch --branch=master $path $pwd/$lang/$name\n");
             passthru("git clone -q --single-branch --branch=master $path $pwd/$lang/$name");
         }
-        else {
+        elseif ($pull) {
             print_r("git pull -q origin master\n");
             passthru("cd $pwd/$lang/$name && git pull -q origin master && cd $pwd");
         }
@@ -57,24 +65,42 @@ foreach ($projects as $lang => $services) {
 
 // Autoload PHP projects
 // ---------------------
-$composer = json_decode(file_get_contents("$pwd/php/composer.json"), true);
-foreach (array_keys($projects['php']) as $service) {
-    $composer['autoload']['psr-4']["go1\\$service\\"] = "/app/$service/";
-    if (file_exists("$pwd/php/$service/composer.json")) {
-        $sub = json_decode(file_get_contents("$pwd/php/{$service}/composer.json"), true);
-        if (!empty($sub['require'])) {
-            foreach ($sub['require'] as $lib => $version) {
-                $composer['require'][$lib] = $version;
+if (!$skipComposer) {
+    $composer = json_decode(file_get_contents("$pwd/php/composer.json"), true);
+    foreach (array_keys($projects['php']) as $service) {
+        $composer['autoload']['psr-4']["go1\\$service\\"] = "/app/$service/";
+        if (file_exists("$pwd/php/$service/composer.json")) {
+            $sub = json_decode(file_get_contents("$pwd/php/{$service}/composer.json"), true);
+            if (!empty($sub['require'])) {
+                foreach ($sub['require'] as $lib => $version) {
+                    $composer['require'][$lib] = $version;
+                }
             }
         }
     }
+
+    ksort($composer['autoload']['psr-4']);
+    ksort($composer['require']);
+    $composer = json_encode($composer, JSON_PRETTY_PRINT);
+    $composer = str_replace('\/', '/', $composer);
+    file_put_contents("$pwd/php/composer.json", $composer);
+
+    passthru("cd $pwd/php && composer install -vvv && cd $pwd");
+    passthru("docker run --rm -v $pwd/php/:/app/ go1com/php:php7 sh /app/install.sh");
 }
 
-ksort($composer['autoload']['psr-4']);
-ksort($composer['require']);
-$composer = json_encode($composer, JSON_PRETTY_PRINT);
-$composer = str_replace('\/', '/', $composer);
-file_put_contents("$pwd/php/composer.json", $composer);
-
-passthru("cd $pwd/php && composer install -vvv && cd $pwd");
-passthru("docker run --rm -v $pwd/php/:/app/ go1com/php:php7 sh /app/install.sh");
+// Build #ui
+// ---------------------
+if (!$skipWeb) {
+    $node = "docker run -it --rm -w='/data' -v $pwd/web/ui:/data go1com/ci-nodejs";
+    print_r("npm install\n");
+    passthru("$node npm install");
+    print_r("install --allow-root\n");
+    passthru("$node install --allow-root");
+    print_r("grunt install\n");
+    passthru("$node grunt install");
+    print_r("grunt build --force\n");
+    passthru("$node grunt build --force");
+    print_r("grunt set-env:compose\n");
+    passthru("$node grunt set-env:compose");
+}

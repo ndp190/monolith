@@ -15,7 +15,11 @@ services:
     image: go1com/docker-nginx:php
     links: ["handler"]
     ports: ["80:80"]
-    volumes: ["./php/:/app/", "./php/vendor:/vendor/", ".data/nginx/conf.d/:/etc/nginx/conf.d/"]
+    volumes:
+      - ./php/:/app/
+      - ./php/vendor:/vendor/
+      - .data/nginx/conf.d/:/etc/nginx/conf.d/
+      - ./web/ui/:/var/www/html/
     environment:
       - _DOCKER_RDS_DB_NAME=go1
       - _DOCKER_RDS_HOSTNAME=mysql
