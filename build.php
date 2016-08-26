@@ -41,7 +41,7 @@ foreach ($projects as $lang => $services) {
             passthru("git clone -q --single-branch --branch=master $path $pwd/$lang/$name");
         }
         else {
-            print_r("git pull -q origin master && cd $pwd\n");
+            print_r("git pull -q origin master\n");
             passthru("cd $pwd/$lang/$name && git pull -q origin master && cd $pwd");
         }
 
