@@ -21,4 +21,4 @@ services:
       - _DOCKER_RDS_HOSTNAME=mysql
       - _DOCKER_RDS_PASSWORD=root
       - _DOCKER_RDS_USERNAME=root
-      - _DOCKER_SERVICE_WILDCARD=http://localhost/SERVICES/*/
+      - _DOCKER_SERVICE_WILDCARD=http://web/GO1/*/
