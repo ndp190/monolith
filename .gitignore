@@ -1,4 +1,3 @@
 .data/
 ~.data/.gitkeep
 php/*
-~php/composer.json
