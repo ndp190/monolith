@@ -1,11 +1,20 @@
 {
-    "name": "go1/monolith",
-    "prefer-stable": true,
-    "minimum-stability": "stable",
-    "autoload": {
-        "psr-4": {
-        }
-    },
-    "require": {
+  "name": "go1/monolith",
+  "prefer-stable": true,
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
     }
+  },
+  "require": {
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "http://repo.go1.com.au"
+    }
+  ],
+  "config": {
+    "secure-http": false
+  }
 }

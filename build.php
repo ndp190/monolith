@@ -7,7 +7,7 @@ $pwd = __DIR__;
 # @TODO: hostmaster, accounts, apiom, realtime
 $projects = [
     'php' => [
-        'api'        => 'git@code.go1.com.au:api.v3.git',
+        'api'        => 'git@code.go1.com.au:go1/api.v3.git',
         'cloudinary' => 'git@code.go1.com.au:microservices/cloudinary.git',
         'enrolment'  => 'git@code.go1.com.au:microservices/enrolment.git',
         'queue'      => 'git@code.go1.com.au:microservices/queue.git',
@@ -37,10 +37,12 @@ foreach ($files as $url => $file) {
 foreach ($projects as $lang => $services) {
     foreach ($services as $name => $path) {
         if (!is_dir("$pwd/$lang/$name")) {
-            passthru("git clone --single-branch --branch=master $path $pwd/$lang/$name");
+            print_r("git clone -q --single-branch --branch=master $path $pwd/$lang/$name\n");
+            passthru("git clone -q --single-branch --branch=master $path $pwd/$lang/$name");
         }
         else {
-            passthru("cd $pwd/$lang/$name && git pull origin master && cd $pwd");
+            print_r("git pull -q origin master && cd $pwd\n");
+            passthru("cd $pwd/$lang/$name && git pull -q origin master && cd $pwd");
         }
 
         if ('php' === $lang) {
