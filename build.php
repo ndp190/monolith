@@ -17,6 +17,7 @@ $projects = [
         'enrolment'  => 'git@code.go1.com.au:microservices/enrolment.git',
         'queue'      => 'git@code.go1.com.au:microservices/queue.git',
         'history'    => 'git@code.go1.com.au:microservices/history.git',
+        'graphin'    => 'git@code.go1.com.au:microservices/graphin.git',
         'lo'         => 'git@code.go1.com.au:microservices/lo.git',
         'mail'       => 'git@code.go1.com.au:microservices/mail.git',
         'outcome'    => 'git@code.go1.com.au:microservices/outcome.git',
@@ -25,6 +26,7 @@ $projects = [
         'quiz'       => 'git@code.go1.com.au:microservices/quiz.git',
         'uptime'     => 'git@code.go1.com.au:microservices/uptime.git',
         'user'       => 'git@code.go1.com.au:microservices/user.git',
+        'rules'      => 'git@code.go1.com.au:microservices/rules.git',
         'status'     => 'git@code.go1.com.au:microservices/status.git',
     ],
     'web' => [
