@@ -6,3 +6,7 @@ GO1 monolith
     - `--skip-web`: Don't run npm commands. 
     - `--pull`: Pull latest code. 
 - `php start.php`
+- Run test cases:
+    - `./test.php php/api`
+    - `./test.php php/lo/tests/domain/tag/`
+    - `./test.php php/api/tests/ProxyTest.php --filter=testStatusOfBlockedService`
