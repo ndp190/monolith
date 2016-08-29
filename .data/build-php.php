@@ -17,6 +17,12 @@ function buildComposerJson($pwd, $projects)
                 }
             }
         }
+
+        passthru("mkdir -p $pwd/php/$service/vendor");
+        file_put_contents(
+            "$pwd/php/$service/vendor/autoload.php",
+            '<?php return require_once "/app/vendor/autoload.php";'
+        );
     }
 
     ksort($json['autoload']['psr-4']);
@@ -31,6 +37,7 @@ return function ($pwd, $home, $projects) {
     $docker .= " -v $pwd/php/:/app/";
     $docker .= " -v $pwd/.data/cli/:/cli/";
     $docker .= " -v '$home/.ssh/id_rsa:/root/.ssh/id_rsa'";
+    $docker .= " -v $home/.composer/:/root/.composer/";
     $docker .= " -w=/app/ go1com/php:php7";
 
     buildComposerJson($pwd, $projects);

@@ -13,14 +13,6 @@ return function ($pwd, $pull, $projects) {
                 print_r("git pull -q origin master\n");
                 passthru("cd $pwd/$lang/$name && git pull -q origin master && cd $pwd");
             }
-
-            if ('php' === $lang) {
-                passthru("mkdir -p $pwd/$lang/$name/vendor");
-                file_put_contents(
-                    "$pwd/$lang/$name/vendor/autoload.php",
-                    '<?php return require_once "/autoload/autoload.php";'
-                );
-            }
         }
     }
 };
