@@ -25,6 +25,7 @@ $projects = [
         'user'       => 'git@code.go1.com.au:microservices/user.git',
         'rules'      => 'git@code.go1.com.au:microservices/rules.git',
         'status'     => 'git@code.go1.com.au:microservices/status.git',
+        'console'    => 'git@code.go1.com.au:go1/console.git',
     ],
     'drupal'         => [
         'accounts' => 'git@code.go1.com.au:go1/accounts.git',
