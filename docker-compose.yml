@@ -6,10 +6,18 @@ services:
     environment: { MYSQL_ROOT_PASSWORD: root, MYSQL_USER: root, MYSQL_PASSWORD: root }
     volumes: ["./.data/mysql:/var/lib/mysql"]
 
+  queue:
+    image: rabbitmq:3.6
+
   handler:
-    links: [mysql]
+    links: [mysql, queue]
     image: go1com/php:php7
-    volumes: ["./php/:/app/", "./php/vendor:/vendor/", ".data/nginx/autoload/:/autoload/"]
+    volumes:
+      - ./php/:/app/
+      - ./php/vendor:/vendor/
+      - .data/nginx/autoload/:/autoload/
+      - .data/drupal/:/drupal/
+      - ./drupal/accounts/:/drupal/sites/accounts/
 
   web:
     image: go1com/docker-nginx:php
