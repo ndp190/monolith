@@ -17,8 +17,9 @@ services:
     ports: ["80:80"]
     volumes:
       - ./php/:/app/
-      - ./drupal/:/drupal/
       - ./php/vendor:/vendor/
+      - .data/drupal/:/drupal/
+      - ./drupal/accounts/:/drupal/sites/accounts/
       - .data/nginx/conf.d/:/etc/nginx/conf.d/
       - ./web/ui/:/var/www/html/
     environment:
