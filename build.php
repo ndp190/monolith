@@ -12,6 +12,7 @@ $projects = [
         'api'        => 'git@code.go1.com.au:go1/api.v3.git',
         'cloudinary' => 'git@code.go1.com.au:microservices/cloudinary.git',
         'enrolment'  => 'git@code.go1.com.au:microservices/enrolment.git',
+        'entity'     => 'git@code.go1.com.au:microservices/entity.git',
         'queue'      => 'git@code.go1.com.au:microservices/queue.git',
         'history'    => 'git@code.go1.com.au:microservices/history.git',
         'graphin'    => 'git@code.go1.com.au:microservices/graphin.git',
