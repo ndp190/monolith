@@ -36,3 +36,12 @@ services:
       - _DOCKER_RDS_PASSWORD=root
       - _DOCKER_RDS_USERNAME=root
       - _DOCKER_SERVICE_WILDCARD=http://web/GO1/*/
+      - _DOCKER_ENROLMENT_URL=http://web/GO1/graphin/
+      - _DOCKER_GRAPHIN_URL=http://web/GO1/graphin/
+      - _DOCKER_LO_URL=http://web/GO1/lo/
+      - _DOCKER_MAIL_URL=http://web/GO1/mail/
+      - _DOCKER_OUTCOME_URL=http://web/GO1/outcome/
+      - _DOCKER_PORTAL_URL=http://web/GO1/portal/
+      - _DOCKER_QUEUE_URL=http://web/GO1/queue/
+      - _DOCKER_RULES_URL=http://web/GO1/rules/
+      - _DOCKER_USER_URLhttp://web/GO1/user/
