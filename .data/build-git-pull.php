@@ -11,7 +11,7 @@ return function ($pwd, $pull, $projects) {
             }
             elseif ($pull) {
                 print_r("git pull -q origin master\n");
-                passthru("cd $pwd/$lang/$name && git pull -q origin master && cd $pwd");
+                passthru("cd $pwd/$lang/$name && git pull -q --single-branch --branch=master origin master && cd $pwd");
             }
         }
     }
