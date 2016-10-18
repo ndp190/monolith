@@ -33,4 +33,4 @@ $cmd = implode(' ', [$phpunit] + $argv);
 
 # echo "$cmd\n";
 
-passthru("$cmd");
+passthru($cmd);
