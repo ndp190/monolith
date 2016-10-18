@@ -23,7 +23,7 @@ if (!empty($argv[1])) {
         switch ($service) {
             default:
                 $phpunit .= " --configuration=$pwd/php/$service/phpunit.xml.dist";
-                $phpunit .= " --bootstrap=$pwd/php/vendor/autoload.php";
+                $phpunit .= " --bootstrap=$pwd/php/vendor/go1.autoload.php";
                 break;
         }
     }
