@@ -3,7 +3,8 @@ GO1 monolith
 
 - `php build.php`: Build the code base.
     - `--skip-php`: Don't run composer commands. 
-    - `--skip-web`: Don't run npm commands. 
+    - `--skip-web`: Don't run npm commands.
+    - `--skip-drupal`: Don't build drupal code base.
     - `--pull`: Pull latest code. 
 - `php start.php`
 - Run test cases:
