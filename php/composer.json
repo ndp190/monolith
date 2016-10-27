@@ -1,21 +1,82 @@
 {
-  "name": "go1/monolith",
-  "prefer-stable": true,
-  "minimum-stability": "stable",
-  "autoload": {
-    "psr-4": {
+    "name": "go1/monolith",
+    "prefer-stable": true,
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "go1\\api\\": "/app/api/",
+            "go1\\assignment\\": "/app/assignment/",
+            "go1\\boss\\": "/app/boss/",
+            "go1\\cloudinary\\": "/app/cloudinary/",
+            "go1\\console\\": "/app/console/",
+            "go1\\currency\\": "/app/currency/",
+            "go1\\deploy_helper\\": "/app/deploy_helper/",
+            "go1\\endpoint\\": "/app/endpoint/",
+            "go1\\enrolment\\": "/app/enrolment/",
+            "go1\\entity\\": "/app/entity/",
+            "go1\\finder\\": "/app/finder/",
+            "go1\\graphin\\": "/app/graphin/",
+            "go1\\history\\": "/app/history/",
+            "go1\\lo\\": "/app/lo/",
+            "go1\\mail\\": "/app/mail/",
+            "go1\\outcome\\": "/app/outcome/",
+            "go1\\payment\\": "/app/payment/",
+            "go1\\portal\\": "/app/portal/",
+            "go1\\queue\\": "/app/queue/",
+            "go1\\quiz\\": "/app/quiz/",
+            "go1\\rules\\": "/app/rules/",
+            "go1\\s3\\": "/app/s3/",
+            "go1\\status\\": "/app/status/",
+            "go1\\uptime\\": "/app/uptime/",
+            "go1\\user\\": "/app/user/"
+        }
+    },
+    "require": {
+        "aws/aws-sdk-php": "^3.19.12",
+        "beberlei/assert": "^2.5",
+        "behat/mink": "^1.7.0",
+        "behat/mink-goutte-driver": "^1.2.0",
+        "cloudinary/cloudinary_php": "^1.3.2",
+        "contextio/php-contextio-lite": "^1.1",
+        "doctrine/dbal": "^2.5",
+        "ezyang/htmlpurifier": "^4.8.0",
+        "firebase/php-jwt": "^3.0",
+        "go1/app": "^2.0",
+        "go1/clients": "dev-master",
+        "go1/flood": "^0.6",
+        "go1/kv": "^0.2",
+        "go1/middlewares": "dev-master",
+        "go1/schema": "dev-master",
+        "go1/util": "dev-master",
+        "graphaware/neo4j-php-client": "^4.0",
+        "guzzlehttp/guzzle": "^6.2.0",
+        "league/pipeline": "^0.2.2",
+        "mikemccabe/json-patch-php": "^0.1.0",
+        "monolog/monolog": "^1.19.0",
+        "mtdowling/cron-expression": "^v1.0",
+        "mustangostang/spyc": "0.5.1",
+        "php-amqplib/php-amqplib": "^2.6",
+        "ramsey/uuid": "^3.4",
+        "silex/silex": "^2.0.0",
+        "swiftmailer/swiftmailer": "^5.4",
+        "symfony/console": "^3.0",
+        "symfony/event-dispatcher": "^3.1",
+        "symfony/http-foundation": "^3.0",
+        "symfony/process": "^3.1",
+        "symfony/property-access": "~3.1.3",
+        "symfony/var-dumper": "^3.0",
+        "symfony/yaml": "^3.0",
+        "twig/extensions": "^v1.3.0",
+        "twig/twig": "^1.24",
+        "vectorface/whip": "^v0.3.1"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://repo.go1.com.au"
+        }
+    ],
+    "config": {
+        "secure-http": false
     }
-  },
-  "require": {
-    "symfony/var-dumper": "^3.0"
-  },
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "http://repo.go1.com.au"
-    }
-  ],
-  "config": {
-    "secure-http": false
-  }
 }
