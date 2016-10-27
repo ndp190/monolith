@@ -21,7 +21,9 @@ function buildComposerJson($pwd, $projects)
         passthru("mkdir -p $pwd/php/$service/vendor");
         file_put_contents(
             "$pwd/php/$service/vendor/autoload.php",
-            '<?php if (is_file("/autoload/autoload.php")) return require_once "/autoload/autoload.php";'
+            '<?php' . "\n\n"
+            . 'if (is_file("/autoload/autoload.php")) return require_once "/autoload/autoload.php";' . "\n"
+            . 'if (is_file(__DIR__ . "/../../vendor/autoload.php")) return require_once __DIR__ . "/../../vendor/autoload.php";'
         );
     }
 
