@@ -11,6 +11,7 @@
             "go1\\console\\": "/app/console/",
             "go1\\currency\\": "/app/currency/",
             "go1\\deploy_helper\\": "/app/deploy_helper/",
+            "go1\\eck\\": "/app/eck/",
             "go1\\endpoint\\": "/app/endpoint/",
             "go1\\enrolment\\": "/app/enrolment/",
             "go1\\entity\\": "/app/entity/",

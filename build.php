@@ -1,6 +1,6 @@
 <?php
 
-namespace at\labs;
+namespace go1\monolith;
 
 $cmd = implode(' ', $argv);
 $pwd = __DIR__;
