@@ -43,7 +43,7 @@ $projects = [
         'flood'          => 'git@github.com:go1com/flood.git',
         'jwt_middleware' => 'git@github.com:go1com/JwtMiddleware.git',
         'kv'             => 'git@github.com:go1com/kv.git',
-        'middlewares'    => 'git@code.go1.com.au:go1/middlewares.git',
+        'middleware'     => 'git@code.go1.com.au:go1/middlewares.git',
         'schema'         => 'git@code.go1.com.au:go1/schema.git',
         'util'           => 'git@code.go1.com.au:go1/util.git',
     ],

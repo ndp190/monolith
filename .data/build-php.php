@@ -8,13 +8,16 @@ function buildComposerJson($pwd, $projects, $baseDir = 'php')
 {
     $json = json_decode(file_get_contents("$pwd/php/composer.json"), true);
     foreach (array_keys($projects) as $service) {
-        $json['autoload']['psr-4']["go1\\$service\\"] = str_replace('/php/', '/app/', $baseDir) . "/$service/";
+        $json['autoload']['psr-4']["go1\\$service\\"] = './' . str_replace(['/php/', '/php/libraries/'], ['/app/', '/libraries/'], $baseDir) . "/$service/";
+
         if (file_exists("$pwd/$baseDir/$service/composer.json")) {
             $sub = json_decode(file_get_contents("$pwd/$baseDir/{$service}/composer.json"), true);
             if (!empty($sub['require'])) {
                 foreach ($sub['require'] as $lib => $version) {
                     if (false === strpos($lib, 'go1/')) {
-                        $json['require'][$lib] = $version;
+                        if (!in_array($lib, ['php', 'phpunit/phpunit'])) {
+                            $json['require'][$lib] = $version;
+                        }
                     }
                 }
             }
@@ -25,7 +28,7 @@ function buildComposerJson($pwd, $projects, $baseDir = 'php')
             "$pwd/$baseDir/$service/vendor/autoload.php",
             '<?php' . "\n\n"
             . 'if (is_file("/autoload/autoload.php")) return require_once "/autoload/autoload.php";' . "\n"
-            . 'if (is_file(__DIR__ . "/../../vendor/autoload.php")) return require_once __DIR__ . "/../../vendor/autoload.php";'
+            . 'if (is_file(__DIR__ . "/../../vendor/autoload.php")) return require_once __DIR__ . "/../../vendor/go1.autoload.php";'
         );
     }
 
