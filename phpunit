@@ -29,8 +29,4 @@ if (!empty($argv[1])) {
     }
 }
 
-$cmd = implode(' ', [$phpunit] + $argv);
-
-# echo "$cmd\n";
-
-passthru($cmd);
+passthru($cmd = implode(' ', [$phpunit] + $argv));
