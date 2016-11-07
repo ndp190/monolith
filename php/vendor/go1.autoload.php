@@ -1,17 +1,19 @@
 <?php
 
-/** @var ClassLoader $loader */
 use Composer\Autoload\ClassLoader;
 
-$loader = require __DIR__ . '/autoload.php';
+if (is_file("/autoload/autoload.php")) return require_once "/autoload/autoload.php";
 
-$psr4 = $loader->getPrefixesPsr4();
+if (is_file(__DIR__ . "/autoload.php")) {
+    /** @var ClassLoader $loader */
+    $loader = require_once __DIR__ . "/autoload.php";
 
-foreach (array_keys($psr4) as $ns) {
-    if (0 === strpos($ns, 'go1\\')) {
-        $project = explode('\\', $ns)[1];
-        if (is_dir(__DIR__ . '/../' . $project)) {
-            $loader->addPsr4($ns, __DIR__ . '/../' . $project);
+    foreach ($loader->getPrefixesPsr4() as $ns => $paths) {
+        if (0 === strpos($ns, 'go1\\')) {
+            $path = explode('../../php/', $paths[0])[1];
+            $loader->addPsr4($ns, __DIR__ . '/../' . $path);
         }
     }
+
+    return $loader;
 }
