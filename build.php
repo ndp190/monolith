@@ -36,6 +36,17 @@ $projects = [
         'boss'       => 'git@code.go1.com.au:go1/worker_manager.git',
         's3'         => 'git@code.go1.com.au:go1/s3.git',
     ],
+    'php/libraries'  => [
+        'app'            => 'git@github.com:go1com/app.git',
+        'clients'        => 'git@code.go1.com.au:go1/clients.git',
+        'edge'           => 'git@github.com:go1com/edge.git',
+        'flood'          => 'git@github.com:go1com/flood.git',
+        'jwt_middleware' => 'git@github.com:go1com/JwtMiddleware.git',
+        'kv'             => 'git@github.com:go1com/kv.git',
+        'middlewares'    => 'git@code.go1.com.au:go1/middlewares.git',
+        'schema'         => 'git@code.go1.com.au:go1/schema.git',
+        'util'           => 'git@code.go1.com.au:go1/util.git',
+    ],
     'drupal'         => [
         'accounts' => 'git@code.go1.com.au:go1/accounts.git',
         'gc'       => 'git@code.go1.com.au:gc/gocatalyze.git',
