@@ -58,8 +58,9 @@ $projects = [
         'website' => 'git@code.go1.com.au:web/go1web.git',
     ],
     'infrastructure' => [
-        'haproxy' => 'git@code.go1.com.au:go1/haproxy.git',
-        'ecs'     => 'git@code.go1.com.au:go1/launch-configuration.git',
+        'haproxy'       => 'git@code.go1.com.au:go1/haproxy.git',
+        'ecs'           => 'git@code.go1.com.au:go1/launch-configuration.git',
+        'deploy_helper' => 'git@github.com:go1com/deploy_helper.git',
     ],
 ];
 
