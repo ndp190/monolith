@@ -24,7 +24,9 @@
             "go1\\history\\": "./php/history/",
             "go1\\jwt_middleware\\": "./php/libraries/jwt_middleware/",
             "go1\\kv\\": "./php/libraries/kv/",
+            "go1\\lib\\": "./php/lib/",
             "go1\\lo\\": "./php/lo/",
+            "go1\\lob\\": "./php/lob/",
             "go1\\mail\\": "./php/mail/",
             "go1\\middleware\\": "./php/libraries/middleware/",
             "go1\\middlewares\\": "./php/libraries/middlewares/",
@@ -37,6 +39,7 @@
             "go1\\s3\\": "./php/s3/",
             "go1\\schema\\": "./php/libraries/schema/",
             "go1\\status\\": "./php/status/",
+            "go1\\subscription\\": "./php/subscription/",
             "go1\\uptime\\": "./php/uptime/",
             "go1\\user\\": "./php/user/",
             "go1\\util\\": "./php/libraries/util/"
