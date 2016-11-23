@@ -52,8 +52,11 @@ return function ($pwd, $home, $projects) {
     buildComposerJson($pwd, $projects['php/libraries'], 'php/libraries');
 
     if (!is_file("$pwd/.data/cli/composer.phar")) {
-        copy('https://getcomposer.org/installer', "$pwd/.data/cli/composer-setup.php");
-        if (hash_file('SHA384', "$pwd/.data/cli/composer-setup.php") !== 'e115a8dc7871f15d853148a7fbac7da27d6c0030b848d9b3dc09e2a0388afed865e6a3d6b3c0fad45c48e2b5fc1196ae') {
+        if (!is_dir("$pwd/.data/cli")) {
+            mkdir("$pwd/.data/cli", 0777, true);
+            copy('https://getcomposer.org/installer', "$pwd/.data/cli/composer-setup.php");
+        }
+        if (hash_file('SHA384', "$pwd/.data/cli/composer-setup.php") !== 'aa96f26c2b67226a324c27919f1eb05f21c248b987e6195cad9690d5c1ff713d53020a02ac8c217dbf90a7eacc9d141d') {
             unlink("$pwd/.data/cli/composer-setup.php");
             throw new RuntimeException('[COMPOSER] Installer corrupt');
         }
