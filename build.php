@@ -49,6 +49,7 @@ $projects = [
         'middleware'     => 'git@code.go1.com.au:go1/middlewares.git',
         'schema'         => 'git@code.go1.com.au:go1/schema.git',
         'util'           => 'git@code.go1.com.au:go1/util.git',
+        'graph_mock'     => 'git@code.go1.com.au:go1/graph-mock.git',
     ],
     'drupal'         => [
         'accounts' => 'git@code.go1.com.au:go1/accounts.git',
