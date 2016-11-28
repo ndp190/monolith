@@ -11,6 +11,7 @@ $projects = [
     'php'            => [
         'api'          => 'git@code.go1.com.au:go1/api.v3.git',
         'assignment'   => 'git@code.go1.com.au:microservices/assignment.git',
+        'batch'        => 'git@code.go1.com.au:microservices/batch.git',
         'cloudinary'   => 'git@code.go1.com.au:microservices/cloudinary.git',
         'credit'       => 'git@code.go1.com.au:microservices/credit.git',
         'currency'     => 'git@code.go1.com.au:microservices/currency.git',

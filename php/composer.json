@@ -20,6 +20,7 @@
             "go1\\entity\\": "./php/entity/",
             "go1\\finder\\": "./php/finder/",
             "go1\\flood\\": "./php/libraries/flood/",
+            "go1\\graph_mock\\": "./php/libraries/graph_mock/",
             "go1\\graphin\\": "./php/graphin/",
             "go1\\history\\": "./php/history/",
             "go1\\jwt_middleware\\": "./php/libraries/jwt_middleware/",
