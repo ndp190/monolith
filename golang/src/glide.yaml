@@ -1,4 +1,5 @@
 import:
+    - { package: go1 }
     - { package: github.com/facebookgo/grace, subpackages: [gracehttp] }
     - { package: github.com/labstack/echo, version: ^2.0.0, subpackages: [engine, engine/standard, middleware] }
     - { package: github.com/echo-contrib/echopprof }

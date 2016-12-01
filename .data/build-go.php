@@ -6,7 +6,12 @@ use Symfony\Component\Yaml\Yaml;
 
 function buildGlideYaml(string $pwd, array $projects)
 {
-    $glide = ['import' => [], 'testImport' => []];
+    $glide = [
+        'import'     => [
+            ['package' => 'go1'],
+        ],
+        'testImport' => [],
+    ];
 
     if (!class_exists(Yaml::class)) {
         die("Please install YAML: composer global require symfomy/yaml.\n");
@@ -46,7 +51,7 @@ function glideInstall($pwd)
         die("Please install glide: curl https://glide.sh/get | sh\n");
     }
 
-    passthru("cd $pwd/golang/src && GOPATH=$pwd/golang glide install -v && cd -");
+    passthru("cd $pwd/golang/src && GOPATH=$pwd/golang glide install > /dev/null 2>&1");
 }
 
 return function (string $pwd, string $home, array $projects) {
