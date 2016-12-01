@@ -3,7 +3,7 @@
 namespace go1\monolith;
 
 $cmd = implode(' ', $argv);
-$pwd = __DIR__;
+$pwd = dirname(__DIR__);
 $home = getenv('HOME');
 
 if (is_file("$home/.composer/vendor/autoload.php")) {

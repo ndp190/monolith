@@ -13,7 +13,7 @@ GO1 monolith
 
 ## Usage
 
-- `php build.php`: Build the code base.
+- `php ./scripts/build.php`: Build the code base.
     - `--skip-php`: Don't run composer commands. 
     - `--skip-web`: Don't run npm commands.
     - `--skip-drupal`: Don't build drupal code base.
@@ -21,10 +21,10 @@ GO1 monolith
     - `--pull`: Pull latest code. 
 - `php start.php`
 - Run test cases:
-    - `./test.php php/api`
-    - `./test.php php/lo/tests/domain/tag/`
-    - `./test.php php/api/tests/ProxyTest.php --filter=testStatusOfBlockedService`
-    - `./test.php drupal/gc/modules/applications/aduro/modules/lms/lms_services/tests/Apiom/Course/CourseAccountsServicesTest.php`
+    - `./scripts/test.php php/api`
+    - `./scripts/test.php php/lo/tests/domain/tag/`
+    - `./scripts/test.php php/api/tests/ProxyTest.php --filter=testStatusOfBlockedService`
+    - `./scripts/test.php drupal/gc/modules/applications/aduro/modules/lms/lms_services/tests/Apiom/Course/CourseAccountsServicesTest.php`
 - Run test cases without Docker:
     - `./phpunit php/outcome/`
 

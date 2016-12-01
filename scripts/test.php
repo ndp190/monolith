@@ -3,7 +3,7 @@
 
 namespace at\labs;
 
-$pwd = __DIR__;
+$pwd = dirname(__DIR__);
 
 // Install PHPUnit if it's missing
 if (!is_file("$pwd/.data/cli/phpunit.phar")) {
@@ -44,7 +44,5 @@ $cmd = preg_replace('/test\.php (.+)$/', "$phpunit /app/$1", $cmd);
 $cmd = str_replace('/app/php/', '/app/', $cmd);
 $cmd = str_replace('/app/drupal/', '/drop/', $cmd);
 $cmd = ltrim($cmd, './');
-
-# echo "$cmd\n";
 
 passthru("$cmd");
