@@ -84,3 +84,4 @@ call_user_func(require $pwd . '/scripts/build-git-pull.php', $pwd, $pull, $proje
 !strpos($cmd, '--skip-web') && call_user_func(require $pwd . '/scripts/build-web.php', $pwd, $home);
 !strpos($cmd, '--skip-tools') && call_user_func(require $pwd . '/scripts/build-tools.php', $pwd);
 !strpos($cmd, '--skip-go') && call_user_func(require $pwd . '/scripts/build-go.php', $pwd, $home, $projects);
+!strpos($cmd, '--skip-docker-compose') && call_user_func(require $pwd . '/scripts/build-docker-compose.php', $pwd, $home, $projects);

@@ -1,47 +1,63 @@
-version: "2"
+version: '2'
 services:
-  mysql:
-    image: mysql:5.7
-    user: 1000:1000
-    environment: { MYSQL_ROOT_PASSWORD: root, MYSQL_USER: root, MYSQL_PASSWORD: root }
-    volumes: ["./.data/mysql:/var/lib/mysql"]
-
-  queue:
-    image: rabbitmq:3.6
-
-  handler:
-    links: [mysql, queue]
-    image: go1com/php:php7
-    volumes:
-      - ./php/:/app/
-      - ./php/vendor:/vendor/
-      - .data/nginx/autoload/:/autoload/
-      - .data/drupal/:/drupal/
-      - ./drupal/accounts/:/drupal/sites/accounts/
-
-  web:
-    image: go1com/docker-nginx:php
-    links: ["handler"]
-    ports: ["80:80"]
-    volumes:
-      - ./php/:/app/
-      - ./php/vendor:/vendor/
-      - .data/drupal/:/drupal/
-      - ./drupal/accounts/:/drupal/sites/accounts/
-      - .data/nginx/conf.d/:/etc/nginx/conf.d/
-      - ./web/ui/:/var/www/html/
-    environment:
-      - _DOCKER_RDS_DB_NAME=go1
-      - _DOCKER_RDS_HOSTNAME=mysql
-      - _DOCKER_RDS_PASSWORD=root
-      - _DOCKER_RDS_USERNAME=root
-      - _DOCKER_SERVICE_WILDCARD=http://web/GO1/*/
-      - _DOCKER_ENROLMENT_URL=http://web/GO1/graphin/
-      - _DOCKER_GRAPHIN_URL=http://web/GO1/graphin/
-      - _DOCKER_LO_URL=http://web/GO1/lo/
-      - _DOCKER_MAIL_URL=http://web/GO1/mail/
-      - _DOCKER_OUTCOME_URL=http://web/GO1/outcome/
-      - _DOCKER_PORTAL_URL=http://web/GO1/portal/
-      - _DOCKER_QUEUE_URL=http://web/GO1/queue/
-      - _DOCKER_RULES_URL=http://web/GO1/rules/
-      - _DOCKER_USER_URLhttp://web/GO1/user/
+    mysql:
+        image: 'mysql:5.7'
+        user: '1000:1000'
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: root
+            MYSQL_PASSWORD: root
+        volumes:
+            - './.data/mysql:/var/lib/mysql'
+    queue:
+        image: 'rabbitmq:3.6'
+    web:
+        image: 'go1com/php:7-nginx'
+        links:
+            - mysql
+            - queue
+        ports:
+            - '80:80'
+        volumes:
+            - './php/:/app/'
+            - './php/vendor:/vendor/'
+            - '.data/drupal/:/drupal/'
+            - './drupal/accounts/:/drupal/sites/accounts/'
+            - '.data/nginx/sites-available/:/etc/nginx/sites-available/'
+            - '.data/nginx/autoload/:/autoload/'
+            - './web/ui/:/var/www/html/'
+        environment:
+            - _DOCKER_RDS_DB_NAME=go1
+            - _DOCKER_RDS_HOSTNAME=mysql
+            - _DOCKER_RDS_PASSWORD=root
+            - _DOCKER_RDS_USERNAME=root
+            - _DOCKER_ASSIGNMENT_URL=http://web/GO1/assignment/
+            - _DOCKER_BATCH_URL=http://web/GO1/batch/
+            - _DOCKER_CLOUDINARY_URL=http://web/GO1/cloudinary/
+            - _DOCKER_CREDIT_URL=http://web/GO1/credit/
+            - _DOCKER_CURRENCY_URL=http://web/GO1/currency/
+            - _DOCKER_ECK_URL=http://web/GO1/eck/
+            - _DOCKER_ENDPOINT_URL=http://web/GO1/endpoint/
+            - _DOCKER_ENROLMENT_URL=http://web/GO1/enrolment/
+            - _DOCKER_ENTITY_URL=http://web/GO1/entity/
+            - _DOCKER_FINDER_URL=http://web/GO1/finder/
+            - _DOCKER_QUEUE_URL=http://web/GO1/queue/
+            - _DOCKER_HISTORY_URL=http://web/GO1/history/
+            - _DOCKER_GRAPHIN_URL=http://web/GO1/graphin/
+            - _DOCKER_LIB_URL=http://web/GO1/lib/
+            - _DOCKER_LO_URL=http://web/GO1/lo/
+            - _DOCKER_LOB_URL=http://web/GO1/lob/
+            - _DOCKER_MAIL_URL=http://web/GO1/mail/
+            - _DOCKER_NOTE_URL=http://web/GO1/note/
+            - _DOCKER_PAYMENT_URL=http://web/GO1/payment/
+            - _DOCKER_PORTAL_URL=http://web/GO1/portal/
+            - _DOCKER_QUIZ_URL=http://web/GO1/quiz/
+            - _DOCKER_UPTIME_URL=http://web/GO1/uptime/
+            - _DOCKER_USER_URL=http://web/GO1/user/
+            - _DOCKER_RULES_URL=http://web/GO1/rules/
+            - _DOCKER_SOCIAL_URL=http://web/GO1/social/
+            - _DOCKER_STATUS_URL=http://web/GO1/status/
+            - _DOCKER_SUBSCRIPTION_URL=http://web/GO1/subscription/
+            - _DOCKER_CONSOLE_URL=http://web/GO1/console/
+            - _DOCKER_BOSS_URL=http://web/GO1/boss/
+            - _DOCKER_S3_URL=http://web/GO1/s3/
