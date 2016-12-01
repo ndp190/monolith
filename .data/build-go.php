@@ -52,7 +52,4 @@ function glideInstall($pwd)
 return function (string $pwd, string $home, array $projects) {
     buildGlideYaml($pwd, $projects);
     glideInstall($pwd);
-
-    // @TODO: Install glide
-    // @TODO: Create wrapper command to help test, build, run on single vendor directory.
 };
