@@ -59,6 +59,10 @@ $projects = [
         'accounts' => 'git@code.go1.com.au:go1/accounts.git',
         'gc'       => 'git@code.go1.com.au:gc/gocatalyze.git',
     ],
+    'golang'         => [
+        'api'      => 'git@code.go1.com.au:go1/api.v3.git',
+        'consumer' => 'git@code.go1.com.au:microservices/consumer.git',
+    ],
     'web'            => [
         'ui'      => 'git@code.go1.com.au:apiom/apiom-ui.git',
         'website' => 'git@code.go1.com.au:web/go1web.git',
@@ -77,3 +81,4 @@ call_user_func(require $pwd . '/.data/build-git-pull.php', $pwd, $pull, $project
 !strpos($cmd, '--skip-drupal') && call_user_func(require $pwd . '/.data/build-drupal.php', $pwd, $home);
 !strpos($cmd, '--skip-web') && call_user_func(require $pwd . '/.data/build-web.php', $pwd, $home);
 !strpos($cmd, '--skip-tools') && call_user_func(require $pwd . '/.data/build-tools.php', $pwd);
+!strpos($cmd, '--skip-go') && call_user_func(require $pwd . '/.data/build-go.php', $pwd, $home, $projects);

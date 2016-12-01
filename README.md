@@ -5,6 +5,7 @@ GO1 monolith
     - `--skip-php`: Don't run composer commands. 
     - `--skip-web`: Don't run npm commands.
     - `--skip-drupal`: Don't build drupal code base.
+    - `--skip-go`: Don't build golang code base.
     - `--pull`: Pull latest code. 
 - `php start.php`
 - Run test cases:
