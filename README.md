@@ -3,8 +3,8 @@ GO1 monolith
 
 ## TODO
 
-- memcached
-- …
+- Build the scripts as a single phar file.
+- Check #ui build again.
 
 ## Dependencies
 
@@ -24,7 +24,9 @@ GO1 monolith
     - `--skip-drupal`: Don't build drupal code base.
     - `--skip-go`: Don't build golang code base.
     - `--pull`: Pull latest code. 
-- `php start.php`
+- `php start.php`, then try some links:
+    - http://localhost/v3/
+    - http://localhost/GO1/user/
 - Run test cases:
     - `./scripts/test.php php/api`
     - `./scripts/test.php php/lo/tests/domain/tag/`
