@@ -7,6 +7,7 @@
             "go1\\api\\": "./php/api/",
             "go1\\app\\": "./php/libraries/app/",
             "go1\\assignment\\": "./php/assignment/",
+            "go1\\batch\\": "./php/batch/",
             "go1\\boss\\": "./php/boss/",
             "go1\\clients\\": "./php/libraries/clients/",
             "go1\\cloudinary\\": "./php/cloudinary/",
