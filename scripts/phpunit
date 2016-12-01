@@ -3,7 +3,7 @@
 
 namespace at\labs;
 
-$pwd = __DIR__;
+$pwd = dirname(__DIR__);
 
 // Install PHPUnit if it's missing
 if (!is_file("$pwd/.data/cli/phpunit.phar")) {
