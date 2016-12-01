@@ -13,8 +13,8 @@ function buildGlideYaml(string $pwd, array $projects)
     }
 
     foreach ($projects['golang'] as $project => $repository) {
-        if (is_file("$pwd/golang/src/go1/$project/glide.yaml")) {
-            $arr = Yaml::parse(file_get_contents("$pwd/golang/src/go1/$project/glide.yaml"));
+        if (is_file("$pwd/golang/src/vendor/go1/$project/glide.yaml")) {
+            $arr = Yaml::parse(file_get_contents("$pwd/golang/src/vendor/go1/$project/glide.yaml"));
 
             foreach (['import', 'testImport'] as $type) {
                 if (isset($arr[$type])) {
