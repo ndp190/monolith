@@ -1,6 +1,18 @@
 GO1 monolith
 ====
 
+## Dependencies
+
+- git
+- php7
+    - composer
+- golang:
+    - `composer global require symfony/yaml`
+    - glide: `curl https://glide.sh/get | sh`
+    - `export PATH="/path/to/monolith/bin:$PATH"`
+
+## Usage
+
 - `php build.php`: Build the code base.
     - `--skip-php`: Don't run composer commands. 
     - `--skip-web`: Don't run npm commands.
