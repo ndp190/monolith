@@ -1,6 +1,11 @@
 GO1 monolith
 ====
 
+## TODO
+
+- memcached
+- …
+
 ## Dependencies
 
 - git
@@ -9,7 +14,7 @@ GO1 monolith
 - golang:
     - `composer global require symfony/yaml`
     - glide: `curl https://glide.sh/get | sh`
-    - `export PATH="/path/to/monolith/bin:$PATH"`
+    - `export PATH="/path/to/monolith/scripts:$PATH"`
 
 ## Usage
 
