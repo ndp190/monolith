@@ -32,6 +32,7 @@
             "go1\\mail\\": "./php/mail/",
             "go1\\middleware\\": "./php/libraries/middleware/",
             "go1\\middlewares\\": "./php/libraries/middlewares/",
+            "go1\\note\\": "./php/note/",
             "go1\\outcome\\": "./php/outcome/",
             "go1\\payment\\": "./php/payment/",
             "go1\\portal\\": "./php/portal/",
