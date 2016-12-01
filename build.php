@@ -62,6 +62,7 @@ $projects = [
     'golang'         => [
         'api'      => 'git@code.go1.com.au:go1/api.v3.git',
         'consumer' => 'git@code.go1.com.au:microservices/consumer.git',
+        'goweb'    => 'git@code.go1.com.au:microservices/goweb.git',
     ],
     'web'            => [
         'ui'      => 'git@code.go1.com.au:apiom/apiom-ui.git',
