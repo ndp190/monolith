@@ -6,6 +6,10 @@ $cmd = implode(' ', $argv);
 $pwd = __DIR__;
 $home = getenv('HOME');
 
+if (is_file("$home/.composer/vendor/autoload.php")) {
+    require_once "$home/.composer/vendor/autoload.php";
+}
+
 # @TODO: hostmaster, accounts, realtime
 $projects = [
     'php'            => [
