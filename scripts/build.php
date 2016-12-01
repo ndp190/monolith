@@ -31,7 +31,6 @@ $projects = [
         'lob'          => 'git@code.go1.com.au:microservices/lob.git',
         'mail'         => 'git@code.go1.com.au:microservices/mail.git',
         'note'         => 'git@code.go1.com.au:microservices/note.git',
-        'outcome'      => 'git@code.go1.com.au:microservices/outcome.git',
         'payment'      => 'git@code.go1.com.au:microservices/payment.git',
         'portal'       => 'git@code.go1.com.au:microservices/portal.git',
         'quiz'         => 'git@code.go1.com.au:microservices/quiz.git',
