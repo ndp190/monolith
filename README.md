@@ -33,7 +33,7 @@ GO1 monolith
     - `./scripts/test.php php/api/tests/ProxyTest.php --filter=testStatusOfBlockedService`
     - `./scripts/test.php drupal/gc/modules/applications/aduro/modules/lms/lms_services/tests/Apiom/Course/CourseAccountsServicesTest.php`
 - Run test cases without Docker:
-    - `./scripts/phpunit php/outcome/`
+    - `php ./scripts/phpunit.php php/outcome/`
 
 To avoid PHPStorm to index too much, exclude these directory:
 
