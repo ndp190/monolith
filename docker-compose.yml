@@ -2,13 +2,14 @@ version: '2'
 services:
     mysql:
         image: 'mysql:5.7'
-        user: '1000:1000'
         environment:
             MYSQL_ROOT_PASSWORD: root
-            MYSQL_USER: root
-            MYSQL_PASSWORD: root
+            MYSQL_USER: go1
+            MYSQL_PASSWORD: go1
         volumes:
             - './.data/mysql:/var/lib/mysql'
+        ports:
+            - '3306:3306'
     queue:
         image: 'rabbitmq:3.6'
     memcached:
