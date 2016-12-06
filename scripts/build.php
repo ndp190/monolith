@@ -74,6 +74,7 @@ $projects = [
         'ecs'           => 'git@code.go1.com.au:go1/launch-configuration.git',
         'deploy_helper' => 'git@github.com:go1com/deploy_helper.git',
         'goweb'         => 'git@code.go1.com.au:microservices/goweb.git',
+        'cron'          => 'git@code.go1.com.au:microservices/cron.git',
     ],
 ];
 
