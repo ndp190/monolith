@@ -43,6 +43,7 @@ $projects = [
         'console'      => 'git@code.go1.com.au:go1/console.git',
         'boss'         => 'git@code.go1.com.au:go1/worker_manager.git',
         's3'           => 'git@code.go1.com.au:microservices/s3.git',
+        'sso'          => 'git@code.go1.com.au:microservices/sso.git',
     ],
     'php/libraries'  => [
         'app'            => 'git@github.com:go1com/app.git',
