@@ -68,3 +68,4 @@ services:
             - _DOCKER_CONSOLE_URL=http://web/GO1/console/
             - _DOCKER_BOSS_URL=http://web/GO1/boss/
             - _DOCKER_S3_URL=http://web/GO1/s3/
+            - _DOCKER_SSO_URL=http://web/GO1/sso/
