@@ -72,11 +72,12 @@ $projects = [
         'website' => 'git@code.go1.com.au:web/go1web.git',
     ],
     'infrastructure' => [
-        'haproxy'       => 'git@code.go1.com.au:go1/haproxy.git',
-        'ecs'           => 'git@code.go1.com.au:go1/launch-configuration.git',
-        'deploy_helper' => 'git@github.com:go1com/deploy_helper.git',
-        'goweb'         => 'git@code.go1.com.au:microservices/goweb.git',
         'cron'          => 'git@code.go1.com.au:microservices/cron.git',
+        'deploy_helper' => 'git@github.com:go1com/deploy_helper.git',
+        'ecs'           => 'git@code.go1.com.au:go1/launch-configuration.git',
+        'goweb'         => 'git@code.go1.com.au:microservices/goweb.git',
+        'haproxy'       => 'git@code.go1.com.au:go1/haproxy.git',
+        'memcached'     => 'git@code.go1.com.au:server/memcached.git',
     ],
 ];
 
