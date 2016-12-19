@@ -69,3 +69,5 @@ services:
             - _DOCKER_BOSS_URL=http://web/GO1/boss/
             - _DOCKER_S3_URL=http://web/GO1/s3/
             - _DOCKER_SSO_URL=http://web/GO1/sso/
+            - _DOCKER_STASH_URL=http://web/GO1/stash/
+            - _DOCKER_WORKSHOP_URL=http://web/GO1/workshop/

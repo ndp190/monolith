@@ -45,6 +45,7 @@ $projects = [
         's3'           => 'git@code.go1.com.au:microservices/s3.git',
         'sso'          => 'git@code.go1.com.au:microservices/sso.git',
         'stash'        => 'git@code.go1.com.au:microservices/stash.git',
+        'workshop'     => 'git@code.go1.com.au:microservices/workshop.git',
     ],
     'php/libraries'  => [
         'app'            => 'git@github.com:go1com/app.git',

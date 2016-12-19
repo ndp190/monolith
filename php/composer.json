@@ -43,11 +43,13 @@
             "go1\\schema\\": "./php/libraries/schema/",
             "go1\\social\\": "./php/social/",
             "go1\\sso\\": "./php/sso/",
+            "go1\\stash\\": "./php/stash/",
             "go1\\status\\": "./php/status/",
             "go1\\subscription\\": "./php/subscription/",
             "go1\\uptime\\": "./php/uptime/",
             "go1\\user\\": "./php/user/",
-            "go1\\util\\": "./php/libraries/util/"
+            "go1\\util\\": "./php/libraries/util/",
+            "go1\\workshop\\": "./php/workshop/"
         }
     },
     "require": {
