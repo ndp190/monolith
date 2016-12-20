@@ -21,6 +21,10 @@ return function ($pwd, $pull, $projects) {
                 print_r("git pull -q origin {$branch}\n");
                 passthru("cd $target && git pull -q --single-branch --branch={$branch} origin master && cd $pwd");
             }
+            else {
+                print_r("[$lang/$name]$ git fetch origin --prune\n");
+                passthru("cd $target && git fetch origin --prune && cd $pwd");
+            }
         }
     }
 };
