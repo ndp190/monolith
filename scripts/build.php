@@ -80,6 +80,10 @@ $projects = [
         'haproxy'       => 'git@code.go1.com.au:go1/haproxy.git',
         'memcached'     => 'git@code.go1.com.au:server/memcached.git',
     ],
+    'nodejs'         => [
+        'algolia' => 'git@code.go1.com.au:microservices/algolia.git',
+        'report'  => 'git@code.go1.com.au:microservices/report-index.git',
+    ],
 ];
 
 $pull = strpos($cmd, '--pull') ? true : false;
