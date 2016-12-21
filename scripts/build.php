@@ -87,7 +87,8 @@ $projects = [
 ];
 
 $pull = strpos($cmd, '--pull') ? true : false;
-call_user_func(require $pwd . '/scripts/build-git-pull.php', $pwd, $pull, $projects);
+$prune = strpos($cmd, '--prune') ? true : false;
+call_user_func(require $pwd . '/scripts/build-git-pull.php', $pwd, $pull, $prune, $projects);
 
 !strpos($cmd, '--skip-php') && call_user_func(require $pwd . '/scripts/build-php.php', $pwd, $home, $projects);
 !strpos($cmd, '--skip-drupal') && call_user_func(require $pwd . '/scripts/build-drupal.php', $pwd, $home);

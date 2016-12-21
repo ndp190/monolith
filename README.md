@@ -23,7 +23,8 @@ GO1 monolith
     - `--skip-web`: Don't run npm commands.
     - `--skip-drupal`: Don't build drupal code base.
     - `--skip-go`: Don't build golang code base.
-    - `--pull`: Pull latest code. 
+    - `--pull`: Pull latest code.
+    - `--prune`: Run git prune on cloned projects.
 - `php start.php`, then try some links:
     - http://localhost/v3/
     - http://localhost/GO1/user/
