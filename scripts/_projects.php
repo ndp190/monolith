@@ -31,6 +31,7 @@ return [
         'subscription' => 'git@code.go1.com.au:microservices/subscription.git',
         'console'      => 'git@code.go1.com.au:go1/console.git',
         'boss'         => 'git@code.go1.com.au:go1/worker_manager.git',
+        'video'        => 'git@code.go1.com.au:microservices/video.git',
         's3'           => 'git@code.go1.com.au:microservices/s3.git',
         'sso'          => 'git@code.go1.com.au:microservices/sso.git',
         'stash'        => 'git@code.go1.com.au:microservices/stash.git',
