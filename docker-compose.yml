@@ -66,7 +66,7 @@ services:
             - _DOCKER_STATUS_URL=http://web/GO1/status/
             - _DOCKER_SUBSCRIPTION_URL=http://web/GO1/subscription/
             - _DOCKER_CONSOLE_URL=http://web/GO1/console/
-            - _DOCKER_BOSS_URL=http://web/GO1/boss/
+            - _DOCKER_VIDEO_URL=http://web/GO1/video/
             - _DOCKER_S3_URL=http://web/GO1/s3/
             - _DOCKER_SSO_URL=http://web/GO1/sso/
             - _DOCKER_STASH_URL=http://web/GO1/stash/

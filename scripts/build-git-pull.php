@@ -3,6 +3,11 @@
 namespace at\labs;
 
 return function ($pwd, $projects) {
+    $branches = [
+        'quiz'    => '1.x',
+        'default' => 'master',
+    ];
+
     foreach ($projects as $lang => $services) {
         foreach ($services as $name => $path) {
             $branch = isset($branches[$name]) ? $branches[$name] : $branches['default'];

@@ -11,8 +11,7 @@ if (is_file("$home/.composer/vendor/autoload.php")) {
 }
 
 $projects = require __DIR__ . '/_projects.php';
-$pull = strpos($cmd, '--pull') ? true : false;
-call_user_func(require $pwd . '/scripts/build-git-pull.php', $pwd, $pull, $projects);
+call_user_func(require $pwd . '/scripts/build-git-pull.php', $pwd, $projects);
 
 !strpos($cmd, '--skip-php') && call_user_func(require $pwd . '/scripts/build-php.php', $pwd, $home, $projects);
 !strpos($cmd, '--skip-drupal') && call_user_func(require $pwd . '/scripts/build-drupal.php', $pwd, $home);
