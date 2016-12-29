@@ -2,7 +2,7 @@
 
 namespace at\labs;
 
-return function ($pwd, $pull, $prune, $projects) {
+return function ($pwd, $pull, $projects) {
     $branches = [
         'quiz'    => '1.x',
         'default' => 'master',
@@ -21,11 +21,6 @@ return function ($pwd, $pull, $prune, $projects) {
                 if ($pull) {
                     print_r("git pull -q origin {$branch}\n");
                     passthru("cd $target && git pull -q --single-branch --branch={$branch} origin master && cd $pwd");
-                }
-
-                if ($prune) {
-                    print_r("[$lang/$name]$ git fetch origin --prune\n");
-                    passthru("cd $target && git fetch origin --prune && cd $pwd");
                 }
             }
         }
