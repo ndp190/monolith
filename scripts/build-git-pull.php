@@ -2,12 +2,7 @@
 
 namespace at\labs;
 
-return function ($pwd, $pull, $projects) {
-    $branches = [
-        'quiz'    => '1.x',
-        'default' => 'master',
-    ];
-
+return function ($pwd, $projects) {
     foreach ($projects as $lang => $services) {
         foreach ($services as $name => $path) {
             $branch = isset($branches[$name]) ? $branches[$name] : $branches['default'];
@@ -16,12 +11,6 @@ return function ($pwd, $pull, $projects) {
             if (!is_dir($target)) {
                 print_r("git clone -q --branch=$branch $path $target\n");
                 passthru("git clone -q --branch=$branch $path $target");
-            }
-            else {
-                if ($pull) {
-                    print_r("git pull -q origin {$branch}\n");
-                    passthru("cd $target && git pull -q --single-branch --branch={$branch} origin master && cd $pwd");
-                }
             }
         }
     }
