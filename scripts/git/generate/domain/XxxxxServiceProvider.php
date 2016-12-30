@@ -12,7 +12,7 @@ class XxxxxServiceProvider implements ServiceProviderInterface, BootableProvider
 {
     public function register(Container $c)
     {
-        $c['ctrl.install:get'] = function (Container $c) {
+        $c['ctrl.install'] = function (Container $c) {
             return new InstallController($c['dbs']['default']);
         };
     }
