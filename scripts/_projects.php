@@ -20,6 +20,7 @@ return [
         'lob'          => 'git@code.go1.com.au:microservices/lob.git',
         'mail'         => 'git@code.go1.com.au:microservices/mail.git',
         'note'         => 'git@code.go1.com.au:microservices/note.git',
+        'onboard'      => 'git@code.go1.com.au:microservices/onboard.git',
         'payment'      => 'git@code.go1.com.au:microservices/payment.git',
         'portal'       => 'git@code.go1.com.au:microservices/portal.git',
         'quiz'         => 'git@code.go1.com.au:microservices/quiz.git',
@@ -35,6 +36,7 @@ return [
         'sso'          => 'git@code.go1.com.au:microservices/sso.git',
         'stash'        => 'git@code.go1.com.au:microservices/stash.git',
         'workshop'     => 'git@code.go1.com.au:microservices/workshop.git',
+        'vote'         => 'git@code.go1.com.au:microservices/vote.git',
     ],
     'php/libraries'  => [
         'app'            => 'git@github.com:go1com/app.git',

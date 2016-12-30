@@ -56,6 +56,7 @@ services:
             - _DOCKER_LOB_URL=http://web/GO1/lob/
             - _DOCKER_MAIL_URL=http://web/GO1/mail/
             - _DOCKER_NOTE_URL=http://web/GO1/note/
+            - _DOCKER_ONBOARD_URL=http://web/GO1/onboard/
             - _DOCKER_PAYMENT_URL=http://web/GO1/payment/
             - _DOCKER_PORTAL_URL=http://web/GO1/portal/
             - _DOCKER_QUIZ_URL=http://web/GO1/quiz/
