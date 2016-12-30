@@ -5,7 +5,7 @@ namespace go1\xxxxx;
 use go1\app\App as GO1;
 use go1\clients\ClientServiceProvider;
 use go1\util\UtilServiceProvider;
-use go1\xxxxx\domain\XxxxxxServiceProvider;
+use go1\xxxxx\domain\XxxxxServiceProvider;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class App extends GO1
@@ -20,7 +20,7 @@ class App extends GO1
         $this
             ->register(new ClientServiceProvider)
             ->register(new UtilServiceProvider)
-            ->register(new XxxxxxServiceProvider)
+            ->register(new XxxxxServiceProvider)
             ->get('/', function () {
                 return new JsonResponse(['service' => static::NAME, 'version' => static::VERSION, 'time' => time()]);
             });
