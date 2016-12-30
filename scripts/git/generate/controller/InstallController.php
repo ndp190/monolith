@@ -1,6 +1,6 @@
 <?php
 
-namespace go1\xxxxx\domain\controller;
+namespace go1\xxxxx\controller;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Schema\Schema;

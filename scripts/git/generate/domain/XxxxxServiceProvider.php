@@ -2,7 +2,7 @@
 
 namespace go1\xxxxx\domain;
 
-use go1\xxxxx\domain\controller\InstallController;
+use go1\xxxxx\controller\InstallController;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 use Silex\Api\BootableProviderInterface;
