@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<phpunit
+        colors="true"
+        bootstrap="vendor/autoload.php">
+    <testsuites>
+        <testsuite name="go1">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory>./controller</directory>
+            <directory>./domain</directory>
+            <file>App.php</file>
+        </whitelist>
+    </filter>
+    <php>
+        <env name="ACCOUNTS_NAME" value="accounts.qa"/>
+        <env name="QUEUE_URL" value="http://queue.test.go1.service"/>
+        <env name="ENTITY_URL" value="http://entity.test.go1.service"/>
+        <env name="MAIL_URL" value="http://mail.test.go1.service"/>
+        <env name="PAYMENT_URL" value="http://payment.test.go1.service"/>
+    </php>
+</phpunit>

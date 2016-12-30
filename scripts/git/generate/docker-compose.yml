@@ -1,0 +1,44 @@
+version: "2"
+services:
+  data:
+    image: registry.code.go1.com.au/microservices/enrolment:${CI_BUILD_REF_NAME}
+    cpu_shares: 8
+    mem_limit: 8000000
+    command: ["ping", "127.0.0.1", "-q"]
+  web:
+    image: go1com/php:7-nginx
+    cpu_shares: 32
+    mem_limit: 67108864
+    ports: ["80"]
+    volumes_from: ["data"]
+    environment:
+      - SERVICE_TAGS
+      - SERVICE_80_NAME
+      - _DOCKER_ACCOUNTS_NAME
+      - _DOCKER_CACHE_BACKEND
+      - _DOCKER_CACHE_HOST
+      - _DOCKER_CACHE_PORT
+      - _DOCKER_API_URL
+      - _DOCKER_APP_DEBUG
+      - _DOCKER_ENTITY_URL
+      - _DOCKER_MAIL_URL
+      - _DOCKER_OUTCOME_URL
+      - _DOCKER_PAYMENT_API_KEY
+      - _DOCKER_PAYMENT_SECRET_KEY
+      - _DOCKER_PAYMENT_URL
+      - _DOCKER_QUEUE_URL
+      - _DOCKER_DB_HOST
+      - _DOCKER_DB_NAME
+      - _DOCKER_DB_USER
+      - _DOCKER_DB_PASSWORD
+      - _DOCKER_DB_PORT
+      - _DOCKER_RDS_DB_NAME
+      - _DOCKER_RDS_HOSTNAME
+      - _DOCKER_RDS_HOSTNAME_SLAVE
+      - _DOCKER_RDS_PASSWORD
+      - _DOCKER_RDS_PORT
+      - _DOCKER_RDS_USERNAME
+      - _DOCKER_QUEUE_HOST
+      - _DOCKER_QUEUE_PORT
+      - _DOCKER_QUEUE_USER
+      - _DOCKER_QUEUE_PASSWORD
