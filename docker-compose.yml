@@ -71,3 +71,4 @@ services:
             - _DOCKER_SSO_URL=http://web/GO1/sso/
             - _DOCKER_STASH_URL=http://web/GO1/stash/
             - _DOCKER_WORKSHOP_URL=http://web/GO1/workshop/
+            - _DOCKER_VOTE_URL=http://web/GO1/vote/
