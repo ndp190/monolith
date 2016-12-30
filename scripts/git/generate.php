@@ -1,11 +1,30 @@
 <?php
 
+namespace at\labs\git\generate;
+
+use FilesystemIterator;
+use RegexIterator;
+use SplFileInfo;
+
 require_once __DIR__ . '/../../php/vendor/go1.autoload.php';
+
+function glob($dir)
+{
+    $iter = new FilesystemIterator($dir, FilesystemIterator::SKIP_DOTS);
+    $iter = new RegexIterator($iter, "/.+/i");
+
+    /** @var SplFileInfo $file */
+    foreach ($iter as $file) {
+        $files[] = $file->getPathname();
+    }
+
+    return !empty($files) ? $files : [];
+}
 
 return call_user_func(function () {
     // Change this when you run the script
-    $name = 'foo';
-    $targetRoot = __DIR__ . '/foo';
+    $name = 'onboard';
+    $targetRoot = __DIR__ . '/../../php/onboard';
 
     // Should not change code below
     $upper = strtoupper($name);
@@ -23,7 +42,7 @@ return call_user_func(function () {
     };
 
     $scan = function ($dir) use ($templateRoot, &$scan, &$copy) {
-        foreach (glob("$dir/*") as $file) {
+        foreach (glob($dir) as $file) {
             if (is_dir($file)) {
                 $scan($file);
             }
