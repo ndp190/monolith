@@ -1,0 +1,20 @@
+{
+  "name": "go1/xxxxx",
+  "prefer-stable": true,
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "go1\\xxxxx\\": "./"
+    }
+  },
+  "require": {
+    "beberlei/assert": "^2.5",
+    "ezyang/htmlpurifier": "^4.7.0",
+    "go1/app": "^2.0",
+    "go1/clients": "dev-master",
+    "go1/schema": "dev-master",
+    "go1/util": "dev-master",
+    "monolog/monolog": "^1.19.0",
+    "ramsey/uuid": "^3.4"
+  }
+}
