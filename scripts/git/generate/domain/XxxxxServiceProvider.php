@@ -8,7 +8,7 @@ use Pimple\ServiceProviderInterface;
 use Silex\Api\BootableProviderInterface;
 use Silex\Application;
 
-class XxxxxxServiceProvider implements ServiceProviderInterface, BootableProviderInterface
+class XxxxxServiceProvider implements ServiceProviderInterface, BootableProviderInterface
 {
     public function register(Container $c)
     {
