@@ -40,3 +40,12 @@ To avoid PHPStorm to index too much, exclude these directory:
 - drupal/gc/test
 - php/adminer
 - web/ui (if you're not #ui dev)
+
+## Tools
+
+- php ./git/prune.php
+- php ./git/pull.php
+- php ./git/generate.php
+- php ./gitlab/build-configuration.php
+- php ./gitlab/deploy/staging.php
+- php ./gitlab/deploy/production.php
