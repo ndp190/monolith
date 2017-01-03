@@ -2,6 +2,7 @@
 
 return [
     'php'            => [
+        'api'          => 'git@code.go1.com.au:microservices/api.git',
         'assignment'   => 'git@code.go1.com.au:microservices/assignment.git',
         'assessor'     => 'git@code.go1.com.au:microservices/assessor.git',
         'batch'        => 'git@code.go1.com.au:microservices/batch.git',
