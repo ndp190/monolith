@@ -20,10 +20,7 @@ abstract class XxxxxTestCase extends PHPUnit_Framework_TestCase
         $app = require __DIR__ . '/../public/index.php';
 
         $app['dbs'] = $app->extend('dbs', function () {
-            $master = DriverManager::getConnection(['url' => 'sqlite://sqlite::memory:']);
-            $slave = &$master;
-
-            return ['default' => $master];
+            return ['default' => DriverManager::getConnection(['url' => 'sqlite://sqlite::memory:'])];
         });
 
         $this->appInstall($app);
