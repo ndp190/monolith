@@ -8,13 +8,17 @@ use SplFileInfo;
 
 require_once __DIR__ . '/../../php/vendor/go1.autoload.php';
 
+// Change this constant when you run the script
+const SERVICE_NAME = 'sms';
+const SERVICE_DIR = __DIR__ . '/../../php/' . SERVICE_NAME;
+
 function glob($dir)
 {
-    $iter = new FilesystemIterator($dir, FilesystemIterator::SKIP_DOTS);
-    $iter = new RegexIterator($iter, "/.+/i");
+    $iterator = new FilesystemIterator($dir, FilesystemIterator::SKIP_DOTS);
+    $iterator = new RegexIterator($iterator, "/.+/i");
 
     /** @var SplFileInfo $file */
-    foreach ($iter as $file) {
+    foreach ($iterator as $file) {
         $files[] = $file->getPathname();
     }
 
@@ -22,20 +26,15 @@ function glob($dir)
 }
 
 return call_user_func(function () {
-    // Change this when you run the script
-    $name = 'onboard';
-    $targetRoot = __DIR__ . '/../../php/onboard';
-
-    // Should not change code below
-    $upper = strtoupper($name);
-    $camel = ucfirst($name);
+    $upper = strtoupper(SERVICE_NAME);
+    $camel = ucfirst(SERVICE_NAME);
     $templateRoot = __DIR__ . '/generate';
-    $copy = function ($file) use ($templateRoot, $targetRoot, $name, $upper, $camel) {
-        $path = str_replace([$templateRoot, 'XXXXX', 'Xxxxx', 'xxxxx'], ['', $upper, $camel, $name], $file);
+    $copy = function ($file) use ($templateRoot, $upper, $camel) {
+        $path = str_replace([$templateRoot, 'XXXXX', 'Xxxxx', 'xxxxx'], ['', $upper, $camel, SERVICE_NAME], $file);
         $path = trim($path, '/');
-        $path = $targetRoot . '/' . $path;
+        $path = SERVICE_DIR . '/' . $path;
         $content = file_get_contents($file);
-        $content = str_replace([$templateRoot, 'XXXXX', 'Xxxxx', 'xxxxx'], ['', $upper, $camel, $name], $content);
+        $content = str_replace([$templateRoot, 'XXXXX', 'Xxxxx', 'xxxxx'], ['', $upper, $camel, SERVICE_NAME], $content);
         $dir = dirname($path);
         !is_dir($dir) && passthru("mkdir -p $dir");
         file_put_contents($path, $content);
