@@ -52,4 +52,7 @@ return call_user_func(function () {
     };
 
     $scan($templateRoot);
+
+    echo "@TODO: Configure variables: https://code.go1.com.au/microservices/" . SERVICE_NAME . "/variables\n";
+    echo "@TODO: Configure Hipchat notification: https://code.go1.com.au/microservices/" . SERVICE_NAME . "/services\n";
 });
