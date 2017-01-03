@@ -64,6 +64,7 @@ services:
             - _DOCKER_UPTIME_URL=http://web/GO1/uptime/
             - _DOCKER_USER_URL=http://web/GO1/user/
             - _DOCKER_RULES_URL=http://web/GO1/rules/
+            - _DOCKER_SMS_URL=http://web/GO1/sms/
             - _DOCKER_SOCIAL_URL=http://web/GO1/social/
             - _DOCKER_STATUS_URL=http://web/GO1/status/
             - _DOCKER_SUBSCRIPTION_URL=http://web/GO1/subscription/

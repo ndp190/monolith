@@ -28,6 +28,7 @@ return [
         'uptime'       => 'git@code.go1.com.au:microservices/uptime.git',
         'user'         => 'git@code.go1.com.au:microservices/user.git',
         'rules'        => 'git@code.go1.com.au:microservices/rules.git',
+        'sms'          => 'git@code.go1.com.au:microservices/sms.git',
         'social'       => 'git@code.go1.com.au:microservices/social.git',
         'status'       => 'git@code.go1.com.au:microservices/status.git',
         'subscription' => 'git@code.go1.com.au:microservices/subscription.git',

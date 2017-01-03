@@ -43,6 +43,7 @@
             "go1\\rules\\": "./php/rules/",
             "go1\\s3\\": "./php/s3/",
             "go1\\schema\\": "./php/libraries/schema/",
+            "go1\\sms\\": "./php/sms/",
             "go1\\social\\": "./php/social/",
             "go1\\sso\\": "./php/sso/",
             "go1\\stash\\": "./php/stash/",
