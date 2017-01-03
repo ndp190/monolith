@@ -1,7 +1,7 @@
 version: "2"
 services:
   data:
-    image: registry.code.go1.com.au/microservices/enrolment:${CI_BUILD_REF_NAME}
+    image: registry.code.go1.com.au/microservices/xxxxx:${CI_BUILD_REF_NAME}
     cpu_shares: 8
     mem_limit: 8000000
     command: ["ping", "127.0.0.1", "-q"]
