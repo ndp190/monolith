@@ -46,6 +46,7 @@
             "go1\\sms\\": "./php/sms/",
             "go1\\social\\": "./php/social/",
             "go1\\sso\\": "./php/sso/",
+            "go1\\staff\\": "./php/staff/",
             "go1\\stash\\": "./php/stash/",
             "go1\\status\\": "./php/status/",
             "go1\\subscription\\": "./php/subscription/",

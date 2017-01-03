@@ -66,6 +66,7 @@ services:
             - _DOCKER_RULES_URL=http://web/GO1/rules/
             - _DOCKER_SMS_URL=http://web/GO1/sms/
             - _DOCKER_SOCIAL_URL=http://web/GO1/social/
+            - _DOCKER_STAFF_URL=http://web/GO1/staff/
             - _DOCKER_STATUS_URL=http://web/GO1/status/
             - _DOCKER_SUBSCRIPTION_URL=http://web/GO1/subscription/
             - _DOCKER_CONSOLE_URL=http://web/GO1/console/

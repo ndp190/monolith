@@ -30,6 +30,7 @@ return [
         'rules'        => 'git@code.go1.com.au:microservices/rules.git',
         'sms'          => 'git@code.go1.com.au:microservices/sms.git',
         'social'       => 'git@code.go1.com.au:microservices/social.git',
+        'staff'        => 'git@code.go1.com.au:microservices/staff.git',
         'status'       => 'git@code.go1.com.au:microservices/status.git',
         'subscription' => 'git@code.go1.com.au:microservices/subscription.git',
         'console'      => 'git@code.go1.com.au:go1/console.git',
