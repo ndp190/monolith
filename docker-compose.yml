@@ -30,6 +30,7 @@ services:
             - '.data/nginx/sites-available/:/etc/nginx/sites-available/'
             - '.data/nginx/autoload/:/autoload/'
             - './web/ui/dist/:/var/www/html/'
+            - '.data/cli/:/cli/'
         environment:
             - _DOCKER_RDS_DB_NAME=go1
             - _DOCKER_RDS_HOSTNAME=mysql
@@ -39,7 +40,7 @@ services:
             - _DOCKER_CACHE_HOST=memcached
             - _DOCKER_CACHE_PORT=11211
             - _DOCKER_API_URL=http://web/GO1/api/
-            - _DOCKER_SERVICE_URL_PATTERN=http://web/GO1/SERVICE/
+            - _DOCKER_SERVICE_URL_PATTERN=http://web/GO1/SERVICE
             - _DOCKER_ASSIGNMENT_URL=http://web/GO1/assignment/
             - _DOCKER_ASSESSOR_URL=http://web/GO1/assessor/
             - _DOCKER_BATCH_URL=http://web/GO1/batch/
