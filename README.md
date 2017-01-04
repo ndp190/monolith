@@ -1,12 +1,12 @@
 GO1 monolith
 ====
 
-## TODO
+## 1. TODO
 
 - Build the scripts as a single phar file.
 - Check #ui build again.
 
-## Dependencies
+## 2. Dependencies
 
 - git
 - php7
@@ -16,9 +16,9 @@ GO1 monolith
     - glide: `curl https://glide.sh/get | sh`
     - `export PATH="/path/to/monolith/scripts:$PATH"`
 
-## Usage
+## 3. Usage
 
-- `php ./scripts/build.php`: Build the code base.
+1. `php ./scripts/build.php`: Build the code base.
     - `--skip-php`: Don't run composer commands. 
     - `--skip-web`: Don't run npm commands.
     - `--skip-drupal`: Don't build drupal code base.
@@ -33,14 +33,6 @@ GO1 monolith
     - `./scripts/test.php drupal/gc/modules/applications/aduro/modules/lms/lms_services/tests/Apiom/Course/CourseAccountsServicesTest.php`
 - Run test cases without Docker:
     - `php ./scripts/phpunit.php php/outcome/`
-- Commands:
-    - start/stop/restart
-        - `docker-compose start`
-        - `docker-compose stop`
-        - `docker-compose restart`
-    - Or
-        - `docker-compose up --force-recreate`
-        - `ctrl+C` to stop.
 
 To avoid PHPStorm to index too much, exclude these directory:
 
@@ -48,6 +40,16 @@ To avoid PHPStorm to index too much, exclude these directory:
 - drupal/gc/test
 - php/adminer
 - web/ui (if you're not #ui dev)
+
+## 4. Control the services
+
+- start/stop/restart
+    - `docker-compose start`
+    - `docker-compose stop`
+    - `docker-compose restart`
+- Or
+    - `docker-compose up --force-recreate`
+    - `ctrl+C` to stop.
 
 ## Tools
 
@@ -57,3 +59,6 @@ To avoid PHPStorm to index too much, exclude these directory:
 - php ./gitlab/build-configuration.php
 - php ./gitlab/deploy/staging.php
 - php ./gitlab/deploy/production.php
+- Dummy: Generate dummy content for testing.
+    1. Make sure the services are up. Ref (4).
+    - `docker exec -it monolith_web_1 php /scripts/dummy/generate.php`
