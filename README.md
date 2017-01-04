@@ -33,6 +33,14 @@ GO1 monolith
     - `./scripts/test.php drupal/gc/modules/applications/aduro/modules/lms/lms_services/tests/Apiom/Course/CourseAccountsServicesTest.php`
 - Run test cases without Docker:
     - `php ./scripts/phpunit.php php/outcome/`
+- Commands:
+    - start/stop/restart
+        - `docker-compose start`
+        - `docker-compose stop`
+        - `docker-compose restart`
+    - Or
+        - `docker-compose up --force-recreate`
+        - `ctrl+C` to stop.
 
 To avoid PHPStorm to index too much, exclude these directory:
 
