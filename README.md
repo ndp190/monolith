@@ -61,4 +61,4 @@ To avoid PHPStorm to index too much, exclude these directory:
 - php ./gitlab/deploy/production.php
 - Dummy: Generate dummy content for testing.
     1. Make sure the services are up. Ref (4).
-    - `docker exec -it monolith_web_1 php /scripts/dummy/generate.php`
+    - `docker exec monolith_web_1 bash -c 'php /scripts/dummy/generate.php'`
