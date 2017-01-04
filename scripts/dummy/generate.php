@@ -32,7 +32,7 @@ call_user_func(function () {
     $projects = require __DIR__ . '/../_projects.php';
     foreach (array_keys($projects['php']) as $name) {
         $url = 'http://web/GO1/' . $name . '/install';
-        dump("GET $url");
+        echo "GET $url\n";
         $client->get($url, ['http_errors' => false]);
     }
 
