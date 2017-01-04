@@ -12,17 +12,23 @@ services:
             - '3306:3306'
     queue:
         image: 'rabbitmq:3.6'
+        environment:
+          - RABBITMQ_DEFAULT_USER=go1
+          - RABBITMQ_DEFAULT_PASS=go1
     memcached:
         image: 'memcached:1.4-alpine'
-    api:
-        image: 'registry.code.go1.com.au/go1/api.v3:master'
     consumer:
         image: 'registry.code.go1.com.au/microservices/consumer:master'
+        command: ["/app/app"]
+        links:
+          - queue
+          - web
+        environment:
+          - QUEUE_URL="amqp://go1:go1@queue:5672/"
+          - SERVICE_URL_PATTERN=http://web/GO1/SERVICE
     web:
         image: 'go1com/php:7-nginx'
         links:
-            - api
-            - consumer
             - memcached
             - mysql
             - queue
@@ -46,6 +52,7 @@ services:
             - _DOCKER_CACHE_BACKEND=memcached
             - _DOCKER_CACHE_HOST=memcached
             - _DOCKER_CACHE_PORT=11211
+            - _DOCKER_SERVICE_URL_PATTERN=http://web/GO1/SERVICE
             - _DOCKER_API_URL=http://web/GO1/api/
             - _DOCKER_ASSESSOR_URL=http://web/GO1/assessor/
             - _DOCKER_ASSIGNMENT_URL=http://web/GO1/assignment/
