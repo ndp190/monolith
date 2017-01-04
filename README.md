@@ -43,13 +43,7 @@ To avoid PHPStorm to index too much, exclude these directory:
 
 ## 4. Control the services
 
-- start/stop/restart
-    - `docker-compose start`
-    - `docker-compose stop`
-    - `docker-compose restart`
-- Or
-    - `docker-compose up --force-recreate`
-    - `ctrl+C` to stop.
+    php ./scripts/start.php
 
 ## Tools
 
