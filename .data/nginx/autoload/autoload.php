@@ -2,7 +2,7 @@
 
 use Composer\Autoload\ClassLoader;
 
-function db_connection_options()
+function __db_connection_options()
 {
     return [
         'driver'        => 'pdo_mysql',
