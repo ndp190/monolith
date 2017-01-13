@@ -13,19 +13,20 @@ services:
     queue:
         image: 'rabbitmq:3.6'
         environment:
-          - RABBITMQ_DEFAULT_USER=go1
-          - RABBITMQ_DEFAULT_PASS=go1
+            - RABBITMQ_DEFAULT_USER=go1
+            - RABBITMQ_DEFAULT_PASS=go1
     memcached:
         image: 'memcached:1.4-alpine'
     consumer:
         image: 'registry.code.go1.com.au/microservices/consumer:master'
-        command: ["/app/app"]
+        command:
+            - /app/app
         links:
-          - queue
-          - web
+            - queue
+            - web
         environment:
-          - QUEUE_URL="amqp://go1:go1@queue:5672/"
-          - SERVICE_URL_PATTERN=http://web/GO1/SERVICE
+            - 'QUEUE_URL="amqp://go1:go1@queue:5672/"'
+            - 'SERVICE_URL_PATTERN=http://web/GO1/SERVICE'
     web:
         image: 'go1com/php:7-nginx'
         links:
@@ -52,7 +53,6 @@ services:
             - _DOCKER_CACHE_BACKEND=memcached
             - _DOCKER_CACHE_HOST=memcached
             - _DOCKER_CACHE_PORT=11211
-            - _DOCKER_SERVICE_URL_PATTERN=http://web/GO1/SERVICE
             - _DOCKER_API_URL=http://web/GO1/api/
             - _DOCKER_ASSESSOR_URL=http://web/GO1/assessor/
             - _DOCKER_ASSIGNMENT_URL=http://web/GO1/assignment/
@@ -72,7 +72,9 @@ services:
             - _DOCKER_LO_URL=http://web/GO1/lo/
             - _DOCKER_LOB_URL=http://web/GO1/lob/
             - _DOCKER_MAIL_URL=http://web/GO1/mail/
+            - _DOCKER_NATERO_URL=http://web/GO1/natero/
             - _DOCKER_NOTE_URL=http://web/GO1/note/
+            - _DOCKER_NOTIFY_URL=http://web/GO1/notify/
             - _DOCKER_ONBOARD_URL=http://web/GO1/onboard/
             - _DOCKER_PAYMENT_URL=http://web/GO1/payment/
             - _DOCKER_PORTAL_URL=http://web/GO1/portal/
@@ -80,6 +82,7 @@ services:
             - _DOCKER_QUIZ_URL=http://web/GO1/quiz/
             - _DOCKER_RULES_URL=http://web/GO1/rules/
             - _DOCKER_S3_URL=http://web/GO1/s3/
+            - _DOCKER_SCRAPING_URL=http://web/GO1/scraping/
             - _DOCKER_SMS_URL=http://web/GO1/sms/
             - _DOCKER_SOCIAL_URL=http://web/GO1/social/
             - _DOCKER_SSO_URL=http://web/GO1/sso/
