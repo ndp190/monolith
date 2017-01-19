@@ -39,9 +39,6 @@ function buildGlideYaml(string $pwd, array $projects)
     }
 
     $glide['import'][] = ['package' => 'go1'];
-
-    dump($glide);
-
     file_put_contents("$pwd/golang/src/glide.yaml", Yaml::dump($glide));
 }
 
@@ -54,7 +51,7 @@ function glideInstall($pwd)
     }
 
     echo "GOPATH=$pwd/golang glide install\n";
-    passthru("cd $pwd/golang/src && rm glide.lock && GOPATH=$pwd/golang glide install > /dev/null 2>&1");
+    passthru("cd $pwd/golang/src && rm -f glide.lock && GOPATH=$pwd/golang glide install > /dev/null 2>&1");
 }
 
 return function (string $pwd, string $home, array $projects) {
