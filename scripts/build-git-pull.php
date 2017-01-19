@@ -14,7 +14,7 @@ return function ($pwd, $projects) {
             $target = ('golang' === $lang) ? "$pwd/$lang/src/vendor/go1/$name" : "$pwd/$lang/$name";
 
             if (!is_dir($target)) {
-                print_r("git clone -q --branch=$branch $path $target\n");
+                echo "git clone -q --branch=$branch $path $target\n";
                 passthru("git clone -q --branch=$branch $path $target");
             }
         }
