@@ -38,7 +38,10 @@ function buildGlideYaml(string $pwd, array $projects)
         }
     }
 
-    $glide['import'][] = ['package' => 'go1'];
+    $glide['import'][]['package'] = 'code.go1.com.au/go1/goutil';
+    $glide['import'][]['package'] = 'code.go1.com.au/go1/api.v3';
+    $glide['import'][]['package'] = 'git@code.go1.com.au:microservices/batch-go.git';
+    $glide['import'][]['package'] = 'git@code.go1.com.au:microservices/consumer.git';
     file_put_contents("$pwd/golang/src/glide.yaml", Yaml::dump($glide));
 }
 
@@ -51,6 +54,7 @@ function glideInstall($pwd)
     }
 
     echo "GOPATH=$pwd/golang glide install\n";
+    passthru("git config --global url.\"git@code.go1.com.au:\".insteadOf \"https://code.go1.com.au/\"");
     passthru("cd $pwd/golang/src && rm -f glide.lock && GOPATH=$pwd/golang glide install > /dev/null 2>&1");
 }
 

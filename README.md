@@ -23,8 +23,7 @@ GO1 monolith
     - `--skip-web`: Don't run npm commands.
     - `--skip-drupal`: Don't build drupal code base.
     - `--skip-go`: Don't build golang code base.
-    - Build golang only
-        - `php scripts/build.php --skip-php --skip-web --drupal`
+    - Build golang only: `php scripts/build.php --skip-php --skip-web --skip-drupal`
 - `php start.php`, then try some links:
     - http://localhost/v3/
     - http://localhost/GO1/user/

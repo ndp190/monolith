@@ -62,9 +62,8 @@ return [
         'gc'       => 'git@code.go1.com.au:gc/gocatalyze.git',
     ],
     'golang'         => [
-        'api'      => 'git@code.go1.com.au:go1/api.v3.git',
-        'batch'    => 'git@code.go1.com.au:microservices/batch-go.git',
-        'consumer' => 'git@code.go1.com.au:microservices/consumer.git',
+        // Please update build-go.php
+        // The projects are managed by glide.
     ],
     'web'            => [
         'ui'      => 'git@code.go1.com.au:apiom/apiom-ui.git',
