@@ -54,12 +54,8 @@ return function ($pwd, $home, $projects) {
     if (!is_file("$pwd/.data/cli/composer.phar")) {
         if (!is_dir("$pwd/.data/cli")) {
             mkdir("$pwd/.data/cli", 0777, true);
-            copy('https://getcomposer.org/installer', "$pwd/.data/cli/composer-setup.php");
         }
-        if (hash_file('SHA384', "$pwd/.data/cli/composer-setup.php") !== 'aa96f26c2b67226a324c27919f1eb05f21c248b987e6195cad9690d5c1ff713d53020a02ac8c217dbf90a7eacc9d141d') {
-            unlink("$pwd/.data/cli/composer-setup.php");
-            throw new RuntimeException('[COMPOSER] Installer corrupt');
-        }
+        copy('https://getcomposer.org/installer', "$pwd/.data/cli/composer-setup.php");
 
         passthru("cd $pwd/.data/cli && php composer-setup.php");
     }

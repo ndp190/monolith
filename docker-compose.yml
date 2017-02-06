@@ -10,6 +10,12 @@ services:
             - './.data/mysql:/var/lib/mysql'
         ports:
             - '3306:3306'
+    neo4j:
+        image: 'neo4j'
+        environment:
+            - NEO4J_AUTH=none
+        ports:
+            - '7474:7474'
     queue:
         image: 'rabbitmq:3.6'
         environment:
@@ -31,6 +37,7 @@ services:
         image: 'go1com/php:7-nginx'
         links:
             - memcached
+            - neo4j
             - mysql
             - queue
         ports:
