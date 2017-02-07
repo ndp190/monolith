@@ -1,6 +1,7 @@
 <?php
 
 use Composer\Autoload\ClassLoader;
+use PHPUnit\Framework\TestCase;
 
 if (is_file("/autoload/autoload.php")) return require_once "/autoload/autoload.php";
 
@@ -12,6 +13,12 @@ if (is_file(__DIR__ . "/autoload.php")) {
         if (0 === strpos($ns, 'go1\\')) {
             $path = explode('../../php/', $paths[0])[1];
             $loader->addPsr4($ns, __DIR__ . '/../' . $path);
+        }
+    }
+
+    if (!class_exists('PHPUnit_Framework_TestCase')) {
+        class PHPUnit_Framework_TestCase extends TestCase
+        {
         }
     }
 
