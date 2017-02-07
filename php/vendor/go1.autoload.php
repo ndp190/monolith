@@ -16,7 +16,7 @@ if (is_file(__DIR__ . "/autoload.php")) {
         }
     }
 
-    if (!class_exists('PHPUnit_Framework_TestCase')) {
+    if (!class_exists('PHPUnit_Framework_TestCase') && class_exists(TestCase::class)) {
         class PHPUnit_Framework_TestCase extends TestCase
         {
         }
