@@ -2,6 +2,7 @@
 
 return [
     'php'            => [
+        'algolia'      => 'git@code.go1.com.au:microservices/algolia.git',
         'api'          => 'git@code.go1.com.au:microservices/api.git',
         'assessor'     => 'git@code.go1.com.au:microservices/assessor.git',
         'assignment'   => 'git@code.go1.com.au:microservices/assignment.git',
@@ -79,8 +80,8 @@ return [
         'docker-php'    => 'https://github.com/go1com/docker-php.git',
     ],
     'nodejs'         => [
-        'algolia' => 'git@code.go1.com.au:microservices/algolia.git',
-        'report'  => 'git@code.go1.com.au:microservices/report-index.git',
+        # 'algolia' => 'git@code.go1.com.au:microservices/algolia.git',
+        'report' => 'git@code.go1.com.au:microservices/report-index.git',
         # @TODO: realtime
     ],
 ];
