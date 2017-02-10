@@ -11,7 +11,7 @@ services:
         ports:
             - '3306:3306'
     neo4j:
-        image: 'neo4j'
+        image: neo4j
         environment:
             - NEO4J_AUTH=none
         ports:
@@ -60,6 +60,7 @@ services:
             - _DOCKER_CACHE_BACKEND=memcached
             - _DOCKER_CACHE_HOST=memcached
             - _DOCKER_CACHE_PORT=11211
+            - _DOCKER_ALGOLIA_URL=http://web/GO1/algolia/
             - _DOCKER_API_URL=http://web/GO1/api/
             - _DOCKER_ASSESSOR_URL=http://web/GO1/assessor/
             - _DOCKER_ASSIGNMENT_URL=http://web/GO1/assignment/
