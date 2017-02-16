@@ -18,7 +18,9 @@ deploy:master:
   variables:
     SERVICE_TAGS: "dev"
     SERVICE_80_NAME: "xxxxx"
+    MEM: 64M
     _DOCKER_ENV: "dev"
+
   script:
   - composer install --no-dev
   - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.code.go1.com.au
