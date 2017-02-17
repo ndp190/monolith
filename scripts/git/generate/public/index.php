@@ -2,8 +2,6 @@
 
 use go1\xxxxx\App;
 
-!defined('APP_ROOT') && define('APP_ROOT', dirname(__DIR__));
-
 return call_user_func(function () {
     require_once __DIR__ . '/../vendor/autoload.php';
 
