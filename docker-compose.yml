@@ -76,6 +76,7 @@ services:
             - _DOCKER_FINDER_URL=http://web/GO1/finder/
             - _DOCKER_GRAPHIN_URL=http://web/GO1/graphin/
             - _DOCKER_HISTORY_URL=http://web/GO1/history/
+            - _DOCKER_INDEX_URL=http://web/GO1/index/
             - _DOCKER_LIB_URL=http://web/GO1/lib/
             - _DOCKER_LO_URL=http://web/GO1/lo/
             - _DOCKER_LOB_URL=http://web/GO1/lob/

@@ -18,6 +18,7 @@ return [
         'finder'       => 'git@code.go1.com.au:microservices/finder.git',
         'graphin'      => 'git@code.go1.com.au:microservices/graphin.git',
         'history'      => 'git@code.go1.com.au:microservices/history.git',
+        'index'        => 'git@code.go1.com.au:microservices/index.git',
         'lib'          => 'git@code.go1.com.au:microservices/lib.git',
         'lo'           => 'git@code.go1.com.au:microservices/lo.git',
         'lob'          => 'git@code.go1.com.au:microservices/lob.git',
