@@ -3,7 +3,7 @@
 namespace go1\xxxxx\tests;
 
 use Doctrine\DBAL\DriverManager;
-use go1\schema\InstallTrait;
+use go1\util\schema\InstallTrait;
 use go1\xxxxx\App;
 use PHPUnit_Framework_TestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +16,6 @@ abstract class XxxxxTestCase extends PHPUnit_Framework_TestCase
 
     protected function getApp(): App
     {
-        /** @var App $app */
         $app = require __DIR__ . '/../public/index.php';
 
         $app['dbs'] = $app->extend('dbs', function () {
