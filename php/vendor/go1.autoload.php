@@ -9,6 +9,8 @@ if (is_file(__DIR__ . "/autoload.php")) {
     /** @var ClassLoader $loader */
     $loader = require_once __DIR__ . "/autoload.php";
 
+    $loader->addPsr4('go1\\clients\\', __DIR__ . '/../libraries/util/clients');
+
     foreach ($loader->getPrefixesPsr4() as $ns => $paths) {
         if (0 === strpos($ns, 'go1\\')) {
             $path = explode('../../php/', $paths[0])[1];
