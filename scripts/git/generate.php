@@ -9,7 +9,7 @@ use SplFileInfo;
 require_once __DIR__ . '/../../php/vendor/go1.autoload.php';
 
 // Change this constant when you run the script
-const SERVICE_NAME = 'index';
+const SERVICE_NAME = 'debug';
 const SERVICE_DIR = __DIR__ . '/../../php/' . SERVICE_NAME;
 
 function glob($dir)
