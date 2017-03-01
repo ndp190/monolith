@@ -4,8 +4,9 @@ use go1\util\DB;
 use go1\util\Service;
 
 return call_user_func(function () {
+    $env = getenv('ENV') ?: 'dev';
+
     return [
-            'env'           => $env = getenv('ENV') ?: 'dev',
             'debug'         => 'production' !== $env,
             'accounts_name' => Service::accountsName($env),
             'logOptions'    => ['name' => 'xxxxx'],
