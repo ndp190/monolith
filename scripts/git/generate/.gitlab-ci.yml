@@ -3,7 +3,6 @@ before_script:
   - ssh-add <(echo "$SSH_PRIVATE_KEY")
   - mkdir -p ~/.ssh
   - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-  - 'echo -e "Host gc-aegir\n	HostName 54.66.226.9\n	User aegir" >> ~/.ssh/config'
 
 phpunit:
   tags: ["php7", "phpunit", "composer"]
@@ -23,10 +22,9 @@ deploy:master:
 
   script:
   - composer install --no-dev
-  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.code.go1.com.au
-  - docker build -t xxxxx .
-  - docker tag xxxxx registry.code.go1.com.au/microservices/xxxxx:master
-  - docker push registry.code.go1.com.au/microservices/xxxxx:master
+  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+  - docker build -t ${CI_REGISTRY_IMAGE}:${CI_BUILD_REF_NAME} .
+  - docker push ${CI_REGISTRY_IMAGE}:${CI_BUILD_REF_NAME}
   - ecs-cli configure --region ${AWS_DEFAULT_REGION} --access-key ${AWS_ACCESS_KEY_ID} --secret-key ${AWS_SECRET_ACCESS_KEY} --cluster staging
   - ecs-cli compose --file docker-compose.yml --project-name xxxxx-dev service up
   - curl -sSL -o deploy_helper.phar https://github.com/go1com/deploy_helper/releases/download/v0.1/deploy_helper.phar
