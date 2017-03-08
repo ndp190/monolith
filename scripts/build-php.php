@@ -2,8 +2,6 @@
 
 namespace at\labs;
 
-use RuntimeException;
-
 function buildComposerJson($pwd, $projects, $baseDir = 'php')
 {
     $json = json_decode(file_get_contents("$pwd/php/composer.json"), true);
@@ -19,6 +17,12 @@ function buildComposerJson($pwd, $projects, $baseDir = 'php')
                             $json['require'][$lib] = $version;
                         }
                     }
+                }
+            }
+
+            if (!empty($sub['repositories'])) {
+                foreach ($sub['repositories'] as $name => $info) {
+                    $json['repositories'][$name] = $info;
                 }
             }
         }
@@ -40,25 +44,8 @@ function buildComposerJson($pwd, $projects, $baseDir = 'php')
 }
 
 return function ($pwd, $home, $projects) {
-    $docker = "docker run --rm";
-    $docker .= " -v $pwd/php/:/app/";
-    $docker .= " -v $pwd/.data/cli/:/cli/";
-    $docker .= " -v '$home/.ssh/id_rsa:/root/.ssh/id_rsa'";
-    $docker .= " -v '$home/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub'";
-    $docker .= " -v $home/.composer/:/root/.composer/";
-    $docker .= " -w=/app/ go1com/php:php7";
-
     buildComposerJson($pwd, $projects['php'], 'php');
     buildComposerJson($pwd, $projects['php/libraries'], 'php/libraries');
 
-    if (!is_file("$pwd/.data/cli/composer.phar")) {
-        if (!is_dir("$pwd/.data/cli")) {
-            mkdir("$pwd/.data/cli", 0777, true);
-        }
-        copy('https://getcomposer.org/installer', "$pwd/.data/cli/composer-setup.php");
-
-        passthru("cd $pwd/.data/cli && php composer-setup.php");
-    }
-
-    passthru("$docker sh /app/install.sh");
+    passthru("cd $pwd/php && composer install -vvv --no-scripts -vvv");
 };

@@ -81,6 +81,7 @@ services:
             - _DOCKER_LO_URL=http://web/GO1/lo/
             - _DOCKER_LOB_URL=http://web/GO1/lob/
             - _DOCKER_LOW_URL=http://web/GO1/low/
+            - _DOCKER_LTI-CONSUMER_URL=http://web/GO1/lti-consumer/
             - _DOCKER_MAIL_URL=http://web/GO1/mail/
             - _DOCKER_NATERO_URL=http://web/GO1/natero/
             - _DOCKER_NOTE_URL=http://web/GO1/note/
