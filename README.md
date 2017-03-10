@@ -26,8 +26,9 @@ GO1 monolith
     - Build golang only: `php scripts/build.php --skip-php --skip-web --skip-drupal`
     - Build PHP only: `php scripts/build.php --skip-go --skip-web --skip-drupal`
 - `php scripts/start.php`, then try some links:
-    - http://localhost/v3/
-    - http://localhost/GO1/user/
+    - http://localhost/ — #ui
+    - http://localhost/v3/ — #api
+    - http://localhost/GO1/user/ — #service
 - Run test cases:
     - `./scripts/test.php php/api`
     - `./scripts/test.php php/lo/tests/domain/tag/`

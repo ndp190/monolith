@@ -49,10 +49,8 @@ services:
             - './php/:/app/'
             - './php/vendor:/vendor/'
             - './.data/drupal/:/drupal/'
-            - './drupal/accounts/:/drupal/sites/accounts/'
             - './.data/nginx/sites-available/:/etc/nginx/sites-available/'
             - './.data/nginx/autoload/:/autoload/'
-            - './web/ui/dist/:/var/www/html/'
             - './.data/cli/:/cli/'
             - './scripts/:/scripts/'
         volumes_from:
