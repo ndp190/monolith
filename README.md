@@ -30,6 +30,8 @@ GO1 monolith
     - http://localhost/v3/ — #api
     - http://localhost/GO1/user/ — #service
     - http://staff.local — #staff, you NEED config this domain name in `/etc/hosts`.
+    - http://localhost:7474/ - #neo4j admin
+    - http://localhost/GO1/adminer — SQL database management. 
 - Run test cases:
     - `./scripts/test.php php/api`
     - `./scripts/test.php php/lo/tests/domain/tag/`

@@ -14,8 +14,11 @@ services:
         image: neo4j
         environment:
             - NEO4J_AUTH=none
+        volumes:
+          - './.data/neo4j:/data'
         ports:
             - '7474:7474'
+            - '7687:7687'
     queue:
         image: 'rabbitmq:3.6'
         environment:
