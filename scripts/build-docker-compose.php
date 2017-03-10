@@ -13,11 +13,6 @@ return function ($pwd, $home, $projects) {
     }
 
     $env = array_values($env);
-    foreach (array_keys($projects['php']) as $service) {
-        $SERVICE = strtoupper($service);
-        $env[] = '_DOCKER_' . $SERVICE . '_URL=___' . $service . '/';
-    }
-
     $compose = Yaml::dump($compose, 4);
     $compose = str_replace('___', 'http://web/GO1/', $compose);
     file_put_contents($file, $compose);
