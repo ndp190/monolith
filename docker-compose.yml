@@ -53,6 +53,7 @@ services:
             - './.data/nginx/autoload/:/autoload/'
             - './.data/cli/:/cli/'
             - './scripts/:/scripts/'
+            - './.data/resources/docker/:/app/resources/docker/'
         volumes_from:
               - ui
         environment:
