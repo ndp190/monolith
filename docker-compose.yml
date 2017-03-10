@@ -55,7 +55,7 @@ services:
             - './web/ui/dist/:/var/www/html/'
             - './.data/cli/:/cli/'
             - './scripts/:/scripts/'
-        volumes-from:
+        volumes_from:
               - ui
         environment:
             - _DOCKER_RDS_DB_NAME=go1
