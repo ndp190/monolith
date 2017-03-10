@@ -29,6 +29,7 @@ GO1 monolith
     - http://localhost/ — #ui
     - http://localhost/v3/ — #api
     - http://localhost/GO1/user/ — #service
+    - http://staff.local — #staff, you NEED config this domain name in `/etc/hosts`.
 - Run test cases:
     - `./scripts/test.php php/api`
     - `./scripts/test.php php/lo/tests/domain/tag/`
