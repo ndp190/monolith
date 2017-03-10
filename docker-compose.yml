@@ -31,8 +31,8 @@ services:
             - queue
             - web
         environment:
-            - 'QUEUE_URL="amqp://go1:go1@queue:5672/"'
-            - 'SERVICE_URL_PATTERN=http://web/GO1/SERVICE'
+            - QUEUE_URL=amqp://go1:go1@queue:5672/
+            - SERVICE_URL_PATTERN=http://web/GO1/SERVICE/consume
     ui:
         image: 'registry.code.go1.com.au/apiom/apiom-ui:master'
         command: ["ping", "127.0.0.1", "-q"]
@@ -64,5 +64,5 @@ services:
             - _DOCKER_CACHE_BACKEND=memcached
             - _DOCKER_CACHE_HOST=memcached
             - _DOCKER_CACHE_PORT=11211
-            - SERVICE_URL_PATTERN=http://web/GO1/SERVICE
             - _DOCKER_QUEUE_HOST=queue
+            - SERVICE_URL_PATTERN=http://web/GO1/SERVICE
