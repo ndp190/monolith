@@ -68,4 +68,5 @@ services:
             - _DOCKER_CACHE_HOST=memcached
             - _DOCKER_CACHE_PORT=11211
             - _DOCKER_QUEUE_HOST=queue
+            - MONOLITH=1
             - SERVICE_URL_PATTERN=http://web/GO1/SERVICE
