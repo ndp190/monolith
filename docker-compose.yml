@@ -15,7 +15,7 @@ services:
         environment:
             - NEO4J_AUTH=none
         volumes:
-          - './.data/neo4j:/data'
+            - './.data/neo4j:/data'
         ports:
             - '7474:7474'
             - '7687:7687'
@@ -36,11 +36,14 @@ services:
             - queue
             - web
         environment:
-            - QUEUE_URL=amqp://go1:go1@queue:5672/
-            - SERVICE_URL_PATTERN=http://web/GO1/SERVICE/consume
+            - 'QUEUE_URL=amqp://go1:go1@queue:5672/'
+            - 'SERVICE_URL_PATTERN=http://web/GO1/SERVICE/consume'
     ui:
         image: 'registry.code.go1.com.au/apiom/apiom-ui:master'
-        command: ["ping", "127.0.0.1", "-q"]
+        command:
+            - ping
+            - 127.0.0.1
+            - '-q'
     web:
         image: 'go1com/php:7-nginx'
         links:
@@ -60,7 +63,7 @@ services:
             - './scripts/:/scripts/'
             - './.data/resources/docker/:/app/resources/docker/'
         volumes_from:
-              - ui
+            - ui
         environment:
             - _DOCKER_RDS_DB_NAME=go1
             - _DOCKER_RDS_HOSTNAME=mysql
@@ -71,4 +74,4 @@ services:
             - _DOCKER_CACHE_PORT=11211
             - _DOCKER_QUEUE_HOST=queue
             - MONOLITH=1
-            - SERVICE_URL_PATTERN=http://web/GO1/SERVICE
+            - 'SERVICE_URL_PATTERN=http://web/GO1/SERVICE'
