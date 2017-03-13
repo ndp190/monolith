@@ -20,10 +20,12 @@ services:
             - '7474:7474'
             - '7687:7687'
     queue:
-        image: 'rabbitmq:3.6'
+        image: 'rabbitmq:3.6-management'
         environment:
             - RABBITMQ_DEFAULT_USER=go1
             - RABBITMQ_DEFAULT_PASS=go1
+        ports:
+          - '15672:15672'
     memcached:
         image: 'memcached:1.4-alpine'
     consumer:
