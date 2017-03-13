@@ -28,6 +28,8 @@ services:
           - '15672:15672'
     memcached:
         image: 'memcached:1.4-alpine'
+    es:
+        image: 'elasticsearch:5-alpine'
     consumer:
         image: 'registry.code.go1.com.au/microservices/consumer:master'
         command:
@@ -48,6 +50,7 @@ services:
             - neo4j
             - mysql
             - queue
+            - es
         ports:
             - '80:80'
         volumes:
@@ -72,3 +75,4 @@ services:
             - _DOCKER_QUEUE_HOST=queue
             - MONOLITH=1
             - SERVICE_URL_PATTERN=http://web/GO1/SERVICE
+            - ES_URL=http://es:9200
