@@ -31,7 +31,8 @@ GO1 monolith
     - http://localhost/GO1/user/ — #service
     - http://staff.local — #staff, you NEED config this domain name in `/etc/hosts`.
     - http://localhost:7474/ - #neo4j admin
-    - http://localhost/GO1/adminer — SQL database management. 
+    - http://localhost/GO1/adminer — SQL database management.
+    - http://localhost:15672/ - #rabbitmq admin
 - Run test cases:
     - `./scripts/test.php php/api`
     - `./scripts/test.php php/lo/tests/domain/tag/`
