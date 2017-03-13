@@ -2,6 +2,8 @@
 
 namespace go1\monolith;
 
+use mysqli;
+
 $pwd = dirname(__DIR__);
 passthru("mkdir -p $pwd/.data/nginx/sites-available");
 passthru("touch $pwd/.data/nginx/sites-available/default.conf");
