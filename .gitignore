@@ -1,11 +1,9 @@
 .data/
 ~.data/.gitkeep
+.idea/
 src/*
 pkg/*
 php/*
 web/*
 drupal/*
 infrastructure/*
-.idea/
-at/*
-golang/
