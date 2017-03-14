@@ -3,7 +3,11 @@
 namespace go1\monolith;
 
 $pwd = dirname(__DIR__);
-passthru("mkdir -p $pwd/.data/nginx/sites-available");
-passthru("touch $pwd/.data/nginx/sites-available/default.conf");
-passthru("cp $pwd/.data/nginx/app.conf $pwd/.data/nginx/sites-available/default.conf");
+
+@mkdir("$pwd/.data");
+@mkdir("$pwd/.data/nginx");
+@mkdir("$pwd/.data/nginx/sites-available");
+@unlink("$pwd/.data/nginx/sites-available/default.conf");
+@copy("$pwd/.data/nginx/app.conf", "$pwd/.data/nginx/sites-available/default.conf");
+
 passthru("docker-compose up --force-recreate");
