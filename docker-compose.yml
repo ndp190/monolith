@@ -70,10 +70,14 @@ services:
         volumes_from:
               - ui
         environment:
-            - _DOCKER_RDS_DB_NAME=go1
+            - _DOCKER_RDS_DB_NAME=go1_dev
             - _DOCKER_RDS_HOSTNAME=mysql
             - _DOCKER_RDS_PASSWORD=root
             - _DOCKER_RDS_USERNAME=root
+            - _DOCKER_GO1_DB_NAME=go1_dev
+            - _DOCKER_GO1_HOSTNAME=mysql
+            - _DOCKER_GO1_PASSWORD=root
+            - _DOCKER_GO1_USERNAME=root
             - _DOCKER_CACHE_BACKEND=memcached
             - _DOCKER_CACHE_HOST=memcached
             - _DOCKER_CACHE_PORT=11211
