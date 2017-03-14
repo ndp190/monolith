@@ -47,7 +47,7 @@ $scan = function ($base) use (&$scan, &$map) {
             foreach ($map as $from => $to) {
                 if (strpos($copy, $from)) {
                     echo "        \\- {$from} -> {$to}\n";
-                    $copy = str_replace($from, $to, $original);
+                    $copy = str_replace($from, $to, $copy);
                 }
             }
 
