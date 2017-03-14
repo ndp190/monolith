@@ -34,7 +34,6 @@ GO1 monolith
     - http://localhost/GO1/adminer/ — SQL database management.
     - http://localhost:15672/ - rabbitMQ admin
 - `php scripts/install.php` to install database.
-- `docker-compose stop` to stop containers.
 - Run test cases:
     - `./scripts/test.php php/api`
     - `./scripts/test.php php/lo/tests/domain/tag/`
