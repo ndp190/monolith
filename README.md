@@ -53,6 +53,19 @@ To avoid PHPStorm to index too much, exclude these directory:
 
     php ./scripts/start.php
 
+## 5. Debug
+
+To debug microservices, follow these steps:
+1. Configure xdebug
+![Debug](resources/debug.png)
+2. Mapping host: localhost
+![Debug](resources/mapping.png)
+3. Mapping host: web
+![Debug](resources/mapping2.png)
+3. Set break points and listen for PHP debug connections
+![Debug](resources/listen.png)
+
+
 ## Tools
 
 - php ./git/prune.php
