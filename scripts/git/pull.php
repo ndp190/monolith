@@ -6,8 +6,9 @@ require_once __DIR__ . '/../../php/vendor/go1.autoload.php';
 
 $cmd = implode(' ', $argv);
 $confirm = strpos($cmd, '--confirm') ? true : false;
+$reset = strpos($cmd, '--reset') ? true : false;
 
-return call_user_func(function () use ($confirm) {
+return call_user_func(function () use ($confirm, $reset) {
     $dir = dirname(dirname(__DIR__));
     $projects = require __DIR__ . '/../_projects.php';
     foreach ($projects as $folder => $repositories) {
@@ -22,8 +23,11 @@ return call_user_func(function () use ($confirm) {
             }
 
             if ($do) {
-                $cmd = "cd $target && git checkout {$branch} && git pull origin {$branch}";
-                echo "$ {$cmd}\n";
+                $cmd = $reset
+                    ? "cd $target && git checkout {$branch} && git pull origin {$branch}"
+                    : "cd $target && git reset --hard && git checkout {$branch} && git pull origin {$branch}";
+
+                echo "${$cmd}\n";
                 passthru($cmd);
             }
         }
