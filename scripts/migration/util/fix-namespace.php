@@ -13,7 +13,11 @@ use go1\util\lo\LoStatuses;
 use go1\util\lo\LoTypes;
 use go1\util\portal\PortalChecker;
 use go1\util\portal\PortalHelper;
+use go1\util\portal\PortalPrices;
 use go1\util\portal\PortalStatuses;
+use go1\util\schema\InstallTrait;
+use go1\util\schema\mock\InstanceMockTrait;
+use go1\util\schema\mock\UserMockTrait;
 use go1\util\user\Roles;
 use go1\util\user\UserHelper;
 use go1\util\vote\VoteHelper;
@@ -21,6 +25,10 @@ use go1\util\vote\VoteTypes;
 
 $base = realpath(__DIR__ . '/../../../php');
 $map = [
+    'go1\util\PortalPrices'                 => PortalPrices::class,
+    'go1\schema\mock\InstanceMockTrait'     => InstanceMockTrait::class,
+    'go1\schema\InstallTrait'               => InstallTrait::class,
+    'go1\schema\mock\UserMockTrait'         => UserMockTrait::class,
     'go1\util\EdgeTypes'                    => EdgeTypes::class,
     'go1\util\EnrolmentStatuses'            => EnrolmentStatuses::class,
     'go1\util\EnrolmentHelper'              => EnrolmentHelper::class,
