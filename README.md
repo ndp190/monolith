@@ -3,8 +3,7 @@ GO1 monolith
 
 ## 1. TODO
 
-- Build the scripts as a single phar file.
-- Check #ui build again.
+- Install #realtime 
 
 ## 2. Dependencies
 
