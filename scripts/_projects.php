@@ -47,7 +47,7 @@ return [
         'user'         => 'git@code.go1.com.au:microservices/user.git',
         'video'        => 'git@code.go1.com.au:microservices/video.git',
         'vote'         => 'git@code.go1.com.au:microservices/vote.git',
-        'workshop'     => 'git@code.go1.com.au:microservices/workshop.git',
+        # 'workshop'     => 'git@code.go1.com.au:microservices/workshop.git',
     ],
     'php/libraries'  => [
         'app'            => 'git@github.com:go1com/app.git',
