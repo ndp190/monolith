@@ -33,11 +33,6 @@ GO1 monolith
     - http://localhost/GO1/adminer/ — SQL database management.
     - http://localhost:15672/ - rabbitMQ admin
 - `php scripts/install.php` to install database.
-- Run test cases:
-    - `./scripts/test.php php/api`
-    - `./scripts/test.php php/lo/tests/domain/tag/`
-    - `./scripts/test.php php/api/tests/ProxyTest.php --filter=testStatusOfBlockedService`
-    - `./scripts/test.php drupal/gc/modules/applications/aduro/modules/lms/lms_services/tests/Apiom/Course/CourseAccountsServicesTest.php`
 - Run test cases without Docker:
     - `php ./scripts/phpunit.php php/outcome/`
 
