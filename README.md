@@ -55,12 +55,13 @@ To avoid PHPStorm to index too much, exclude these directory:
 
 ## Tools
 
-- php ./git/prune.php
-- php ./git/pull.php
-- php ./git/generate.php
-- php ./gitlab/build-configuration.php
-- php ./gitlab/deploy/staging.php
-- php ./gitlab/deploy/production.php
+- `php ./git/prune.php`
+- `php ./git/pull.php` — pull master
+- `php ./git/pull.php --confirm` — pull master with confirmation 
+- `php ./git/generate.php`
+- `php ./gitlab/build-configuration.php`
+- `php ./gitlab/deploy/staging.php`
+- `php ./gitlab/deploy/production.php`
 - Dummy: Generate dummy content for testing.
     1. Make sure the services are up. Ref (4).
     - `docker exec monolith_web_1 bash -c 'php /scripts/dummy/generate.php'`
