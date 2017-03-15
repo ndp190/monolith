@@ -1,18 +1,31 @@
 <?php
 
+namespace go1\monolith\git;
+
 require_once __DIR__ . '/../../php/vendor/go1.autoload.php';
 
-return call_user_func(function () {
+$cmd = implode(' ', $argv);
+$confirm = strpos($cmd, '--confirm') ? true : false;
+
+return call_user_func(function () use ($confirm) {
     $dir = dirname(dirname(__DIR__));
     $projects = require __DIR__ . '/../_projects.php';
-    foreach ($projects as $folder => $repos) {
-        foreach ($repos as $name => $repo) {
+    foreach ($projects as $folder => $repositories) {
+        foreach ($repositories as $name => $repo) {
+            $do = true;
             $branch = ($name == 'quiz') ? '1.x' : 'master';
-
             $target = "{$dir}/{$folder}/{$name}";
-            $cmd = "cd $target && git checkout {$branch} && git pull origin {$branch}";
-            echo "$ {$cmd}\n";
-            passthru($cmd);
+
+            if ($confirm) {
+                echo "Do you want to pull {$name}/{$branch}? [y/n]";
+                $do = 'y' === trim(fgets(STDIN));
+            }
+
+            if ($do) {
+                $cmd = "cd $target && git checkout {$branch} && git pull origin {$branch}";
+                echo "$ {$cmd}\n";
+                passthru($cmd);
+            }
         }
     }
 });
