@@ -3,7 +3,8 @@ GO1 monolith
 
 ## 1. TODO
 
-- Install #realtime 
+- Install #realtime
+- Install #cron
 
 ## 2. Dependencies
 
