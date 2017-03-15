@@ -4,6 +4,7 @@ namespace go1\monolith\migration\util;
 
 use go1\util\edge\EdgeHelper;
 use go1\util\edge\EdgeTypes;
+use go1\util\enrolment\EnrolmentHelper;
 use go1\util\enrolment\EnrolmentStatuses;
 use go1\util\lo\LiTypes;
 use go1\util\lo\LoChecker;
@@ -15,11 +16,14 @@ use go1\util\portal\PortalHelper;
 use go1\util\portal\PortalStatuses;
 use go1\util\user\Roles;
 use go1\util\user\UserHelper;
+use go1\util\vote\VoteHelper;
+use go1\util\vote\VoteTypes;
 
 $base = realpath(__DIR__ . '/../../../php');
 $map = [
     'go1\util\EdgeTypes'                    => EdgeTypes::class,
     'go1\util\EnrolmentStatuses'            => EnrolmentStatuses::class,
+    'go1\util\EnrolmentHelper'              => EnrolmentHelper::class,
     'go1\util\LiTypes'                      => LiTypes::class,
     'go1\util\LoChecker'                    => LoChecker::class,
     'go1\util\LoHelper'                     => LoHelper::class,
@@ -32,6 +36,8 @@ $map = [
     'go1\util\Roles'                        => Roles::class,
     'go1\util\UserHelper'                   => UserHelper::class,
     'go1\LtiConsumer\controller\UserHelper' => UserHelper::class,
+    'go1\util\VoteHelper'                   => VoteHelper::class,
+    'go1\util\VoteTypes'                    => VoteTypes::class,
 ];
 
 $scan = function ($base) use (&$scan, &$map) {
