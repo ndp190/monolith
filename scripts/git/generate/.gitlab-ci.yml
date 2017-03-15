@@ -11,7 +11,7 @@ phpunit:
 
 deploy:master:
   type: deploy
-  only: ["master"]
+  only: ["DISABLED-master"]
   tags: ["deploy", "docker"]
   cache: { paths: ["vendor/"] }
   variables:
@@ -19,7 +19,6 @@ deploy:master:
     SERVICE_80_NAME: "xxxxx"
     MEM: 64M
     _DOCKER_ENV: "dev"
-
   script:
   - composer install --no-dev
   - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
@@ -27,5 +26,45 @@ deploy:master:
   - docker push ${CI_REGISTRY_IMAGE}:${CI_BUILD_REF_NAME}
   - ecs-cli configure --region ${AWS_DEFAULT_REGION} --access-key ${AWS_ACCESS_KEY_ID} --secret-key ${AWS_SECRET_ACCESS_KEY} --cluster staging
   - ecs-cli compose --file docker-compose.yml --project-name xxxxx-dev service up
-  - curl -sSL -o deploy_helper.phar https://github.com/go1com/deploy_helper/releases/download/v0.1/deploy_helper.phar
-  - php deploy_helper.phar dev xxxxx
+  # - curl -sSL -o deploy_helper.phar https://github.com/go1com/deploy_helper/releases/download/v0.3/deploy_helper.phar
+  # - php deploy_helper.phar dev xxxxx
+
+deploy:staging:
+  type: deploy
+  only: ["DISABLED-staging"]
+  tags: ["deploy", "docker"]
+  cache: { paths: ["vendor/"] }
+  variables:
+    SERVICE_TAGS: "dev"
+    SERVICE_80_NAME: "xxxxx"
+    MEM: 64M
+    _DOCKER_ENV: "staging"
+  script:
+  - composer install --no-dev
+  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+  - docker build -t ${CI_REGISTRY_IMAGE}:${CI_BUILD_REF_NAME} .
+  - docker push ${CI_REGISTRY_IMAGE}:${CI_BUILD_REF_NAME}
+  - ecs-cli configure --region ${AWS_DEFAULT_REGION} --access-key ${AWS_ACCESS_KEY_ID} --secret-key ${AWS_SECRET_ACCESS_KEY} --cluster staging
+  - ecs-cli compose --file docker-compose.yml --project-name xxxxx-staging service up
+  # - curl -sSL -o deploy_helper.phar https://github.com/go1com/deploy_helper/releases/download/v0.3/deploy_helper.phar
+  # - php deploy_helper.phar staging xxxxx
+
+deploy:production:
+  type: deploy
+  only: ["DISABLED-production"]
+  tags: ["deploy", "docker"]
+  cache: { paths: ["vendor/"] }
+  variables:
+    SERVICE_TAGS: "dev"
+    SERVICE_80_NAME: "xxxxx"
+    MEM: 128M
+    _DOCKER_ENV: "production"
+  script:
+  - composer install --no-dev
+  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+  - docker build -t ${CI_REGISTRY_IMAGE}:${CI_BUILD_REF_NAME} .
+  - docker push ${CI_REGISTRY_IMAGE}:${CI_BUILD_REF_NAME}
+  - ecs-cli configure --region ${AWS_DEFAULT_REGION} --access-key ${AWS_ACCESS_KEY_ID} --secret-key ${AWS_SECRET_ACCESS_KEY} --cluster production
+  - ecs-cli compose --file docker-compose.yml --project-name xxxxx-production service up
+  # - curl -sSL -o deploy_helper.phar https://github.com/go1com/deploy_helper/releases/download/v0.3/deploy_helper.phar
+  # - php deploy_helper.phar production xxxxx
