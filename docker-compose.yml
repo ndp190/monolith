@@ -51,7 +51,7 @@ services:
         image: 'registry.code.go1.com.au/apiom/apiom-ui:master'
         command: ["ping", "127.0.0.1", "-q"]
     web:
-        build: ./debug
+        build: ./.data/debug
         links:
             - memcached
             - neo4j
