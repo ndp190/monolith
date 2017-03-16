@@ -33,6 +33,8 @@ return [
         'portal'       => 'git@code.go1.com.au:microservices/portal.git',
         'queue'        => 'git@code.go1.com.au:microservices/queue.git',
         'quiz'         => 'git@code.go1.com.au:microservices/quiz.git',
+        'report-data'  => 'git@code.go1.com.au:microservices/report-data.git',
+        'report'       => 'git@code.go1.com.au:microservices/report.git',
         'rules'        => 'git@code.go1.com.au:microservices/rules.git',
         's3'           => 'git@code.go1.com.au:microservices/s3.git',
         'scraping'     => 'git@code.go1.com.au:microservices/scraping.git',
@@ -60,6 +62,7 @@ return [
         'schema'         => 'git@code.go1.com.au:go1/schema.git',
         'util'           => 'git@code.go1.com.au:go1/util.git',
         'graph_mock'     => 'git@code.go1.com.au:go1/graph-mock.git',
+        'report_helpers' => 'git@code.go1.com.au:go1/report-helpers.git',
     ],
     'drupal'         => [
         'accounts' => 'git@code.go1.com.au:go1/accounts.git',
