@@ -85,5 +85,6 @@ services:
             - _DOCKER_CACHE_PORT=11211
             - _DOCKER_QUEUE_HOST=queue
             - MONOLITH=1
+            - ENV=dev
             - SERVICE_URL_PATTERN=http://web/GO1/SERVICE
             - ES_URL=http://es:9200
