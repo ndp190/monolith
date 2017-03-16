@@ -20,7 +20,9 @@ use go1\util\portal\PortalHelper;
 use go1\util\portal\PortalPrices;
 use go1\util\portal\PortalStatuses;
 use go1\util\schema\InstallTrait;
+use go1\util\schema\mock\EnrolmentMockTrait;
 use go1\util\schema\mock\InstanceMockTrait;
+use go1\util\schema\mock\LoMockTrait;
 use go1\util\schema\mock\UserMockTrait;
 use go1\util\user\Roles;
 use go1\util\user\UserHelper;
@@ -54,6 +56,8 @@ $map = [
     'go1\util\UserHelper'                   => UserHelper::class,
     'go1\util\VoteHelper'                   => VoteHelper::class,
     'go1\util\VoteTypes'                    => VoteTypes::class,
+    'go1\schema\mock\LoMockTrait'           => LoMockTrait::class,
+    'go1\schema\mock\EnrolmentMockTrait'    => EnrolmentMockTrait::class,
 ];
 
 $scan = function ($base) use (&$scan, &$map) {
