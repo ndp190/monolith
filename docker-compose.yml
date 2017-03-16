@@ -33,7 +33,7 @@ services:
         ports:
             - '9200:9200'
     consumer:
-        build: ./queue
+        build: ./.data/queue
         command:
             - /app/app
         links:
