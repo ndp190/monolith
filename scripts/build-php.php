@@ -6,7 +6,13 @@ function buildComposerJson($pwd, $projects, $baseDir = 'php')
 {
     $json = json_decode(file_get_contents("$pwd/php/composer.json"), true);
     foreach (array_keys($projects) as $service) {
-        $json['autoload']['psr-4']["go1\\$service\\"] = './' . str_replace(['/php/', '/php/libraries/'], ['/app/', '/libraries/'], $baseDir) . "/$service/";
+        if ($baseDir === 'php' && strpos($service, '-') !== false) {
+            $namespace = 'go1\\' . str_replace('-', '', ucwords($service, '-')) . '\\';
+        }
+        else {
+            $namespace = "go1\\$service\\";
+        }
+        $json['autoload']['psr-4'][$namespace] = './' . str_replace(['/php/', '/php/libraries/'], ['/app/', '/libraries/'], $baseDir) . "/$service/";
 
         if (file_exists("$pwd/$baseDir/$service/composer.json")) {
             $sub = json_decode(file_get_contents("$pwd/$baseDir/{$service}/composer.json"), true);
