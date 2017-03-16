@@ -47,6 +47,21 @@ services:
         command: ["/scripts/wait-for-it.sh", "queue:5672", "-t", "0", "--", "/app/app"]
         volumes:
             - './infrastructure/wait-for-it:/scripts'
+    worker:
+        build: ./.data/worker
+        command:
+            - /app/app
+        links:
+            - queue
+            - web
+        environment:
+            - QUEUE_URL=amqp://go1:go1@queue:5672/
+            - SERVICE_URL_PATTERN=http://web/GO1/SERVICE/consume
+        depends_on:
+            - queue
+        command: ["/scripts/wait-for-it.sh", "queue:5672", "-t", "0", "--", "/app/app"]
+        volumes:
+            - './infrastructure/wait-for-it:/scripts'
     ui:
         image: 'registry.code.go1.com.au/apiom/apiom-ui:master'
         command: ["ping", "127.0.0.1", "-q"]
