@@ -42,6 +42,7 @@ function buildGlideYaml(string $pwd, array $projects)
     $glide['import'][]['package'] = 'code.go1.com.au/go1/api.v3';
     $glide['import'][]['package'] = 'code.go1.com.au/microservices/batch-go';
     $glide['import'][]['package'] = 'code.go1.com.au/microservices/consumer';
+    $glide['import'][]['package'] = 'code.go1.com.au/microservices/work';
 
     $goDir = "$pwd/golang/src";
     if (!is_dir($goDir)) {
