@@ -30,6 +30,8 @@ services:
         image: 'memcached:1.4-alpine'
     es:
         image: 'elasticsearch:5-alpine'
+        ports:
+            - '9200:9200'
     consumer:
         build: ./queue
         command:
