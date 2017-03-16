@@ -48,7 +48,7 @@ services:
         volumes:
             - './infrastructure/wait-for-it:/scripts'
     worker:
-        build: ./worker
+        build: ./.data/worker
         command:
             - /app/app
         links:
