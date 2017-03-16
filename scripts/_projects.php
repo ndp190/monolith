@@ -53,15 +53,15 @@ return [
     ],
     'php/libraries'  => [
         'app'            => 'git@github.com:go1com/app.git',
-        'clients'        => 'git@code.go1.com.au:go1/clients.git',
+        # 'clients'        => 'git@code.go1.com.au:go1/clients.git',
         'edge'           => 'git@github.com:go1com/edge.git',
         'flood'          => 'git@github.com:go1com/flood.git',
         'jwt_middleware' => 'git@github.com:go1com/JwtMiddleware.git',
         'kv'             => 'git@github.com:go1com/kv.git',
         'middleware'     => 'git@code.go1.com.au:go1/middlewares.git',
-        'schema'         => 'git@code.go1.com.au:go1/schema.git',
+        # 'schema'         => 'git@code.go1.com.au:go1/schema.git',
         'util'           => 'git@code.go1.com.au:go1/util.git',
-        'graph_mock'     => 'git@code.go1.com.au:go1/graph-mock.git',
+        # 'graph_mock'     => 'git@code.go1.com.au:go1/graph-mock.git',
         'report_helpers' => 'git@code.go1.com.au:go1/report-helpers.git',
     ],
     'drupal'         => [
