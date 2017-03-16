@@ -27,7 +27,7 @@ return call_user_func(function () use ($confirm, $reset) {
                     ? "cd $target && git reset --hard && git checkout {$branch} && git pull origin {$branch}"
                     : "cd $target && git checkout {$branch} && git pull origin {$branch}";
 
-                echo "${$cmd}\n";
+                echo "$cmd\n";
                 passthru($cmd);
             }
         }
