@@ -57,6 +57,7 @@ return function ($pwd, $home, $projects) {
 
     // Our #adminer is not yet compatible with #monolith.
     // We try to hack it.
-    passthru("rm -rf {$pwd}/php/adminer & mkdir -p {$pwd}/php/adminer/public");
+    passthru("rm -rf {$pwd}/php/adminer/*");
+    mkdir("{$pwd}/php/adminer/public");
     file_put_contents("{$pwd}/php/adminer/public/index.php", file_get_contents('https://github.com/vrana/adminer/releases/download/v4.2.5/adminer-4.2.5-en.php'));
 };
