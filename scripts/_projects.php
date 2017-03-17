@@ -6,6 +6,7 @@ return [
         'api'          => 'git@code.go1.com.au:microservices/api.git',
         'assessor'     => 'git@code.go1.com.au:microservices/assessor.git',
         'assignment'   => 'git@code.go1.com.au:microservices/assignment.git',
+        'award'        => 'git@code.go1.com.au:microservices/award.git',
         'batch'        => 'git@code.go1.com.au:microservices/batch.git',
         'cloudinary'   => 'git@code.go1.com.au:microservices/cloudinary.git',
         'console'      => 'git@code.go1.com.au:go1/console.git',

@@ -11,6 +11,7 @@
             "go1\\app\\": "./php/libraries/app/",
             "go1\\assessor\\": "./php/assessor/",
             "go1\\assignment\\": "./php/assignment/",
+            "go1\\award\\": "./php/award/",
             "go1\\batch\\": "./php/batch/",
             "go1\\cloudinary\\": "./php/cloudinary/",
             "go1\\console\\": "./php/console/",
