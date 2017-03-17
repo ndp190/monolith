@@ -32,4 +32,7 @@ return call_user_func(function () use ($confirm, $reset) {
             }
         }
     }
+
+    // Update Docker images
+    passthru('docker pull registry.code.go1.com.au/apiom/apiom-ui:master');
 });
