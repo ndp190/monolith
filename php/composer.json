@@ -4,6 +4,7 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
+            "go1\\InteractiveLi\\": "./php/interactive-li/",
             "go1\\LtiConsumer\\": "./php/lti-consumer/",
             "go1\\ReportData\\": "./php/report-data/",
             "go1\\algolia\\": "./php/algolia/",
