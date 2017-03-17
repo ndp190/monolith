@@ -67,7 +67,7 @@
     "require": {
         "algolia/algoliasearch-client-php": "^1.14",
         "aws/aws-sdk-php": "^3.19.12",
-        "beberlei/assert": "^2.5",
+        "beberlei/assert": "^2.6",
         "behat/mink": "^1.7.0",
         "behat/mink-goutte-driver": "^1.2.0",
         "behat/transliterator": "^1.1",
@@ -91,7 +91,7 @@
         "league/pipeline": "^0.2.2",
         "madcoda/php-youtube-api": "^1.2",
         "mikemccabe/json-patch-php": "^0.1.0",
-        "monolog/monolog": "^1.19.0",
+        "monolog/monolog": "^1.21",
         "mtdowling/cron-expression": "^v1.0",
         "mustangostang/spyc": "0.5.1",
         "neomerx/json-api": "^0.8.6",
