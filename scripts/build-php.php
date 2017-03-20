@@ -31,6 +31,20 @@ function buildComposerJson($pwd, $projects, $baseDir = 'php')
                     $json['repositories'][$name] = $info;
                 }
             }
+
+            if (!empty($sub['autoload']['psr-4'])) {
+                foreach ($sub['autoload']['psr-4'] as $subNamespace => $subPath) {
+                    if ($subNamespace !== $namespace) {
+                        if ($service === 'scraping' && in_array($subNamespace, ['App\\', 'App\\Test\\'])) {
+                            // Hack for scraping.
+                            $json['autoload']['psr-4'][$subNamespace] = "./php/$service/$subPath";
+                        }
+                        else {
+                            $json['autoload']['psr-4'][$subNamespace] = str_replace('./', "./php/$service/", $subPath);
+                        }
+                    }
+                }
+            }
         }
 
         passthru("mkdir -p $pwd/$baseDir/$service/vendor");

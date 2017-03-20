@@ -4,9 +4,13 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
+            "App\\": "./php/scraping/src/App",
+            "App\\Test\\": "./php/scraping/tests",
             "go1\\InteractiveLi\\": "./php/interactive-li/",
             "go1\\LtiConsumer\\": "./php/lti-consumer/",
             "go1\\ReportData\\": "./php/report-data/",
+            "go1\\ReportData\\tests\\": "./php/report-data/tests",
+            "go1\\Scraping\\": "./php/scraping/",
             "go1\\algolia\\": "./php/algolia/",
             "go1\\api\\": "./php/api/",
             "go1\\app\\": "./php/libraries/app/",
@@ -14,6 +18,7 @@
             "go1\\assignment\\": "./php/assignment/",
             "go1\\award\\": "./php/award/",
             "go1\\batch\\": "./php/batch/",
+            "go1\\clients\\": "./php/util/clients/",
             "go1\\cloudinary\\": "./php/cloudinary/",
             "go1\\console\\": "./php/console/",
             "go1\\credit\\": "./php/credit/",
