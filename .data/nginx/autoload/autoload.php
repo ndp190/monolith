@@ -47,6 +47,12 @@ foreach ($loader->getPrefixesPsr4() as $ns => $paths) {
             $loader->setPsr4($ns, "/app/libraries/{$project}");
         }
     }
+    elseif (in_array($ns, ['App\\', 'App\\Test\\', 'Embed\\Adapters\\', 'Embed\\Providers\\OEmbed\\'])) {
+        // @todo Remove these hard codes.
+        // All of these namespaces has 1 path for now.
+        $path = $paths[0];
+        $loader->setPsr4($ns, str_replace('/app/vendor/composer/../../php/', '/app/', $path));
+    }
 }
 
 return $loader;
