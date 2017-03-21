@@ -4,69 +4,258 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "App\\": "./php/scraping/src/App",
-            "App\\Test\\": "./php/scraping/tests",
-            "go1\\InteractiveLi\\": "./php/interactive-li/",
-            "go1\\LtiConsumer\\": "./php/lti-consumer/",
-            "go1\\ReportData\\": "./php/report-data/",
-            "go1\\ReportData\\tests\\": "./php/report-data/tests",
-            "go1\\Scraping\\": "./php/scraping/",
-            "go1\\algolia\\": "./php/algolia/",
-            "go1\\api\\": "./php/api/",
-            "go1\\app\\": "./php/libraries/app/",
-            "go1\\assessor\\": "./php/assessor/",
-            "go1\\assignment\\": "./php/assignment/",
-            "go1\\award\\": "./php/award/",
-            "go1\\batch\\": "./php/batch/",
-            "go1\\clients\\": "./php/util/clients/",
-            "go1\\cloudinary\\": "./php/cloudinary/",
-            "go1\\console\\": "./php/console/",
-            "go1\\credit\\": "./php/credit/",
-            "go1\\currency\\": "./php/currency/",
-            "go1\\eck\\": "./php/eck/",
-            "go1\\edge\\": "./php/libraries/edge/",
-            "go1\\endpoint\\": "./php/endpoint/",
-            "go1\\enrolment\\": "./php/enrolment/",
-            "go1\\entity\\": "./php/entity/",
-            "go1\\finder\\": "./php/finder/",
-            "go1\\flood\\": "./php/libraries/flood/",
-            "go1\\graphin\\": "./php/graphin/",
-            "go1\\history\\": "./php/history/",
-            "go1\\index\\": "./php/index/",
-            "go1\\jwt_middleware\\": "./php/libraries/jwt_middleware/",
-            "go1\\kv\\": "./php/libraries/kv/",
-            "go1\\lib\\": "./php/lib/",
-            "go1\\lo\\": "./php/lo/",
-            "go1\\lob\\": "./php/lob/",
-            "go1\\low\\": "./php/low/",
-            "go1\\mail\\": "./php/mail/",
-            "go1\\middleware\\": "./php/libraries/middleware/",
-            "go1\\natero\\": "./php/natero/",
-            "go1\\note\\": "./php/note/",
-            "go1\\notify\\": "./php/notify/",
-            "go1\\onboard\\": "./php/onboard/",
-            "go1\\payment\\": "./php/payment/",
-            "go1\\portal\\": "./php/portal/",
-            "go1\\queue\\": "./php/queue/",
-            "go1\\quiz\\": "./php/quiz/",
-            "go1\\report\\": "./php/report/",
-            "go1\\report_helpers\\": "./php/libraries/report_helpers/",
-            "go1\\rules\\": "./php/rules/",
-            "go1\\s3\\": "./php/s3/",
-            "go1\\scraping\\": "./php/scraping/",
-            "go1\\sms\\": "./php/sms/",
-            "go1\\social\\": "./php/social/",
-            "go1\\sso\\": "./php/sso/",
-            "go1\\staff\\": "./php/staff/",
-            "go1\\stash\\": "./php/stash/",
-            "go1\\status\\": "./php/status/",
-            "go1\\subscription\\": "./php/subscription/",
-            "go1\\uptime\\": "./php/uptime/",
-            "go1\\user\\": "./php/user/",
-            "go1\\util\\": "./php/libraries/util/",
-            "go1\\video\\": "./php/video/",
-            "go1\\vote\\": "./php/vote/",
-            "go1\\workshop\\": "./php/workshop/"
+            "App\\": [
+                "./php/scraping/src/App",
+                "/app/scraping/src/App"
+            ],
+            "App\\Test\\": [
+                "./php/scraping/tests",
+                "/app/scraping/tests"
+            ],
+            "go1\\InteractiveLi\\": [
+                "./php/interactive-li",
+                "/app/interactive-li"
+            ],
+            "go1\\LtiConsumer\\": [
+                "./php/lti-consumer",
+                "/app/lti-consumer"
+            ],
+            "go1\\ReportData\\": [
+                "./php/report-data",
+                "/app/report-data"
+            ],
+            "go1\\ReportData\\tests\\": [
+                "./php/report-data/./tests",
+                "/app/report-data/./tests"
+            ],
+            "go1\\Scraping\\": [
+                "./php/scraping/./",
+                "/app/scraping/./"
+            ],
+            "go1\\algolia\\": [
+                "./php/algolia",
+                "/app/algolia"
+            ],
+            "go1\\api\\": [
+                "./php/api",
+                "/app/api"
+            ],
+            "go1\\app\\": [
+                "./php/libraries/app",
+                "/app/libraries/app"
+            ],
+            "go1\\assessor\\": [
+                "./php/assessor",
+                "/app/assessor"
+            ],
+            "go1\\assignment\\": [
+                "./php/assignment",
+                "/app/assignment"
+            ],
+            "go1\\award\\": [
+                "./php/award",
+                "/app/award"
+            ],
+            "go1\\batch\\": [
+                "./php/batch",
+                "/app/batch"
+            ],
+            "go1\\clients\\": [
+                "./php/libraries/util/./clients/",
+                "/app/libraries/util/./clients/"
+            ],
+            "go1\\cloudinary\\": [
+                "./php/cloudinary",
+                "/app/cloudinary"
+            ],
+            "go1\\console\\": [
+                "./php/console",
+                "/app/console"
+            ],
+            "go1\\credit\\": [
+                "./php/credit",
+                "/app/credit"
+            ],
+            "go1\\currency\\": [
+                "./php/currency",
+                "/app/currency"
+            ],
+            "go1\\eck\\": [
+                "./php/eck",
+                "/app/eck"
+            ],
+            "go1\\edge\\": [
+                "./php/libraries/edge",
+                "/app/libraries/edge"
+            ],
+            "go1\\endpoint\\": [
+                "./php/endpoint",
+                "/app/endpoint"
+            ],
+            "go1\\enrolment\\": [
+                "./php/enrolment",
+                "/app/enrolment"
+            ],
+            "go1\\entity\\": [
+                "./php/entity",
+                "/app/entity"
+            ],
+            "go1\\finder\\": [
+                "./php/finder",
+                "/app/finder"
+            ],
+            "go1\\flood\\": [
+                "./php/libraries/flood",
+                "/app/libraries/flood"
+            ],
+            "go1\\graphin\\": [
+                "./php/graphin",
+                "/app/graphin"
+            ],
+            "go1\\history\\": [
+                "./php/history",
+                "/app/history"
+            ],
+            "go1\\index\\": [
+                "./php/index",
+                "/app/index"
+            ],
+            "go1\\jwt_middleware\\": [
+                "./php/libraries/jwt_middleware",
+                "/app/libraries/jwt_middleware"
+            ],
+            "go1\\kv\\": [
+                "./php/libraries/kv",
+                "/app/libraries/kv"
+            ],
+            "go1\\lib\\": [
+                "./php/lib",
+                "/app/lib"
+            ],
+            "go1\\lo\\": [
+                "./php/lo",
+                "/app/lo"
+            ],
+            "go1\\lob\\": [
+                "./php/lob",
+                "/app/lob"
+            ],
+            "go1\\low\\": [
+                "./php/low",
+                "/app/low"
+            ],
+            "go1\\mail\\": [
+                "./php/mail",
+                "/app/mail"
+            ],
+            "go1\\middleware\\": [
+                "./php/libraries/middleware",
+                "/app/libraries/middleware"
+            ],
+            "go1\\migration\\": [
+                "./php/migration",
+                "/app/migration"
+            ],
+            "go1\\natero\\": [
+                "./php/natero",
+                "/app/natero"
+            ],
+            "go1\\note\\": [
+                "./php/note",
+                "/app/note"
+            ],
+            "go1\\notify\\": [
+                "./php/notify",
+                "/app/notify"
+            ],
+            "go1\\oembed\\": [
+                "./php/oembed",
+                "/app/oembed"
+            ],
+            "go1\\onboard\\": [
+                "./php/onboard",
+                "/app/onboard"
+            ],
+            "go1\\payment\\": [
+                "./php/payment",
+                "/app/payment"
+            ],
+            "go1\\portal\\": [
+                "./php/portal",
+                "/app/portal"
+            ],
+            "go1\\queue\\": [
+                "./php/queue",
+                "/app/queue"
+            ],
+            "go1\\quiz\\": [
+                "./php/quiz",
+                "/app/quiz"
+            ],
+            "go1\\report\\": [
+                "./php/report",
+                "/app/report"
+            ],
+            "go1\\report_helpers\\": [
+                "./php/libraries/report_helpers",
+                "/app/libraries/report_helpers"
+            ],
+            "go1\\rules\\": [
+                "./php/rules",
+                "/app/rules"
+            ],
+            "go1\\s3\\": [
+                "./php/s3",
+                "/app/s3"
+            ],
+            "go1\\scraping\\": [
+                "./php/scraping",
+                "/app/scraping"
+            ],
+            "go1\\sms\\": [
+                "./php/sms",
+                "/app/sms"
+            ],
+            "go1\\social\\": [
+                "./php/social",
+                "/app/social"
+            ],
+            "go1\\sso\\": [
+                "./php/sso",
+                "/app/sso"
+            ],
+            "go1\\staff\\": [
+                "./php/staff",
+                "/app/staff"
+            ],
+            "go1\\stash\\": [
+                "./php/stash",
+                "/app/stash"
+            ],
+            "go1\\status\\": [
+                "./php/status",
+                "/app/status"
+            ],
+            "go1\\subscription\\": [
+                "./php/subscription",
+                "/app/subscription"
+            ],
+            "go1\\user\\": [
+                "./php/user",
+                "/app/user"
+            ],
+            "go1\\util\\": [
+                "./php/libraries/util",
+                "/app/libraries/util"
+            ],
+            "go1\\video\\": [
+                "./php/video",
+                "/app/video"
+            ],
+            "go1\\vote\\": [
+                "./php/vote",
+                "/app/vote"
+            ],
         }
     },
     "require": {

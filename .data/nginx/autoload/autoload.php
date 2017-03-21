@@ -32,27 +32,8 @@ if (isset($_SERVER['REQUEST_URI'])) {
 
 /** @var ClassLoader $loader */
 $loader = require_once "/app/vendor/autoload.php";
-$loader->addPsr4('go1\\clients\\', '/app/libraries/util/clients');
-$loader->addPsr4('go1\\util\\', '/app/libraries/util');
 
-foreach ($loader->getPrefixesPsr4() as $ns => $paths) {
-    if (0 === strpos($ns, 'go1\\')) {
-        // All projects has 1 path for now.
-        $path = $paths[0];
-        $project = end(explode('/', $path));
-        if (is_dir("/app/{$project}")) {
-            $loader->setPsr4($ns, "/app/{$project}");
-        }
-        elseif (is_dir("/app/libraries/{$project}")) {
-            $loader->setPsr4($ns, "/app/libraries/{$project}");
-        }
-    }
-    elseif (in_array($ns, ['App\\', 'App\\Test\\', 'Embed\\Adapters\\', 'Embed\\Providers\\OEmbed\\'])) {
-        // @todo Remove these hard codes.
-        // All of these namespaces has 1 path for now.
-        $path = $paths[0];
-        $loader->setPsr4($ns, str_replace('/app/vendor/composer/../../php/', '/app/', $path));
-    }
-}
+// Custom psr4 goes here.
+//$loader->addPsr4('go1\\MyNamespace\\', '/app/path/to/my/project');
 
 return $loader;
