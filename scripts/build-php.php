@@ -12,7 +12,10 @@ function buildComposerJson($pwd, $projects, $baseDir = 'php')
         else {
             $namespace = "go1\\$service\\";
         }
-        $json['autoload']['psr-4'][$namespace] = './' . str_replace(['/php/', '/php/libraries/'], ['/app/', '/libraries/'], $baseDir) . "/$service/";
+        $json['autoload']['psr-4'][$namespace] = [
+            $baseDir === 'php' ? "./$service" : "./libraries/$service",
+            $baseDir === 'php' ? "/app/$service" : "/app/libraries/$service",
+        ];
 
         if (file_exists("$pwd/$baseDir/$service/composer.json")) {
             $sub = json_decode(file_get_contents("$pwd/$baseDir/{$service}/composer.json"), true);
@@ -29,6 +32,19 @@ function buildComposerJson($pwd, $projects, $baseDir = 'php')
             if (!empty($sub['repositories'])) {
                 foreach ($sub['repositories'] as $name => $info) {
                     $json['repositories'][$name] = $info;
+                }
+            }
+
+            if (!empty($sub['autoload']['psr-4'])) {
+                foreach ($sub['autoload']['psr-4'] as $subNamespace => $subPath) {
+                    if ($subNamespace !== $namespace) {
+                        // Only add custom namespaces, namespace for service is
+                        // already added.
+                        $json['autoload']['psr-4'][$subNamespace] = [
+                            $baseDir === 'php' ? "./$service/$subPath" : "./libraries/$service/$subPath",
+                            $baseDir === 'php' ? "/app/$service/$subPath" : "/app/libraries/$service/$subPath",
+                        ];
+                    }
                 }
             }
         }

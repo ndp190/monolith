@@ -26,6 +26,7 @@ return [
         'low'            => 'git@code.go1.com.au:microservices/low.git',
         'lti-consumer'   => 'git@code.go1.com.au:microservices/lti-consumer.git',
         'mail'           => 'git@code.go1.com.au:microservices/mail.git',
+        'migration'      => 'git@code.go1.com.au:microservices/migration.git',
         'natero'         => 'git@code.go1.com.au:microservices/natero.git',
         'note'           => 'git@code.go1.com.au:microservices/note.git',
         'notify'         => 'git@code.go1.com.au:microservices/notify.git',
