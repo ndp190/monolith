@@ -76,8 +76,9 @@ return [
         // The projects are managed by glide.
     ],
     'web'            => [
-        'ui'      => 'git@code.go1.com.au:apiom/apiom-ui.git',
-        'website' => 'git@code.go1.com.au:web/go1web.git',
+        'ui'               => 'git@code.go1.com.au:apiom/apiom-ui.git',
+        'website'          => 'git@code.go1.com.au:web/go1web.git',
+        'report-component' => 'git@code.go1.com.au:angularjs/report-component.git',
     ],
     'infrastructure' => [
         'cron'          => 'git@code.go1.com.au:microservices/cron.git',
