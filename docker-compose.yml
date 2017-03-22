@@ -29,7 +29,9 @@ services:
     memcached:
         image: 'memcached:1.4-alpine'
     es:
-        image: 'elasticsearch:5-alpine'
+        image: "go1com/ci-elasticsearch"
+        volumes:
+            - './.data/elasticsearch:/usr/share/elasticsearch/data'
         ports:
             - '9200:9200'
     consumer:
