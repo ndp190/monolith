@@ -13,7 +13,7 @@ function buildComposerJson($pwd, $projects, $baseDir = 'php')
             $namespace = "go1\\$service\\";
         }
         $json['autoload']['psr-4'][$namespace] = [
-            $baseDir === 'php' ? "./php/$service" : "./php/libraries/$service",
+            $baseDir === 'php' ? "./$service" : "./libraries/$service",
             $baseDir === 'php' ? "/app/$service" : "/app/libraries/$service",
         ];
 
@@ -41,7 +41,7 @@ function buildComposerJson($pwd, $projects, $baseDir = 'php')
                         // Only add custom namespaces, namespace for service is
                         // already added.
                         $json['autoload']['psr-4'][$subNamespace] = [
-                            $baseDir === 'php' ? "./php/$service/$subPath" : "./php/libraries/$service/$subPath",
+                            $baseDir === 'php' ? "./$service/$subPath" : "./libraries/$service/$subPath",
                             $baseDir === 'php' ? "/app/$service/$subPath" : "/app/libraries/$service/$subPath",
                         ];
                     }
