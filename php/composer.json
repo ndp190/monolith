@@ -12,6 +12,14 @@
                 "./scraping/tests",
                 "/app/scraping/tests"
             ],
+            "Embed\\Adapters\\": [
+                "./php/oembed/./domain/adapters/",
+                "/app/oembed/./domain/adapters/"
+            ],
+            "Embed\\Providers\\OEmbed\\": [
+                "./php/oembed/./domain/providers/oembed",
+                "/app/oembed/./domain/providers/oembed"
+            ],
             "go1\\InteractiveLi\\": [
                 "./interactive-li",
                 "/app/interactive-li"
@@ -255,7 +263,7 @@
             "go1\\vote\\": [
                 "./vote",
                 "/app/vote"
-            ],
+            ]
         }
     },
     "require": {
@@ -271,6 +279,7 @@
         "doctrine/dbal": "^2.5.4",
         "doctrine/migrations": "^1.4",
         "elasticsearch/elasticsearch": "^5.0",
+        "embed/embed": "^3.0",
         "ezyang/htmlpurifier": "^4.7.0",
         "fabpot/goutte": "^3.2",
         "firebase/php-jwt": "^3.0",

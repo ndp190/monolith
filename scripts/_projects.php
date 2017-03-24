@@ -16,6 +16,7 @@ return [
         'endpoint'       => 'git@code.go1.com.au:microservices/endpoint.git',
         'enrolment'      => 'git@code.go1.com.au:microservices/enrolment.git',
         'entity'         => 'git@code.go1.com.au:microservices/entity.git',
+        'oembed'         => 'git@code.go1.com.au:microservices/oembed.git',
         'finder'         => 'git@code.go1.com.au:microservices/finder.git',
         'graphin'        => 'git@code.go1.com.au:microservices/graphin.git',
         'history'        => 'git@code.go1.com.au:microservices/history.git',
