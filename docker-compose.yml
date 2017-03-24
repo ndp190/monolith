@@ -55,6 +55,7 @@ services:
             - CONSUMER_stash=stash.#
             - CONSUMER_notify=enrolment.#,user.#,note.#,ro.#
             - CONSUMER_lazy=do.#
+            - CONSUMER_oembed=lo.update
             # - CONSUMER_eck=enrolment.delete,lo.delete,portal.delete,user.delete
             # - CONSUMER_index=portal.#,portal-config.#,user.#,lo.#,enrolment.#,ro.#
             # - CONSUMER_natero=portal.create,portal.update,contract.create,contract.update
