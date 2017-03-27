@@ -82,6 +82,7 @@ return [
         'report-component' => 'git@code.go1.com.au:angularjs/report-component.git',
     ],
     'infrastructure' => [
+        'ci'            => 'git@code.go1.com.au:go1/ci.git',
         'cron'          => 'git@code.go1.com.au:microservices/cron.git',
         'deploy_helper' => 'git@github.com:go1com/deploy_helper.git',
         'ecs'           => 'git@code.go1.com.au:go1/launch-configuration.git',
