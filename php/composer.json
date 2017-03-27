@@ -1,347 +1,347 @@
 {
-    "name": "go1/monolith",
-    "prefer-stable": true,
-    "minimum-stability": "stable",
-    "autoload": {
-        "psr-4": {
-            "App\\": [
-                "./scraping/src/App",
-                "/app/scraping/src/App"
-            ],
-            "App\\Test\\": [
-                "./scraping/tests",
-                "/app/scraping/tests"
-            ],
-            "Embed\\Adapters\\": [
-                "./php/oembed/./domain/adapters/",
-                "/app/oembed/./domain/adapters/"
-            ],
-            "Embed\\Providers\\OEmbed\\": [
-                "./php/oembed/./domain/providers/oembed",
-                "/app/oembed/./domain/providers/oembed"
-            ],
-            "go1\\InteractiveLi\\": [
-                "./interactive-li",
-                "/app/interactive-li"
-            ],
-            "go1\\LtiConsumer\\": [
-                "./lti-consumer",
-                "/app/lti-consumer"
-            ],
-            "go1\\ReportData\\": [
-                "./report-data",
-                "/app/report-data"
-            ],
-            "go1\\ReportData\\tests\\": [
-                "./report-data/./tests",
-                "/app/report-data/./tests"
-            ],
-            "go1\\Scraping\\": [
-                "./scraping/./",
-                "/app/scraping/./"
-            ],
-            "go1\\algolia\\": [
-                "./algolia",
-                "/app/algolia"
-            ],
-            "go1\\api\\": [
-                "./api",
-                "/app/api"
-            ],
-            "go1\\app\\": [
-                "./libraries/app",
-                "/app/libraries/app"
-            ],
-            "go1\\assessor\\": [
-                "./assessor",
-                "/app/assessor"
-            ],
-            "go1\\assignment\\": [
-                "./assignment",
-                "/app/assignment"
-            ],
-            "go1\\award\\": [
-                "./award",
-                "/app/award"
-            ],
-            "go1\\batch\\": [
-                "./batch",
-                "/app/batch"
-            ],
-            "go1\\clients\\": [
-                "./libraries/util/./clients/",
-                "/app/libraries/util/./clients/"
-            ],
-            "go1\\cloudinary\\": [
-                "./cloudinary",
-                "/app/cloudinary"
-            ],
-            "go1\\console\\": [
-                "./console",
-                "/app/console"
-            ],
-            "go1\\credit\\": [
-                "./credit",
-                "/app/credit"
-            ],
-            "go1\\currency\\": [
-                "./currency",
-                "/app/currency"
-            ],
-            "go1\\eck\\": [
-                "./eck",
-                "/app/eck"
-            ],
-            "go1\\edge\\": [
-                "./libraries/edge",
-                "/app/libraries/edge"
-            ],
-            "go1\\endpoint\\": [
-                "./endpoint",
-                "/app/endpoint"
-            ],
-            "go1\\enrolment\\": [
-                "./enrolment",
-                "/app/enrolment"
-            ],
-            "go1\\entity\\": [
-                "./entity",
-                "/app/entity"
-            ],
-            "go1\\finder\\": [
-                "./finder",
-                "/app/finder"
-            ],
-            "go1\\flood\\": [
-                "./libraries/flood",
-                "/app/libraries/flood"
-            ],
-            "go1\\graphin\\": [
-                "./graphin",
-                "/app/graphin"
-            ],
-            "go1\\history\\": [
-                "./history",
-                "/app/history"
-            ],
-            "go1\\index\\": [
-                "./index",
-                "/app/index"
-            ],
-            "go1\\jwt_middleware\\": [
-                "./libraries/jwt_middleware",
-                "/app/libraries/jwt_middleware"
-            ],
-            "go1\\kv\\": [
-                "./libraries/kv",
-                "/app/libraries/kv"
-            ],
-            "go1\\lib\\": [
-                "./lib",
-                "/app/lib"
-            ],
-            "go1\\lo\\": [
-                "./lo",
-                "/app/lo"
-            ],
-            "go1\\lob\\": [
-                "./lob",
-                "/app/lob"
-            ],
-            "go1\\low\\": [
-                "./low",
-                "/app/low"
-            ],
-            "go1\\mail\\": [
-                "./mail",
-                "/app/mail"
-            ],
-            "go1\\middleware\\": [
-                "./libraries/middleware",
-                "/app/libraries/middleware"
-            ],
-            "go1\\migration\\": [
-                "./migration",
-                "/app/migration"
-            ],
-            "go1\\natero\\": [
-                "./natero",
-                "/app/natero"
-            ],
-            "go1\\note\\": [
-                "./note",
-                "/app/note"
-            ],
-            "go1\\notify\\": [
-                "./notify",
-                "/app/notify"
-            ],
-            "go1\\oembed\\": [
-                "./oembed",
-                "/app/oembed"
-            ],
-            "go1\\onboard\\": [
-                "./onboard",
-                "/app/onboard"
-            ],
-            "go1\\payment\\": [
-                "./payment",
-                "/app/payment"
-            ],
-            "go1\\portal\\": [
-                "./portal",
-                "/app/portal"
-            ],
-            "go1\\queue\\": [
-                "./queue",
-                "/app/queue"
-            ],
-            "go1\\quiz\\": [
-                "./quiz",
-                "/app/quiz"
-            ],
-            "go1\\report\\": [
-                "./report",
-                "/app/report"
-            ],
-            "go1\\report_helpers\\": [
-                "./libraries/report_helpers",
-                "/app/libraries/report_helpers"
-            ],
-            "go1\\rules\\": [
-                "./rules",
-                "/app/rules"
-            ],
-            "go1\\s3\\": [
-                "./s3",
-                "/app/s3"
-            ],
-            "go1\\scraping\\": [
-                "./scraping",
-                "/app/scraping"
-            ],
-            "go1\\sms\\": [
-                "./sms",
-                "/app/sms"
-            ],
-            "go1\\social\\": [
-                "./social",
-                "/app/social"
-            ],
-            "go1\\sso\\": [
-                "./sso",
-                "/app/sso"
-            ],
-            "go1\\staff\\": [
-                "./staff",
-                "/app/staff"
-            ],
-            "go1\\stash\\": [
-                "./stash",
-                "/app/stash"
-            ],
-            "go1\\status\\": [
-                "./status",
-                "/app/status"
-            ],
-            "go1\\subscription\\": [
-                "./subscription",
-                "/app/subscription"
-            ],
-            "go1\\user\\": [
-                "./user",
-                "/app/user"
-            ],
-            "go1\\util\\": [
-                "./libraries/util",
-                "/app/libraries/util"
-            ],
-            "go1\\video\\": [
-                "./video",
-                "/app/video"
-            ],
-            "go1\\vote\\": [
-                "./vote",
-                "/app/vote"
-            ]
-        }
-    },
-    "require": {
-        "algolia/algoliasearch-client-php": "^1.14",
-        "aws/aws-sdk-php": "^3.19.12",
-        "beberlei/assert": "^2.6",
-        "behat/mink": "^1.7.0",
-        "behat/mink-goutte-driver": "^1.2.0",
-        "behat/transliterator": "^1.1",
-        "cloudinary/cloudinary_php": "^1.3.2",
-        "contextio/php-contextio-lite": "^1.1",
-        "doctrine/cache": "^v1.6.0",
-        "doctrine/dbal": "^2.5.4",
-        "doctrine/migrations": "^1.4",
-        "elasticsearch/elasticsearch": "^5.0",
-        "embed/embed": "^3.0",
-        "ezyang/htmlpurifier": "^4.7.0",
-        "fabpot/goutte": "^3.2",
-        "firebase/php-jwt": "^3.0",
-        "graphaware/neo4j-php-client": "^4.6",
-        "guzzlehttp/guzzle": "^6.0",
-        "jasny/iso": "^0.1.0",
-        "jfederico/ims-dev": "dev-master",
-        "jonnyw/php-phantomjs": "^4.5",
-        "jsq/amazon-es-php": "^0.2.0",
-        "ktamas77/firebase-php": "^2.2",
-        "league/csv": "^8.1",
-        "league/pipeline": "^0.2.2",
-        "madcoda/php-youtube-api": "^1.2",
-        "mikemccabe/json-patch-php": "^0.1.0",
-        "monolog/monolog": "^1.21",
-        "mtdowling/cron-expression": "^v1.0",
-        "mustangostang/spyc": "0.5.1",
-        "neomerx/json-api": "^0.8.6",
-        "nesbot/carbon": "^1.21",
-        "onelogin/php-saml": "^2.10.0",
-        "php-amqplib/php-amqplib": "^2.6",
-        "phpunit/phpunit": "^6.0",
-        "pimple/pimple": "^v3.0.0",
-        "psr/log": "~1.0",
-        "ramsey/uuid": "^3.4",
-        "rappasoft/laravel-helpers": "dev-master",
-        "silex/silex": "~2.0@dev",
-        "smalot/pdfparser": "^0.10.0",
-        "stichoza/google-translate-php": "^3.2",
-        "swiftmailer/swiftmailer": "^5.4",
-        "symfony/console": "^3.1",
-        "symfony/css-selector": "^3.1",
-        "symfony/dom-crawler": "^3.1",
-        "symfony/event-dispatcher": "^v3.0.0|^2.7.0",
-        "symfony/http-foundation": "^3.0",
-        "symfony/process": "^3.1",
-        "symfony/property-access": "~3.1.3",
-        "symfony/validator": "~2.8",
-        "symfony/var-dumper": "^3.0",
-        "symfony/yaml": "^3.2",
-        "tedivm/stash": "^0.14.1",
-        "twig/extensions": "^v1.3.0",
-        "twig/twig": "^1.24",
-        "vectorface/whip": "^0.3.1",
-        "wyrihaximus/html-compress": "^1.2"
-    },
-    "repositories": {
-        "0": {
-            "type": "composer",
-            "url": "https://repo.go1.com.au"
-        },
-        "ims-blti": {
-            "type": "package",
-            "package": {
-                "name": "jfederico/ims-dev",
-                "version": "dev-master",
-                "source": {
-                    "url": "https://github.com/go1com/ims-dev",
-                    "type": "git",
-                    "reference": "master"
-                }
-            }
-        }
+  "name": "go1/monolith",
+  "prefer-stable": true,
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "App\\": [
+        "./scraping/src/App",
+        "/app/scraping/src/App"
+      ],
+      "App\\Test\\": [
+        "./scraping/tests",
+        "/app/scraping/tests"
+      ],
+      "Embed\\Adapters\\": [
+        "./php/oembed/./domain/adapters/",
+        "/app/oembed/./domain/adapters/"
+      ],
+      "Embed\\Providers\\OEmbed\\": [
+        "./php/oembed/./domain/providers/oembed",
+        "/app/oembed/./domain/providers/oembed"
+      ],
+      "go1\\InteractiveLi\\": [
+        "./interactive-li",
+        "/app/interactive-li"
+      ],
+      "go1\\LtiConsumer\\": [
+        "./lti-consumer",
+        "/app/lti-consumer"
+      ],
+      "go1\\ReportData\\": [
+        "./report-data",
+        "/app/report-data"
+      ],
+      "go1\\ReportData\\tests\\": [
+        "./report-data/./tests",
+        "/app/report-data/./tests"
+      ],
+      "go1\\Scraping\\": [
+        "./scraping/./",
+        "/app/scraping/./"
+      ],
+      "go1\\algolia\\": [
+        "./algolia",
+        "/app/algolia"
+      ],
+      "go1\\api\\": [
+        "./api",
+        "/app/api"
+      ],
+      "go1\\app\\": [
+        "./libraries/app",
+        "/app/libraries/app"
+      ],
+      "go1\\assessor\\": [
+        "./assessor",
+        "/app/assessor"
+      ],
+      "go1\\assignment\\": [
+        "./assignment",
+        "/app/assignment"
+      ],
+      "go1\\award\\": [
+        "./award",
+        "/app/award"
+      ],
+      "go1\\batch\\": [
+        "./batch",
+        "/app/batch"
+      ],
+      "go1\\clients\\": [
+        "./libraries/util/./clients/",
+        "/app/libraries/util/./clients/"
+      ],
+      "go1\\cloudinary\\": [
+        "./cloudinary",
+        "/app/cloudinary"
+      ],
+      "go1\\console\\": [
+        "./console",
+        "/app/console"
+      ],
+      "go1\\credit\\": [
+        "./credit",
+        "/app/credit"
+      ],
+      "go1\\currency\\": [
+        "./currency",
+        "/app/currency"
+      ],
+      "go1\\eck\\": [
+        "./eck",
+        "/app/eck"
+      ],
+      "go1\\edge\\": [
+        "./libraries/edge",
+        "/app/libraries/edge"
+      ],
+      "go1\\endpoint\\": [
+        "./endpoint",
+        "/app/endpoint"
+      ],
+      "go1\\enrolment\\": [
+        "./enrolment",
+        "/app/enrolment"
+      ],
+      "go1\\entity\\": [
+        "./entity",
+        "/app/entity"
+      ],
+      "go1\\finder\\": [
+        "./finder",
+        "/app/finder"
+      ],
+      "go1\\flood\\": [
+        "./libraries/flood",
+        "/app/libraries/flood"
+      ],
+      "go1\\graphin\\": [
+        "./graphin",
+        "/app/graphin"
+      ],
+      "go1\\history\\": [
+        "./history",
+        "/app/history"
+      ],
+      "go1\\index\\": [
+        "./index",
+        "/app/index"
+      ],
+      "go1\\jwt_middleware\\": [
+        "./libraries/jwt_middleware",
+        "/app/libraries/jwt_middleware"
+      ],
+      "go1\\kv\\": [
+        "./libraries/kv",
+        "/app/libraries/kv"
+      ],
+      "go1\\lib\\": [
+        "./lib",
+        "/app/lib"
+      ],
+      "go1\\lo\\": [
+        "./lo",
+        "/app/lo"
+      ],
+      "go1\\lob\\": [
+        "./lob",
+        "/app/lob"
+      ],
+      "go1\\low\\": [
+        "./low",
+        "/app/low"
+      ],
+      "go1\\mail\\": [
+        "./mail",
+        "/app/mail"
+      ],
+      "go1\\middleware\\": [
+        "./libraries/middleware",
+        "/app/libraries/middleware"
+      ],
+      "go1\\migration\\": [
+        "./migration",
+        "/app/migration"
+      ],
+      "go1\\natero\\": [
+        "./natero",
+        "/app/natero"
+      ],
+      "go1\\note\\": [
+        "./note",
+        "/app/note"
+      ],
+      "go1\\notify\\": [
+        "./notify",
+        "/app/notify"
+      ],
+      "go1\\oembed\\": [
+        "./oembed",
+        "/app/oembed"
+      ],
+      "go1\\onboard\\": [
+        "./onboard",
+        "/app/onboard"
+      ],
+      "go1\\payment\\": [
+        "./payment",
+        "/app/payment"
+      ],
+      "go1\\portal\\": [
+        "./portal",
+        "/app/portal"
+      ],
+      "go1\\queue\\": [
+        "./queue",
+        "/app/queue"
+      ],
+      "go1\\quiz\\": [
+        "./quiz",
+        "/app/quiz"
+      ],
+      "go1\\report\\": [
+        "./report",
+        "/app/report"
+      ],
+      "go1\\report_helpers\\": [
+        "./libraries/report_helpers",
+        "/app/libraries/report_helpers"
+      ],
+      "go1\\rules\\": [
+        "./rules",
+        "/app/rules"
+      ],
+      "go1\\s3\\": [
+        "./s3",
+        "/app/s3"
+      ],
+      "go1\\scraping\\": [
+        "./scraping",
+        "/app/scraping"
+      ],
+      "go1\\sms\\": [
+        "./sms",
+        "/app/sms"
+      ],
+      "go1\\social\\": [
+        "./social",
+        "/app/social"
+      ],
+      "go1\\sso\\": [
+        "./sso",
+        "/app/sso"
+      ],
+      "go1\\staff\\": [
+        "./staff",
+        "/app/staff"
+      ],
+      "go1\\stash\\": [
+        "./stash",
+        "/app/stash"
+      ],
+      "go1\\status\\": [
+        "./status",
+        "/app/status"
+      ],
+      "go1\\subscription\\": [
+        "./subscription",
+        "/app/subscription"
+      ],
+      "go1\\user\\": [
+        "./user",
+        "/app/user"
+      ],
+      "go1\\util\\": [
+        "./libraries/util",
+        "/app/libraries/util"
+      ],
+      "go1\\video\\": [
+        "./video",
+        "/app/video"
+      ],
+      "go1\\vote\\": [
+        "./vote",
+        "/app/vote"
+      ]
     }
+  },
+  "require": {
+    "algolia/algoliasearch-client-php": "^1.14",
+    "aws/aws-sdk-php": "^3.19.12",
+    "beberlei/assert": "^2.5",
+    "behat/mink": "^1.7.0",
+    "behat/mink-goutte-driver": "^1.2.0",
+    "behat/transliterator": "^1.1",
+    "cloudinary/cloudinary_php": "^1.3.2",
+    "contextio/php-contextio-lite": "^1.1",
+    "doctrine/cache": "^v1.6.0",
+    "doctrine/dbal": "^2.5.4",
+    "doctrine/migrations": "^1.4",
+    "elasticsearch/elasticsearch": "^5.0",
+    "embed/embed": "^3.0",
+    "ezyang/htmlpurifier": "^4.7.0",
+    "fabpot/goutte": "^3.2",
+    "firebase/php-jwt": "^3.0",
+    "graphaware/neo4j-php-client": "^4.6",
+    "guzzlehttp/guzzle": "^6.0",
+    "jasny/iso": "^0.1.0",
+    "jfederico/ims-dev": "dev-master",
+    "jonnyw/php-phantomjs": "^4.5",
+    "jsq/amazon-es-php": "^0.2.0",
+    "ktamas77/firebase-php": "^2.2",
+    "league/csv": "^8.1",
+    "league/pipeline": "^0.2.2",
+    "madcoda/php-youtube-api": "^1.2",
+    "mikemccabe/json-patch-php": "^0.1.0",
+    "monolog/monolog": "^1.19.0",
+    "mtdowling/cron-expression": "^v1.0",
+    "mustangostang/spyc": "0.5.1",
+    "neomerx/json-api": "^0.8.6",
+    "nesbot/carbon": "^1.21",
+    "onelogin/php-saml": "^2.10.0",
+    "php-amqplib/php-amqplib": "^2.6",
+    "phpunit/phpunit": "^6.0",
+    "pimple/pimple": "^v3.0.0",
+    "psr/log": "~1.0",
+    "ramsey/uuid": "^3.4",
+    "rappasoft/laravel-helpers": "dev-master",
+    "silex/silex": "~2.0@dev",
+    "smalot/pdfparser": "^0.10.0",
+    "stichoza/google-translate-php": "^3.2",
+    "swiftmailer/swiftmailer": "^5.4",
+    "symfony/console": "^3.2",
+    "symfony/css-selector": "^3.1",
+    "symfony/dom-crawler": "^3.1",
+    "symfony/event-dispatcher": "^v3.0.0|^2.7.0",
+    "symfony/http-foundation": "^3.0",
+    "symfony/process": "^3.1",
+    "symfony/property-access": "~3.1.3",
+    "symfony/validator": "~2.8",
+    "symfony/var-dumper": "^3.0",
+    "symfony/yaml": "^3.2",
+    "tedivm/stash": "^0.14.1",
+    "twig/extensions": "^v1.3.0",
+    "twig/twig": "^1.24",
+    "vectorface/whip": "^0.3.1",
+    "wyrihaximus/html-compress": "^1.2"
+  },
+  "repositories": {
+    "0": {
+      "type": "composer",
+      "url": "https://repo.go1.com.au"
+    },
+    "ims-blti": {
+      "type": "package",
+      "package": {
+        "name": "jfederico/ims-dev",
+        "version": "dev-master",
+        "source": {
+          "url": "https://github.com/go1com/ims-dev",
+          "type": "git",
+          "reference": "master"
+        }
+      }
+    }
+  }
 }
