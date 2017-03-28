@@ -1,12 +1,10 @@
 <?php
 
-namespace at\labs;
+namespace go1\monolith;
 
-return function ($pwd, $home) {
-    $node = "docker run -it --rm -w='/data' -v $pwd/web/ui:/data -v '$home/.ssh/id_rsa:/private-key' go1com/ci-nodejs";
-    passthru("$node npm install");
-    passthru("$node bash -c 'eval $(ssh-agent -s) && ssh-add /private-key && mkdir -p ~/.ssh && echo -e \"Host *\\n\\tStrictHostKeyChecking no\\n\\n\" > ~/.ssh/config && bower install --allow-root'");
-    passthru("$node grunt install");
-    passthru("$node grunt build --force");
-    passthru("$node grunt set-env:compose");
-};
+$pwd = dirname(__DIR__);
+
+passthru("cd $pwd/web/ui && npm install");
+passthru("cd $pwd/web/ui && bower install --allow-root");
+passthru("cd $pwd/web/ui && grunt set-env:monolith");
+passthru("cd $pwd/web/ui && grunt build --force");
