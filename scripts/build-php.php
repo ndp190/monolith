@@ -71,9 +71,9 @@ return function ($pwd, $home, $projects) {
 
     passthru("cd $pwd/php && composer install -vvv --no-scripts -vvv");
 
-    // Our #adminer is not yet compatible with #monolith.
-    // We try to hack it.
+    // Our #adminer is not yet compatible with #monolith. We try to hack it.
+    $adminer = 'https://github.com/vrana/adminer/releases/download/v4.3.0/adminer-4.3.0-mysql-en.php';
     passthru("rm -rf {$pwd}/php/adminer/*");
     mkdir("{$pwd}/php/adminer/public");
-    file_put_contents("{$pwd}/php/adminer/public/index.php", file_get_contents('https://github.com/vrana/adminer/releases/download/v4.2.5/adminer-4.2.5-en.php'));
+    file_put_contents("{$pwd}/php/adminer/public/index.php", file_get_contents($adminer));
 };
