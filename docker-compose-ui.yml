@@ -1,0 +1,11 @@
+version: '2'
+services:
+    ui_live:
+        build: ./.data/ui
+        volumes:
+            - './web/ui:/apiomui-live/'
+        working_dir: /apiomui-live
+        command: ["grunt", "serve"]
+        ports:
+            - '9090:9090'
+            - '35729:35729'

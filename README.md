@@ -34,8 +34,11 @@ GO1 monolith
     - http://localhost/GO1/adminer/ — SQL database management.
     - http://localhost:15672/ - rabbitMQ admin
 - `php scripts/install.php` to install database.
+- `php scripts/start-ui.php` If you are frontend developers, then try:
+    - http://localhost:9090/ — #ui live
 - Run test cases without Docker:
-    - `php ./scripts/phpunit.php php/outcome/`
+    - `cd php/user/`
+    - `phpunit`
 
 To avoid PHPStorm to index too much, exclude these directory:
 

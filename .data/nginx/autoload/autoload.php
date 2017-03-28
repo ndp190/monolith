@@ -22,7 +22,7 @@ if ('OPTIONS' === $_SERVER['REQUEST_METHOD']) {
     header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS, HEAD');
     header('Access-Control-Allow-Headers: dnt, accept, content-type, authorization, x-mail', 'user-agent');
 
-    return '';
+    exit;
 }
 
 if (isset($_SERVER['REQUEST_URI'])) {
