@@ -12,7 +12,7 @@ function buildGlideYaml(string $pwd, array $projects)
     ];
 
     if (!class_exists(Yaml::class)) {
-        die("Please install YAML: composer global require symfomy/yaml.\n");
+        die("Please install YAML: composer global require symfony/yaml.\n");
     }
 
     foreach ($projects['golang'] as $project => $repository) {
