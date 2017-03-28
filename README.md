@@ -1,12 +1,7 @@
 GO1 monolith
 ====
 
-## 1. TODO
-
-- Install #realtime
-- Install #cron
-
-## 2. Dependencies
+## 1. Dependencies
 
 - git
 - php7
@@ -16,7 +11,7 @@ GO1 monolith
     - glide: `curl https://glide.sh/get | sh`
     - `export PATH="/path/to/monolith/scripts:$PATH"`
 
-## 3. Usage
+## 2. Usage
 
 1. `php ./scripts/build.php`: Build the code base.
     - `--skip-php`: Don't run composer commands. 
@@ -34,8 +29,11 @@ GO1 monolith
     - http://localhost/GO1/adminer/ — SQL database management.
     - http://localhost:15672/ - rabbitMQ admin
 - `php scripts/install.php` to install database.
-- `php scripts/start-ui.php` If you are frontend developers, then try:
-    - http://localhost:9090/ — #ui live
+- If you are frontend developers:
+    - `php scripts/build-web.php`
+    - `php scripts/start-ui.php`
+    - Then try:
+        - http://localhost:9090/ — #ui live
 - Run test cases without Docker:
     - `cd php/user/`
     - `phpunit`
@@ -47,11 +45,7 @@ To avoid PHPStorm to index too much, exclude these directory:
 - php/adminer
 - web/ui (if you're not #ui dev)
 
-## 4. Control the services
-
-    php ./scripts/start.php
-
-## Tools
+## 3. Tools
 
 - `php ./git/prune.php`
 - `php ./git/pull.php` — pull master
@@ -63,3 +57,8 @@ To avoid PHPStorm to index too much, exclude these directory:
 - Dummy: Generate dummy content for testing.
     1. Make sure the services are up. Ref (4).
     - `docker exec monolith_web_1 bash -c 'php /scripts/dummy/generate.php'`
+
+## 4. TODO
+
+- Install #realtime
+- Install #cron
