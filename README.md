@@ -1,6 +1,9 @@
 GO1 monolith
 ====
 
+> This project is **not yet useful** for community as we are trying to opensource the GO1 LMS.
+> Keep your eyes here to have updates.
+
 ## 1. Dependencies
 
 - git
