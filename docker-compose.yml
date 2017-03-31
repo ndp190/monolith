@@ -115,6 +115,8 @@ services:
             - _DOCKER_CACHE_BACKEND=memcached
             - _DOCKER_CACHE_HOST=memcached
             - _DOCKER_CACHE_PORT=11211
+            - MEMCACHED_HOST=memcached
+            - MEMCACHED_PORT=11211
             - _DOCKER_QUEUE_HOST=queue
             - MONOLITH=1
             - ENV=dev
