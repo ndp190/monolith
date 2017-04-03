@@ -57,7 +57,7 @@ services:
             - CONSUMER_lazy=do.#
             - CONSUMER_oembed=lo.update
             # - CONSUMER_eck=enrolment.delete,lo.delete,portal.delete,user.delete
-            # - CONSUMER_index=portal.#,portal-config.#,user.#,lo.#,enrolment.#,ro.#
+            - CONSUMER_index=portal.#,portal-config.#,user.#,lo.#,enrolment.#,ro.#,asm.assignment.#,asm.submission.#,group.#
             # - CONSUMER_natero=portal.create,portal.update,contract.create,contract.update
         depends_on:
             - queue
