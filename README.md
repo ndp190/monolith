@@ -24,7 +24,7 @@ GO1 monolith
     - Build golang only: `php scripts/build.php --skip-php --skip-web --skip-drupal`
     - Build PHP only: `php scripts/build.php --skip-go --skip-web --skip-drupal`
 - `php scripts/start.php`, then try some links:
-    - http://localhost/ — #ui
+    - http://localhost/ — #ui (Create portal default.go1.local if you see portal not found page)
     - http://localhost/v3/ — #api
     - http://localhost/GO1/user/ — #service
     - http://staff.local — #staff, you NEED config this domain name in `/etc/hosts`.
