@@ -27,7 +27,9 @@ GO1 monolith
     - http://localhost/ — #ui
     - http://localhost/v3/ — #api
     - http://localhost/GO1/user/ — #service
-    - http://staff.local — #staff, you NEED config this domain name in `/etc/hosts`.
+    - http://staff.local — #staff, with some notes:
+        - You NEED config this domain name in `/etc/hosts`.
+        - You can use staff@local/root to login.
     - http://localhost:7474/ - #neo4j admin
     - http://localhost/GO1/adminer/ — SQL database management.
     - http://localhost:15672/ - rabbitMQ admin
