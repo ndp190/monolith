@@ -11,7 +11,7 @@ function __db_connection_options()
         'user'          => 'root',
         'password'      => 'root',
         'port'          => '3306',
-        'driverOptions' => [1002 => 'SET NAMES utf8'],
+        'driverOptions' => [1002 => 'SET NAMES utf8; SET @@sql_mode="no_engine_substitution";'],
     ];
 }
 
