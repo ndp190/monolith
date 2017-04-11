@@ -300,6 +300,7 @@
         "neomerx/json-api": "^0.8.6",
         "nesbot/carbon": "^1.21",
         "onelogin/php-saml": "^2.10.0",
+        "ongr/elasticsearch-dsl": "^5.0",
         "php-amqplib/php-amqplib": "^2.6",
         "phpunit/phpunit": "^6.0",
         "pimple/pimple": "^v3.0.0",
