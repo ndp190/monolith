@@ -105,6 +105,9 @@ services:
         volumes_from:
               - ui
         environment:
+            # https://xdebug.org/docs/remote
+            - XDEBUG_CONFIG=idekey=PHPSTORM remote_host=192.168.1.188 profiler_enable=1 remote_port=9000
+            - PHP_IDE_CONFIG=serverName=GO1
             - _DOCKER_RDS_DB_NAME=go1_dev
             - _DOCKER_RDS_HOSTNAME=mysql
             - _DOCKER_RDS_PASSWORD=root
