@@ -10,4 +10,7 @@ $pwd = dirname(__DIR__);
 @unlink("$pwd/.data/nginx/sites-available/default.conf");
 @copy("$pwd/.data/nginx/app.conf", "$pwd/.data/nginx/sites-available/default.conf");
 
-passthru("docker-compose up --force-recreate");
+$ip = shell_exec("ifconfig $(netstat -rn | grep -E '^default|^0.0.0.0' | head -1 | awk '{print \$NF}') | grep 'inet ' | awk '{print \$2}' | grep -Eo '([0-9]*\\.){3}[0-9]*'");
+echo "Your ip address is {$ip}\n";
+
+passthru("MONOLITH_XDEBUG_IP='{$ip}' docker-compose up --force-recreate");
