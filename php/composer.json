@@ -5,12 +5,8 @@
     "autoload": {
         "psr-4": {
             "App\\": [
-                "./scraping/src/App",
-                "/app/scraping/src/App"
-            ],
-            "App\\Test\\": [
-                "./scraping/tests",
-                "/app/scraping/tests"
+                "./quiz/src",
+                "/app/quiz/src"
             ],
             "Embed\\Adapters\\": [
                 "./oembed/./domain/adapters/",
@@ -277,7 +273,7 @@
         "contextio/php-contextio-lite": "^1.1",
         "doctrine/cache": "^v1.6.0",
         "doctrine/dbal": "^2.5.4",
-        "doctrine/migrations": "^1.4",
+        "doctrine/migrations": "^1.5",
         "elasticsearch/elasticsearch": "^5.0",
         "embed/embed": "^3.0",
         "ezyang/htmlpurifier": "^4.7.0",
@@ -300,6 +296,7 @@
         "neomerx/json-api": "^0.8.6",
         "nesbot/carbon": "^1.21",
         "onelogin/php-saml": "^2.10.0",
+        "ongr/elasticsearch-dsl": "^5.0",
         "php-amqplib/php-amqplib": "^2.6",
         "phpunit/phpunit": "^6.0",
         "pimple/pimple": "^v3.0.0",
@@ -312,12 +309,14 @@
         "swiftmailer/swiftmailer": "^5.4",
         "symfony/console": "^3.1",
         "symfony/css-selector": "^3.1",
+        "symfony/doctrine-bridge": "^3.2",
         "symfony/dom-crawler": "^3.1",
         "symfony/event-dispatcher": "^v3.0.0|^2.7.0",
         "symfony/http-foundation": "^3.2",
+        "symfony/monolog-bridge": "^3.2",
         "symfony/process": "^3.1",
         "symfony/property-access": "~3.1.3",
-        "symfony/validator": "~2.8",
+        "symfony/validator": "^3.2",
         "symfony/var-dumper": "^3.0",
         "symfony/yaml": "^3.2",
         "tedivm/stash": "^0.14.1",
