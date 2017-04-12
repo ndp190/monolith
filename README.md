@@ -71,5 +71,3 @@ To avoid PHPStorm to index too much, exclude these directory:
 
 - Install #realtime
 - Install #cron
-- Fix `grunt build` in ui live
-- Fix `grunt test` in ui live
