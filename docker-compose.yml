@@ -47,17 +47,18 @@ services:
             - CONSUMER_algolia=lo.create,lo.update,lo.delete,vote.#
             - CONSUMER_api=do.public-api.webhook-request,lo.#,enrolment.#,user.#,ro.create,ro.delete
             - CONSUMER_assessor=lo.delete,enrolment.delete,enrolment.create
+            - CONSUMER_award=enrolment.#,plan.create
             - CONSUMER_cloudinary=lo.delete,user.delete,portal.delete
             - CONSUMER_enrolment=enrolment.update
             - CONSUMER_graphin=portal.#,user.#,lo.#,enrolment.#,tag.#,vote.#,group.#,ro.#,note.#
+            - CONSUMER_index=portal.#,portal-config.#,user.#,lo.#,enrolment.#,ro.#,asm.assignment.#,asm.submission.#,group.#
+            - CONSUMER_lazy=do.#
             - CONSUMER_low=group.#
+            - CONSUMER_notify=enrolment.#,user.#,note.#,ro.#,award.#,plan.#
+            - CONSUMER_oembed=lo.update
             - CONSUMER_rules=portal.#,user.#,lo.#,enrolment.#,system.#
             - CONSUMER_stash=stash.#
-            - CONSUMER_notify=enrolment.#,user.#,note.#,ro.#
-            - CONSUMER_lazy=do.#
-            - CONSUMER_oembed=lo.update
             # - CONSUMER_eck=enrolment.delete,lo.delete,portal.delete,user.delete
-            - CONSUMER_index=portal.#,portal-config.#,user.#,lo.#,enrolment.#,ro.#,asm.assignment.#,asm.submission.#,group.#
             # - CONSUMER_natero=portal.create,portal.update,contract.create,contract.update
         depends_on:
             - queue
