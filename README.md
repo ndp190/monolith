@@ -62,6 +62,10 @@ To avoid PHPStorm to index too much, exclude these directory:
 - Dummy: Generate dummy content for testing.
     1. Make sure the services are up. Ref (4).
     - `docker exec monolith_web_1 bash -c 'php /scripts/dummy/generate.php'`
+- Run xdebug on certain request:
+    - From Google Chrome > `Copy as CURL`
+    - `bash -c "clear && docker exec -it monolith_web_1 sh"`
+    - `php /app/scripts/xdebug.php $STRING_COPIED_FROM_GOOGLE_CHROME` 
 
 ## 4. TODO
 
