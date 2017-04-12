@@ -2,8 +2,10 @@
 
 namespace go1\monolith;
 
+use go1\util\portal\PortalHelper;
 use mysqli;
 
+require_once __DIR__ . '/../php/vendor/go1.autoload.php';
 require_once __DIR__ . '/../php/user/domain/password.php';
 
 # Make sure database 'go1_dev' is created.
@@ -14,18 +16,9 @@ if (!$db->select_db('go1_dev')) {
     }
 }
 if ($db->select_db('go1_dev')) {
-    # Make sure default portal 'default.go1.local' is created.
-    $result = $db->query("SELECT * FROM gc_instance WHERE title = 'default.go1.local'");
-    if ($result->num_rows === 0) {
-        $data = '{"author":"admin@default.go1.local","configuration":{"is_virtual":1,"user_invite":1,"send_welcome_email":1},"features":{"marketplace":true,"user_invite":true,"auth0":false},"user_plan":{"license":10,"price":3620,"product":"marketplace"}}';
-        $now = time();
-        $sql = "INSERT INTO gc_instance (title, status, is_primary, version, data, timestamp, created)
-            VALUES ('default.go1.local', 1, 1, 'v3.0.0', '{$data}', {$now}, {$now})";
-        if (true !== $db->query($sql)) {
-            die("Failed to insert 'default.go1.local': {$db->error}\n");
-        }
-    }
-    $result->close();
+    # Make sure default portals 'default.go1.local' and 'accounts-dev.gocatalyze.com' are created.
+    createPortal($db, 'default.go1.local');
+    createPortal($db, 'accounts-dev.gocatalyze.com');
     # Create user for #staff.
     $result = $db->query("SELECT * FROM gc_user WHERE mail = 'staff@local'");
     if ($result->num_rows === 0) {
@@ -47,4 +40,20 @@ $projects = require __DIR__ . '/_projects.php';
 foreach (array_keys($projects['php']) as $name) {
     echo "[install] GET http://localhost/GO1/{$name}/install\n";
     @file_get_contents("http://localhost/GO1/{$name}/install");
+}
+
+function createPortal($db, $name)
+{
+    $version = PortalHelper::STABLE_VERSION;
+    $result = $db->query("SELECT * FROM gc_instance WHERE title = '{$name}'");
+    if ($result->num_rows === 0) {
+        $data = '{"author":"admin@' . $name . '","configuration":{"is_virtual":1,"user_invite":1,"send_welcome_email":1},"features":{"marketplace":true,"user_invite":true,"auth0":false},"user_plan":{"license":10,"price":3620,"product":"marketplace"}}';
+        $now = time();
+        $sql = "INSERT INTO gc_instance (title, status, is_primary, version, data, timestamp, created)
+            VALUES ('{$name}', 1, 1, '{$version}', '{$data}', {$now}, {$now})";
+        if (true !== $db->query($sql)) {
+            die("Failed to create portal '{$name}': {$db->error}\n");
+        }
+    }
+    $result->close();
 }
