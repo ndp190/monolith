@@ -16,7 +16,7 @@ GO1 monolith
 
 ## 2. Usage
 
-1. `php ./scripts/build.php`: Build the code base.
+- `php ./scripts/build.php`: Build the code base.
     - `--skip-php`: Don't run composer commands. 
     - `--skip-web`: Don't run npm commands.
     - `--skip-drupal`: Don't build drupal code base.
@@ -42,6 +42,12 @@ GO1 monolith
 - Run test cases without Docker:
     - `cd php/user/`
     - `phpunit`
+- To rebuild:
+    - `docker-compose pull`
+    - `php scripts/git/pull.php --confirm`
+    - `php scripts/clean.php`
+    - `php scripts/build.php --skip-web --skip-drupal --skip-go`
+    - `php scripts/start.php`
 
 To avoid PHPStorm to index too much, exclude these directory:
 
