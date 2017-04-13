@@ -50,11 +50,12 @@ function buildComposerJson($pwd, $projects, $baseDir = 'php')
         }
 
         passthru("mkdir -p $pwd/$baseDir/$service/vendor");
+        $path = $baseDir === 'php' ? '/../..' : '/../../..';
         file_put_contents(
             "$pwd/$baseDir/$service/vendor/autoload.php",
             '<?php' . "\n\n"
             . 'if (is_file("/autoload/autoload.php")) return require_once "/autoload/autoload.php";' . "\n"
-            . 'if (is_file(__DIR__ . "/../../vendor/autoload.php")) return require_once __DIR__ . "/../../vendor/go1.autoload.php";'
+            . 'if (is_file(__DIR__ . "' . $path . '/vendor/autoload.php")) return require_once __DIR__ . "' . $path . '/vendor/go1.autoload.php";'
         );
     }
 
