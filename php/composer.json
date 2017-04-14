@@ -260,7 +260,10 @@
                 "./vote",
                 "/app/vote"
             ]
-        }
+        },
+        "files": [
+            "./quiz/src/functions.php"
+        ]
     },
     "require": {
         "algolia/algoliasearch-client-php": "^1.14",
