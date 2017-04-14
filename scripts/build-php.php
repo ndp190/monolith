@@ -47,6 +47,12 @@ function buildComposerJson($pwd, $projects, $baseDir = 'php')
                     }
                 }
             }
+
+            if (!empty($sub['autoload']['files'])) {
+                foreach ($sub['autoload']['files'] as $filePath) {
+                    $json['autoload']['files'][] = $baseDir === 'php' ? "./$service/$filePath" : "./libraries/$service/$filePath";
+                }
+            }
         }
 
         passthru("mkdir -p $pwd/$baseDir/$service/vendor");
