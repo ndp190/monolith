@@ -8,13 +8,11 @@ use mysqli;
 require_once __DIR__ . '/../php/vendor/go1.autoload.php';
 require_once __DIR__ . '/../php/user/domain/password.php';
 
-# Make sure database 'go1_dev' is created.
 $db = new mysqli('127.0.0.1', 'root', 'root');
-if (!$db->select_db('go1_dev')) {
-    if (true !== $db->query('CREATE DATABASE go1_dev')) {
-        die("Failed to create 'go1_dev': {$db->error}\n");
-    }
-}
+
+# Make sure database 'go1_dev' and 'quiz_dev' are created.
+createDatabase($db, 'go1_dev');
+createDatabase($db, 'quiz_dev');
 if ($db->select_db('go1_dev')) {
     # Make sure default portals 'default.go1.local' and 'accounts-dev.gocatalyze.com' are created.
     createPortal($db, 'default.go1.local');
@@ -42,6 +40,25 @@ foreach (array_keys($projects['php']) as $name) {
     @file_get_contents("http://localhost/GO1/{$name}/install");
 }
 
+passthru('docker exec -it monolith_web_1 /app/quiz/bin/console migrations:migrate --no-interaction -e=monolith');
+
+/**
+ * @param mysqli $db
+ * @param string $name
+ */
+function createDatabase($db, $name)
+{
+  if (!$db->select_db($name)) {
+      if (true !== $db->query("CREATE DATABASE {$name}")) {
+          die("Failed to create '{$name}': {$db->error}\n");
+      }
+  }
+}
+
+/**
+ * @param mysqli $db
+ * @param string $name
+ */
 function createPortal($db, $name)
 {
     $version = PortalHelper::STABLE_VERSION;

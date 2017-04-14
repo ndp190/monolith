@@ -104,6 +104,7 @@ services:
             - './.data/cli/:/cli/'
             - './scripts/:/scripts/'
             - './.data/resources/docker/:/app/resources/docker/'
+            - './infrastructure/wait-for-it:/scripts'
         volumes_from:
               - ui
         environment:
@@ -125,3 +126,8 @@ services:
             - ENV=dev
             - SERVICE_URL_PATTERN=http://web/GO1/SERVICE
             - ES_URL=http://es:9200
+            # Quiz's environments
+            - APP_ENV=monolith
+        depends_on:
+            - queue
+        command: ["/scripts/wait-for-it.sh", "queue:5672", "-t", "0", "--", "/start.sh"]

@@ -10,3 +10,13 @@ RUN apk add --update php7-xdebug \
     && echo "xdebug.remote_autostart=1" >> /etc/php7/php.ini \
     && echo "xdebug.profiler_enable=1" >> /etc/php7/php.ini \
     && echo "xdebug.idekey=PHPSTORM" >> /etc/php7/php.ini
+
+RUN echo -e "\n\n[program:quiz-worker]" >> /etc/supervisord.conf \
+    && echo "command=/app/quiz/bin/worker2 -e=monolith" >> /etc/supervisord.conf \
+    && echo "autostart=true" >> /etc/supervisord.conf \
+    && echo "autorestart=true" >> /etc/supervisord.conf \
+    && echo "priority=15" >> /etc/supervisord.conf \
+    && echo "stdout_logfile=/dev/stdout" >> /etc/supervisord.conf \
+    && echo "stdout_logfile_maxbytes=0" >> /etc/supervisord.conf \
+    && echo "stderr_logfile=/dev/stderr" >> /etc/supervisord.conf \
+    && echo "stderr_logfile_maxbytes=0" >> /etc/supervisord.conf
