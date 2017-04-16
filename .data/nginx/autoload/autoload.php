@@ -2,11 +2,14 @@
 
 use Composer\Autoload\ClassLoader;
 
-function __db_connection_options()
+function __db_connection_options($name)
 {
+    $map = [
+        'quiz' => 'quiz_dev',
+    ];
     return [
         'driver'        => 'pdo_mysql',
-        'dbname'        => "go1_dev",
+        'dbname'        => isset($map[$name]) ? $map[$name] : 'go1_dev',
         'host'          => 'mysql',
         'user'          => 'root',
         'password'      => 'root',
