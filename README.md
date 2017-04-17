@@ -39,6 +39,8 @@ GO1 monolith
     - `php scripts/start-ui.php`
     - Then try:
         - http://localhost:9090/ — #ui live
+        - `docker exec -it monolith_ui_live_1 grunt build`
+        - `docker exec -it monolith_ui_live_1 grunt test` Not working for now
 - Run test cases without Docker:
     - `cd php/user/`
     - `phpunit`
