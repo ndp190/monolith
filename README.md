@@ -13,6 +13,10 @@ GO1 monolith
     - `composer global require symfony/yaml`
     - glide: `curl https://glide.sh/get | sh`
     - `export PATH="/path/to/monolith/scripts:$PATH"`
+- nodejs if you are frontend developers.
+    - npm
+    - bower
+    - grunt
 
 ## 2. Usage
 
@@ -39,6 +43,8 @@ GO1 monolith
     - `php scripts/start-ui.php`
     - Then try:
         - http://localhost:9090/ — #ui live
+        - `grunt build`
+        - `grunt test`
 - Run test cases without Docker:
     - `cd php/user/`
     - `phpunit`
