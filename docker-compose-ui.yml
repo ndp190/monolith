@@ -5,7 +5,7 @@ services:
         volumes:
             - './web/ui:/apiomui-live/'
         working_dir: /apiomui-live
-        command: 'bash -c "npm install && grunt install && grunt set-env:monolith && grunt serve"'
+        command: ["grunt", "serve"]
         ports:
             - '9090:9090'
             - '35729:35729'
