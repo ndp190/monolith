@@ -130,4 +130,4 @@ services:
             - APP_ENV=monolith
         depends_on:
             - queue
-        command: ["/scripts/wait-for-it.sh", "queue:5672", "-t", "0", "--", "/start.sh"]
+        command: ["/scripts/wait-for-it.sh", "queue:5672", "-t", "0", "--", "/usr/bin/supervisord", "-n", "-c", "/etc/supervisord.conf"]
