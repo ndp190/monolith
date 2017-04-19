@@ -52,6 +52,7 @@ function buildComposerJson($pwd, $projects, $baseDir = 'php')
                 foreach ($sub['autoload']['files'] as $filePath) {
                     $json['autoload']['files'][] = $baseDir === 'php' ? "./$service/$filePath" : "./libraries/$service/$filePath";
                 }
+                $json['autoload']['files'] = array_unique($json['autoload']['files']);
             }
         }
 
