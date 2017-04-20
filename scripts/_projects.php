@@ -2,6 +2,7 @@
 
 return [
     'php'            => [
+        'activity'       => 'git@code.go1.com.au:microservices/activity.git',
         'algolia'        => 'git@code.go1.com.au:microservices/algolia.git',
         'api'            => 'git@code.go1.com.au:microservices/api.git',
         'assessor'       => 'git@code.go1.com.au:microservices/assessor.git',
