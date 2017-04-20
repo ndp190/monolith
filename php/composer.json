@@ -36,6 +36,10 @@
                 "./scraping/./",
                 "/app/scraping/./"
             ],
+            "go1\\activity\\": [
+                "./activity",
+                "/app/activity"
+            ],
             "go1\\algolia\\": [
                 "./algolia",
                 "/app/algolia"
