@@ -14,14 +14,14 @@ function __db_connection_options($name)
         'user'          => 'root',
         'password'      => 'root',
         'port'          => '3306',
-        'driverOptions' => [1002 => 'SET NAMES utf8; SET @@sql_mode="no_engine_substitution";'],
+        'driverOptions' => [1002 => 'SET NAMES utf8'],
     ];
 }
 
 header('Access-Control-Allow-ORIGIN: *');
 
 // Don't forward OPTIONS request to micro services.
-if ('OPTIONS' === $_SERVER['REQUEST_METHOD']) {
+if (isset($_SERVER['REQUEST_METHOD']) && 'OPTIONS' === $_SERVER['REQUEST_METHOD']) {
     header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS, HEAD');
     header('Access-Control-Allow-Headers: dnt, accept, content-type, authorization, x-mail', 'user-agent');
 

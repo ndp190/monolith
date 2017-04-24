@@ -1,7 +1,7 @@
 version: '2'
 services:
     ui_live:
-        build: ./.data/ui
+        build: ./.data/resources/docker/ui
         volumes:
             - './web/ui:/apiomui-live/'
         working_dir: /apiomui-live
