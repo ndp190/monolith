@@ -1,7 +1,7 @@
 version: '2'
 services:
     mysql:
-        image: 'mysql:5.7'
+        build: ./.data/resources/docker/mysql
         environment:
             MYSQL_ROOT_PASSWORD: root
             MYSQL_USER: go1
@@ -35,7 +35,7 @@ services:
         ports:
             - '9200:9200'
     consumer:
-        build: ./.data/consumer
+        build: ./.data/resources/docker/consumer
         command:
             - /app/app
         links:
@@ -66,7 +66,7 @@ services:
         volumes:
             - './infrastructure/wait-for-it:/scripts'
     worker:
-        build: ./.data/worker
+        build: ./.data/resources/docker/worker
         command:
             - /app/app
         links:
@@ -84,7 +84,7 @@ services:
         image: 'registry.code.go1.com.au/apiom/apiom-ui:master'
         command: ["ping", "127.0.0.1", "-q"]
     web:
-        build: ./.data/debug
+        build: ./.data/resources/docker/web
         links:
             - memcached
             - neo4j
