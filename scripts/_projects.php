@@ -10,6 +10,7 @@ return [
         'award'          => 'git@code.go1.com.au:microservices/award.git',
         'cloudinary'     => 'git@code.go1.com.au:microservices/cloudinary.git',
         'console'        => 'git@code.go1.com.au:go1/console.git',
+        'coupon'         => 'git@code.go1.com.au:microservices/coupon.git',
         'credit'         => 'git@code.go1.com.au:microservices/credit.git',
         'currency'       => 'git@code.go1.com.au:microservices/currency.git',
         'eck'            => 'git@code.go1.com.au:microservices/eck.git',
