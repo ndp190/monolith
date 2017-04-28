@@ -2,7 +2,6 @@
 
 namespace go1\xxxxx\domain;
 
-use go1\xxxxx\controller\ConsumeController;
 use go1\xxxxx\controller\CronController;
 use go1\xxxxx\controller\InstallController;
 use Pimple\Container;
@@ -16,10 +15,6 @@ class XxxxxServiceProvider implements ServiceProviderInterface, BootableProvider
     {
         $c['ctrl.install'] = function (Container $c) {
             return new InstallController($c['dbs']['default']);
-        };
-
-        $c['ctrl.consumer'] = function (Container $c) {
-            return new ConsumeController($c['logger'], $c['access_checker']);
         };
 
         $c['ctrl.cron'] = function (Container $c) {
