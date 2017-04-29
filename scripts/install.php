@@ -13,6 +13,14 @@ $db = new mysqli('127.0.0.1', 'root', 'root');
 # Make sure database 'go1_dev' and 'quiz_dev' are created.
 createDatabase($db, 'go1_dev');
 createDatabase($db, 'quiz_dev');
+
+# Make sure we have database for all services
+$projects = require __DIR__ . '/_projects.php';
+foreach (array_keys($projects['php']) as $name) {
+    echo "[install] GET http://localhost/GO1/{$name}/install\n";
+    @file_get_contents("http://localhost/GO1/{$name}/install");
+}
+
 if ($db->select_db('go1_dev')) {
     # Make sure default portals 'default.go1.local' and 'accounts-dev.gocatalyze.com' are created.
     createPortal($db, 'default.go1.local');
@@ -32,13 +40,6 @@ if ($db->select_db('go1_dev')) {
     $result->close();
 }
 $db->close();
-
-# Make sure we have database for all services
-$projects = require __DIR__ . '/_projects.php';
-foreach (array_keys($projects['php']) as $name) {
-    echo "[install] GET http://localhost/GO1/{$name}/install\n";
-    @file_get_contents("http://localhost/GO1/{$name}/install");
-}
 
 passthru('docker exec -it monolith_web_1 /app/quiz/bin/console migrations:migrate --no-interaction -e=monolith');
 
