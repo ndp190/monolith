@@ -3,6 +3,7 @@
 namespace go1\xxxxx\tests;
 
 use Doctrine\DBAL\DriverManager;
+use go1\clients\MqClient;
 use go1\util\schema\InstallTrait;
 use go1\xxxxx\App;
 use PHPUnit_Framework_TestCase;
@@ -13,6 +14,7 @@ abstract class XxxxxTestCase extends PHPUnit_Framework_TestCase
     use InstallTrait;
 
     protected $timestamp;
+    protected $queueMessages = [];
 
     protected function getApp(): App
     {
@@ -23,6 +25,23 @@ abstract class XxxxxTestCase extends PHPUnit_Framework_TestCase
         });
 
         $this->appInstall($app);
+
+        $app->extend('go1.client.mq', function () {
+            $mqClient = $this
+                ->getMockBuilder(MqClient::class)
+                ->disableOriginalConstructor()
+                ->setMethods(['publish'])
+                ->getMock();
+
+            $mqClient
+                ->expects($this->any())
+                ->method('publish')
+                ->willReturnCallback(function ($body, string $routingKey) {
+                    $this->queueMessages[$routingKey][] = $body;
+                });
+
+            return $mqClient;
+        });
 
         return $app;
     }
