@@ -51,7 +51,7 @@ services:
             - CONSUMER_cloudinary=lo.delete,user.delete,portal.delete
             - CONSUMER_enrolment=enrolment.update
             - CONSUMER_graphin=portal.#,user.#,lo.#,enrolment.#,tag.#,vote.#,group.#,ro.#,note.#
-            - CONSUMER_index=portal.#,portal-config.#,user.#,lo.#,enrolment.#,ro.#,asm.assignment.#,asm.submission.#,group.#,eck.#,manual-record.#,transaction.#
+            - CONSUMER_index=portal.#,portal-config.#,user.#,lo.#,enrolment.#,ro.#,asm.assignment.#,asm.submission.#,group.#,eck.#,manual-record.#,transaction.#,quiz.user_answer.#
             - CONSUMER_lazy=do.#
             - CONSUMER_low=group.#
             - CONSUMER_notify=enrolment.#,user.#,note.#,ro.#,award.#,plan.#
