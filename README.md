@@ -40,11 +40,11 @@ GO1 monolith
 - `php scripts/install.php` to install database.
 - If you are frontend developers:
     - `php scripts/build-web.php`
-    - `php scripts/start-ui.php`
+    - `cd web/ui && grunt serve`
     - Then try:
         - http://localhost:9090/ — #ui live
-        - `grunt build`
-        - `grunt test`
+    - `grunt build`
+    - `grunt test`
 - Run test cases without Docker:
     - `cd php/user/`
     - `phpunit`
