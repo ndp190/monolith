@@ -128,6 +128,9 @@ services:
             - ES_URL=http://es:9200
             # Quiz's environments
             - APP_ENV=monolith
+            # Scorm's environments
+            - SCORMENGINE_ENDPOINT=http://xdebug:9999/ScormEngineInterface/api/v1
+            - SCORMENGINE_LAUNCH=http://localhost:9999
         depends_on:
             - queue
         command: ["/scripts/wait-for-it.sh", "queue:5672", "-t", "0", "--", "/usr/bin/supervisord", "-n", "-c", "/etc/supervisord.conf"]
