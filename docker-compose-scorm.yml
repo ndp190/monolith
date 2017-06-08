@@ -1,0 +1,19 @@
+version: '2'
+services:
+  scormengine:
+    image: 'registry.code.go1.com.au/microservices/scormengine:master'
+    mem_limit: '2G'
+    ports:
+      - '9999:80'
+    extra_hosts:
+      - mysql:${MONOLITH_MYSQL_IP}
+    environment:
+      - RDS_HOST=mysql
+      - RDS_USER=root
+      - RDS_PASS=root
+      - RDS_NAME=scorm_dev
+      - RDS_PORT=3306
+      - ENVIRONMENT=dev
+    volumes:
+      - './.data/scormengine:/Library'
+      - './.data/scormengine/WebServer/Documents:/usr/local/tomcat/webapps/Scorm'

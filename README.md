@@ -45,6 +45,8 @@ GO1 monolith
         - http://localhost:9090/ — #ui live
     - `grunt build`
     - `grunt test`
+- If you need to work with interactive li:
+    - `php scripts/start-scorm.php`
 - Run test cases without Docker:
     - `cd php/user/`
     - `phpunit`
