@@ -80,6 +80,10 @@
                 "./console",
                 "/app/console"
             ],
+            "go1\\contract\\": [
+                "./contract",
+                "/app/contract"
+            ],
             "go1\\coupon\\": [
                 "./coupon",
                 "/app/coupon"
@@ -111,6 +115,10 @@
             "go1\\entity\\": [
                 "./entity",
                 "/app/entity"
+            ],
+            "go1\\exim\\": [
+                "./exim",
+                "/app/exim"
             ],
             "go1\\finder\\": [
                 "./finder",
