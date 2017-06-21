@@ -24,6 +24,14 @@
                 "./lti-consumer",
                 "/app/lti-consumer"
             ],
+            "go1\\MbosiExport\\": [
+                "./mbosi-export",
+                "/app/mbosi-export"
+            ],
+            "go1\\MbosiExport\\tests\\": [
+                "./mbosi-export/./tests",
+                "/app/mbosi-export/./tests"
+            ],
             "go1\\ReportData\\": [
                 "./report-data",
                 "/app/report-data"
