@@ -7,14 +7,14 @@ require_once __DIR__ . '/../../php/vendor/go1.autoload.php';
 $cmd = implode(' ', $argv);
 $confirm = strpos($cmd, '--confirm') ? true : false;
 $reset = strpos($cmd, '--reset') ? true : false;
+$branch = 'master';
 
-return call_user_func(function () use ($cmd, $confirm, $reset) {
+return call_user_func(function () use ($cmd, $confirm, $reset, $branch) {
     $dir = dirname(dirname(__DIR__));
     $projects = require __DIR__ . '/../_projects.php';
     foreach ($projects as $folder => $repositories) {
         foreach ($repositories as $name => $repo) {
             $do = true;
-            $branch = ($name == 'quiz') ? '1.x' : 'master';
             $target = "{$dir}/{$folder}/{$name}";
 
             if ($confirm) {
