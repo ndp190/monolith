@@ -1,10 +1,10 @@
 <?php
 
-namespace go1\monolith;
+namespace at\labs;
 
-$pwd = dirname(__DIR__);
-
-passthru("cd $pwd/web/ui && npm install");
-passthru("cd $pwd/web/ui && bower install");
-passthru("cd $pwd/web/ui && grunt set-env:monolith");
-passthru("cd $pwd/web/ui && grunt build");
+return function ($pwd) {
+    passthru("cd $pwd/web/ui && npm install");
+    passthru("cd $pwd/web/ui && bower install");
+    passthru("cd $pwd/web/ui && grunt set-env:monolith");
+    passthru("cd $pwd/web/ui && grunt build");
+};

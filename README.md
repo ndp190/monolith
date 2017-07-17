@@ -25,8 +25,9 @@ GO1 monolith
     - `--skip-web`: Don't run npm commands.
     - `--skip-drupal`: Don't build drupal code base.
     - `--skip-go`: Don't build golang code base.
-    - Build golang only: `php scripts/build.php --skip-php --skip-web --skip-drupal`
-    - Build PHP only: `php scripts/build.php --skip-go --skip-web --skip-drupal`
+    - `--skip-tools`: Don't build adminer.
+    - Backend developer: `php scripts/build.php --skip-go --skip-web --skip-drupal`
+    - Frontend developer: `php scripts/build.php --skip-go --skip-drupal`
 - `php scripts/start.php`, then try some links:
     - http://localhost/ — #ui
     - http://localhost/v3/ — #api
@@ -39,7 +40,6 @@ GO1 monolith
     - http://localhost:15672/ - rabbitMQ admin
 - `php scripts/install.php` to install database.
 - If you are frontend developers:
-    - `php scripts/build-web.php`
     - `cd web/ui && grunt serve`
     - Then try:
         - http://localhost:9090/ — #ui live

@@ -6,6 +6,10 @@ function buildComposerJson($pwd, $projects, $baseDir = 'php')
 {
     $json = json_decode(file_get_contents("$pwd/php/composer.json"), true);
     foreach (array_keys($projects) as $service) {
+        if (($baseDir === 'php/libraries' && $service === 'report_helpers') || ($baseDir === 'php' && $service === 'mbosi-export')) {
+            // @todo Remove this hack after updating mbosi-export service.
+            continue;
+        }
         if ($baseDir === 'php' && strpos($service, '-') !== false) {
             $namespace = 'go1\\' . str_replace('-', '', ucwords($service, '-')) . '\\';
         }
