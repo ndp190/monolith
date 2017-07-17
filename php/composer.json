@@ -5,8 +5,12 @@
     "autoload": {
         "psr-4": {
             "App\\": [
-                "./quiz/src",
-                "/app/quiz/src"
+                "./scraping/src/App",
+                "/app/scraping/src/App"
+            ],
+            "App\\Test\\": [
+                "./scraping/tests",
+                "/app/scraping/tests"
             ],
             "Embed\\Adapters\\": [
                 "./oembed/./domain/adapters/",
@@ -387,8 +391,28 @@
     },
     "repositories": {
         "0": {
-            "type": "composer",
-            "url": "https://repo.go1.com.au"
+            "type": "package",
+            "package": {
+                "name": "go1/util-for-mbosi",
+                "version": "0.0.1",
+                "source": {
+                    "type": "git",
+                    "url": "https://github.com/go1com/util.git",
+                    "reference": "d3cc0b3e91016a029efc3c36bd8574805a44d1c9"
+                },
+                "dist": {
+                    "type": "zip",
+                    "url": "https://api.github.com/repos/go1com/util/zipball/d3cc0b3e91016a029efc3c36bd8574805a44d1c9",
+                    "reference": "d3cc0b3e91016a029efc3c36bd8574805a44d1c9",
+                    "shasum": ""
+                },
+                "autoload": {
+                    "psr-4": {
+                        "go1\\util\\": "./",
+                        "go1\\clients\\": "./clients/"
+                    }
+                }
+            }
         },
         "ims-blti": {
             "type": "package",
