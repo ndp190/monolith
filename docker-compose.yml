@@ -1,5 +1,7 @@
 version: '2'
 services:
+    wkhtmltopdf:
+        image: 'registry.code.go1.com.au/microservices/wkhtmltopdf:master'
     mysql:
         build: ./.data/resources/docker/mysql
         environment:
@@ -92,6 +94,7 @@ services:
             - mysql
             - queue
             - es
+            - wkhtmltopdf
         extra_hosts:
             - xdebug:${MONOLITH_XDEBUG_IP}
         ports:
@@ -127,6 +130,7 @@ services:
             - ENV=dev
             - SERVICE_URL_PATTERN=http://web/GO1/SERVICE
             - ES_URL=http://es:9200
+            - WKHTMLTOPDF_URL=http://wkhtmltopdf
             # Quiz's environments
             - APP_ENV=monolith
             # Scorm's environments
