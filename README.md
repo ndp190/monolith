@@ -50,10 +50,11 @@ GO1 monolith
 - Run test cases without Docker:
     - `cd php/user/`
     - `phpunit`
-- To rebuild:
+- To rebuild microservices:
     - `docker-compose pull`
     - `php scripts/git/pull.php --confirm`
     - `php scripts/clean.php`
+    - `docker rmi $(docker images | grep "^<none>" | awk "{print $3}")` - Remove untagged images
     - `php scripts/build.php --skip-web --skip-drupal --skip-go`
     - `php scripts/start.php`
 
