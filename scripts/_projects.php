@@ -40,6 +40,7 @@ return [
         'rules'          => 'git@code.go1.com.au:microservices/rules.git',
         's3'             => 'git@code.go1.com.au:microservices/s3.git',
         'scraping'       => 'git@code.go1.com.au:microservices/scraping.git',
+        'support'        => 'git@code.go1.com.au:microservices/support.git',
         'sms'            => 'git@code.go1.com.au:microservices/sms.git',
         'social'         => 'git@code.go1.com.au:microservices/social.git',
         'sso'            => 'git@code.go1.com.au:microservices/sso.git',
