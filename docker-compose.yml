@@ -56,7 +56,7 @@ services:
             - CONSUMER_index=portal.#,portal-config.#,user.#,lo.#,enrolment.#,ro.#,asm.assignment.#,asm.submission.#,group.#,eck.#,manual-record.#,transaction.#,quiz.user_answer.#,lo_group.#,coupon.#,credit.#,award.#,plan.#
             - CONSUMER_lazy=do.#
             - CONSUMER_low=group.#
-            - CONSUMER_notify=enrolment.#,user.#,note.#,ro.#,award.#,plan.#
+            - CONSUMER_notify=enrolment.#,user.#,note.#,ro.#,award.#,plan.#,lo.#
             - CONSUMER_oembed=lo.update
             - CONSUMER_rules=portal.#,user.#,lo.#,enrolment.#,system.#
             - CONSUMER_stash=stash.#
