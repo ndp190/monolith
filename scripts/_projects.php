@@ -101,7 +101,6 @@ return [
         'wait-for-it'   => 'https://github.com/vishnubob/wait-for-it.git',
     ],
     'nodejs'         => [
-        # 'algolia' => 'git@code.go1.com.au:microservices/algolia.git',
         'report' => 'git@code.go1.com.au:microservices/report-index.git',
         # @TODO: realtime
     ],
