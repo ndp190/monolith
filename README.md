@@ -54,9 +54,10 @@ GO1 monolith
     - `docker-compose pull`
     - `php scripts/git/pull.php --confirm`
     - `php scripts/clean.php`
-    - `docker rmi $(docker images | grep "^<none>" | awk "{print $3}")` - Remove untagged images
+    - `docker images -q --filter "dangling=true" | xargs -r docker rmi` - Remove untagged images
     - `php scripts/build.php --skip-web --skip-drupal --skip-go`
     - `php scripts/start.php`
+    - `php scripts/install.php`
 
 To avoid PHPStorm to index too much, exclude these directory:
 
