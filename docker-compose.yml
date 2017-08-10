@@ -49,7 +49,7 @@ services:
             - CONSUMER_algolia=lo.create,lo.update,lo.delete,vote.#
             - CONSUMER_api=do.public-api.webhook-request,lo.#,enrolment.#,user.#,ro.create,ro.delete
             - CONSUMER_assessor=lo.delete,enrolment.delete,enrolment.create
-            - CONSUMER_award=enrolment.#,plan.create
+            - CONSUMER_award=enrolment.#,plan.create,award.#
             - CONSUMER_cloudinary=lo.delete,user.delete,portal.delete
             - CONSUMER_enrolment=enrolment.update,enrolment.delete,group.item.create
             - CONSUMER_graphin=portal.#,user.#,lo.#,enrolment.#,tag.#,vote.#,group.#,ro.#,note.#
