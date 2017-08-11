@@ -38,6 +38,10 @@ GO1 monolith
     - http://localhost:7474/ - #neo4j admin
     - http://localhost/GO1/adminer/ — SQL database management.
     - http://localhost:15672/ - rabbitMQ admin
+    - http://website.local — #website, to create portal:
+        - You NEED config this domain name in `/etc/hosts`.
+        - Go to http://website.local, click 'Free Trial' -> email 'admin@portal1.go1.local' -> click 'Get Started' to
+        add new portal.
 - `php scripts/install.php` to install database.
 - If you are frontend developers:
     - `cd web/ui && grunt serve`
