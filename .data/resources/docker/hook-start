@@ -1,3 +1,4 @@
  #!/bin/sh
 
 php /app/resources/docker/fix-apiom-ui.php
+php /app/resources/docker/fix-website.php
