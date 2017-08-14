@@ -36,6 +36,7 @@ return [
         'payment'        => 'git@code.go1.com.au:microservices/payment.git',
         'portal'         => 'git@code.go1.com.au:microservices/portal.git',
         'quiz'           => 'git@code.go1.com.au:microservices/quiz.git',
+        'quiz-rpc'       => 'git@code.go1.com.au:microservices/quiz.git',
         'report-data'    => 'git@code.go1.com.au:microservices/report-data.git',
         'report'         => 'git@code.go1.com.au:microservices/report.git',
         'rules'          => 'git@code.go1.com.au:microservices/rules.git',
