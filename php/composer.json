@@ -298,8 +298,7 @@
             ]
         },
         "files": [
-            "./quiz/src/functions.php",
-            "./quiz-rpc/src/functions.php"
+            "./quiz/src/functions.php"
         ]
     },
     "require": {

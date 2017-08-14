@@ -52,7 +52,8 @@ function buildComposerJson($pwd, $projects, $baseDir = 'php')
                 }
             }
 
-            if (!empty($sub['autoload']['files'])) {
+            // @todo Remove the condition when quiz-rpc has new code base.
+            if (!empty($sub['autoload']['files']) && $service !== 'quiz-rpc') {
                 foreach ($sub['autoload']['files'] as $filePath) {
                     $json['autoload']['files'][] = $baseDir === 'php' ? "./$service/$filePath" : "./libraries/$service/$filePath";
                 }
