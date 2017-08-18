@@ -244,6 +244,10 @@
                 "./s3",
                 "/app/s3"
             ],
+            "go1\\scorm\\": [
+                "./scorm",
+                "/app/scorm"
+            ],
             "go1\\scraping\\": [
                 "./scraping",
                 "/app/scraping"
