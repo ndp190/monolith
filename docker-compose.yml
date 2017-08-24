@@ -63,6 +63,7 @@ services:
             - CONSUMER_rules=portal.#,user.#,lo.#,enrolment.#,system.#
             - CONSUMER_stash=stash.#
             - CONSUMER_scraping=scraping.#
+            - CONSUMER_quiz-rpc=user.update
             # - CONSUMER_eck=enrolment.delete,lo.delete,portal.delete,user.delete
             # - CONSUMER_natero=portal.create,portal.update,contract.create,contract.update
         depends_on:
