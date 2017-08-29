@@ -17,8 +17,19 @@ createDatabase($db, 'quiz_dev');
 # Make sure we have database for all services
 $projects = require __DIR__ . '/_projects.php';
 foreach (array_keys($projects['php']) as $name) {
+    $url = "http://localhost/GO1/{$name}/install";
+    // Install via GET requests.
     echo "[install] GET http://localhost/GO1/{$name}/install\n";
-    @file_get_contents("http://localhost/GO1/{$name}/install");
+    @file_get_contents($url);
+    // Install via POST requests.
+    echo "[install] POST http://localhost/GO1/{$name}/install\n";
+    $options = [
+      'http' => [
+        'method'  => 'POST'
+      ]
+    ];
+    $context  = @stream_context_create($options);
+    @file_get_contents($url, false, $context);
 }
 
 if ($db->select_db('go1_dev')) {
