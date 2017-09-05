@@ -66,6 +66,7 @@ services:
             - CONSUMER_quiz-rpc=user.update
             # - CONSUMER_eck=enrolment.delete,lo.delete,portal.delete,user.delete
             # - CONSUMER_natero=portal.create,portal.update,contract.create,contract.update
+            - CONSUMER_activity=asm.#
         depends_on:
             - queue
         command: ["/scripts/wait-for-it.sh", "queue:5672", "-t", "0", "--", "/app/app"]
