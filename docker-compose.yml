@@ -146,6 +146,15 @@ services:
             # Scorm's environments
             - SCORMENGINE_ENDPOINT=http://xdebug:9999/ScormEngineInterface/api/v1
             - SCORMENGINE_LAUNCH=http://localhost:9999
+            # Quiz rpc's environments
+            - DB_WRITE_DSN=mysql:host=mysql;dbname=quiz_dev;charset=utf8
+            - DB_WRITE_USERNAME=root
+            - DB_WRITE_PASSWORD=root
+            - DB_READ_DSN=mysql:host=mysql;dbname=quiz_dev;charset=utf8
+            - DB_READ_USERNAME=root
+            - DB_READ_PASSWORD=root
+            - ES_HOST=http://es:9200
+            - GO1_USER=http://web/GO1/user
         depends_on:
             - queue
         command: ["/scripts/wait-for-it.sh", "queue:5672", "-t", "0", "--", "/usr/bin/supervisord", "-n", "-c", "/etc/supervisord.conf"]
