@@ -26,7 +26,7 @@ function buildComposerJson($pwd, $projects, $baseDir = 'php')
             if (!empty($sub['require'])) {
                 foreach ($sub['require'] as $lib => $version) {
                     if (false === strpos($lib, 'go1/')) {
-                        if (!in_array($lib, ['php', 'phpunit/phpunit'])) {
+                        if (!in_array($lib, ['php', 'phpunit/phpunit', 'microservices/explore'])) {
                             $json['require'][$lib] = $version;
                         }
                     }
@@ -52,8 +52,8 @@ function buildComposerJson($pwd, $projects, $baseDir = 'php')
                 }
             }
 
-            // @todo Remove the condition when quiz-rpc has new code base.
-            if (!empty($sub['autoload']['files']) && $service !== 'quiz-rpc') {
+            // #quiz-rpc already defined a function that #quiz need.
+            if (!empty($sub['autoload']['files']) && $service !== 'quiz') {
                 foreach ($sub['autoload']['files'] as $filePath) {
                     $json['autoload']['files'][] = $baseDir === 'php' ? "./$service/$filePath" : "./libraries/$service/$filePath";
                 }
