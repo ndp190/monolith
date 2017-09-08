@@ -54,4 +54,7 @@ $ip = $instance['Reservations'][0]['Instances'][0]['PublicDnsName'];
 if (empty($ip)) {
     throw new RuntimeException("Failed to find public DNS.");
 }
-echo $ip;
+
+$cmd = 'ssh -i ~/.ssh/go1.pem ec2-user@' . $ip;
+echo "{$cmd}\n";
+passthru($cmd);
