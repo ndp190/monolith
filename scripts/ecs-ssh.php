@@ -5,8 +5,8 @@ namespace go1\monolith\scripts;
 /**
  * Get service IP
  *
- * Command: php service-ip.php $cluster $serviceName
- * Example: php service-ip.php staging exim-dev
+ * Command: php ecs-ssh.php $cluster $serviceName
+ * Example: php ecs-ssh.php staging exim-dev
  *
  * Requirements
  * - aws cli http://docs.aws.amazon.com/cli/latest/userguide/installing.html
