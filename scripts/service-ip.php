@@ -1,6 +1,8 @@
 <?php
 /**
  * Get service IP
+ *
+ * Command: php service-ip.php $cluster $serviceName
  * Example: php service-ip.php staging exim-dev
  *
  * Requirements
