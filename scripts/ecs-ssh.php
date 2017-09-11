@@ -10,7 +10,7 @@ namespace go1\monolith\scripts;
  *
  * Requirements
  * - aws cli http://docs.aws.amazon.com/cli/latest/userguide/installing.html
- * - Configure aws http://docs.aws.amazon.com/cli/latest/reference/configure/
+ * - Configure aws http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
  */
 
 use RuntimeException;

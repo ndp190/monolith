@@ -72,13 +72,14 @@ To avoid PHPStorm to index too much, exclude these directory:
 
 ## 3. Tools
 
-- `php ./git/prune.php`
-- `php ./git/pull.php` — pull master
-- `php ./git/pull.php --confirm` — pull master with confirmation 
-- `php ./git/generate.php`
-- `php ./gitlab/build-configuration.php`
-- `php ./gitlab/deploy/staging.php`
-- `php ./gitlab/deploy/production.php`
+- `php scripts/git/prune.php`
+- `php scripts/git/pull.php` — pull master
+- `php scripts/git/pull.php --confirm` — pull master with confirmation
+- `php scripts/git/generate.php`
+- `php scripts/gitlab/build-configuration.php`
+- `php scripts/gitlab/deploy/staging.php`
+- `php scripts/gitlab/deploy/production.php`
+- `php scripts/ecs-ssh.php staging lo-staging` - to configure aws, see [this](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
 - `php scripts/migration/util/fix-namespace.php` - fix namespace errors, because not all microservices come with new
   version of util library.
 - Dummy: Generate dummy content for testing.
