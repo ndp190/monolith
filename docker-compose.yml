@@ -60,12 +60,12 @@ services:
             - CONSUMER_low=group.#
             - CONSUMER_notify=enrolment.#,user.#,note.#,ro.#,award.#,plan.#,asm.#,lo.#,group.#
             - CONSUMER_oembed=lo.update
-            - CONSUMER_rules=portal.#,user.#,lo.#,enrolment.#,system.#
-            - CONSUMER_stash=stash.#
-            - CONSUMER_scraping=scraping.#
             - CONSUMER_quiz-rpc=user.update
+            - CONSUMER_rules=portal.#,user.#,lo.#,enrolment.#,system.#
+            - CONSUMER_scraping=scraping.#
+            - CONSUMER_support=portal.update,portal#delete
+            - CONSUMER_stash=stash.#
             # - CONSUMER_eck=enrolment.delete,lo.delete,portal.delete,user.delete
-            # - CONSUMER_natero=portal.create,portal.update,contract.create,contract.update
             - CONSUMER_activity=asm.#
         depends_on:
             - queue
