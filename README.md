@@ -60,6 +60,7 @@ GO1 monolith
     - `php scripts/clean.php`
     - `docker images -q --filter "dangling=true" | xargs -r docker rmi` - Remove untagged images
     - `php scripts/build.php --skip-web --skip-drupal --skip-go`
+    - `cd php && rm composer.lock && composer install -v && cd ..`
     - `php scripts/start.php`
     - `php scripts/install.php`
 
