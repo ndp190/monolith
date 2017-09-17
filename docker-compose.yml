@@ -19,7 +19,7 @@ services:
         environment:
             - NEO4J_AUTH=none
         volumes:
-          - './.data/neo4j:/data'
+            - './.data/neo4j:/data'
         ports:
             - '7474:7474'
             - '7687:7687'
@@ -29,9 +29,21 @@ services:
             - RABBITMQ_DEFAULT_USER=go1
             - RABBITMQ_DEFAULT_PASS=go1
         ports:
-          - '15672:15672'
+            - '15672:15672'
     memcached:
         image: 'memcached:1.4-alpine'
+    minio:
+        image: 'minio/minio'
+        volumes:
+            - './.data/minio:/export'
+        ports:
+            - '9900:9900'
+        environment:
+            # https://docs.minio.io/docs/minio-server-configuration-guide
+            - MINIO_ACCESS_KEY=7OOP3Q0CCOHE47YKT0Q2
+            - MINIO_SECRET_KEY=HamwosY54TnccBOXES4+BI2k3toOAlhk5Ecjfi1I
+            - MINIO_REGION=us-east-1
+        command: server --address :9900 /export
     es:
         image: "go1com/ci-elasticsearch"
         volumes:
@@ -104,8 +116,9 @@ services:
             - queue
             - es
             - wkhtmltopdf
+            - minio
         extra_hosts:
-            - xdebug:${MONOLITH_XDEBUG_IP}
+            - host:${MONOLITH_HOST_IP}
         ports:
             - '80:80'
         volumes:
@@ -120,7 +133,7 @@ services:
             - './infrastructure/wait-for-it:/scripts'
             - 'website:/website'
         volumes_from:
-              - ui
+            - ui
         environment:
             - _DOCKER_RDS_DB_NAME=go1_dev
             - _DOCKER_RDS_HOSTNAME=mysql
@@ -144,8 +157,8 @@ services:
             # Quiz's environments
             - APP_ENV=monolith
             # Scorm's environments
-            - SCORMENGINE_ENDPOINT=http://xdebug:9999/ScormEngineInterface/api/v1
-            - SCORMENGINE_LAUNCH=http://localhost:9999
+            - SCORMENGINE_ENDPOINT=http://host:9999/ScormEngineInterface/api/v1
+            - SCORMENGINE_LAUNCH=http://host:9999
             # Quiz rpc's environments
             - DB_WRITE_DSN=mysql:host=mysql;dbname=quiz_dev;charset=utf8
             - DB_WRITE_USERNAME=root
@@ -155,6 +168,13 @@ services:
             - DB_READ_PASSWORD=root
             - ES_HOST=http://es:9200
             - GO1_USER=http://web/GO1/user
+            # S3's environments: https://github.com/minio/cookbook/blob/master/docs/aws-sdk-for-php-with-minio.md
+            - AWS_ACCESS_KEY_ID=7OOP3Q0CCOHE47YKT0Q2
+            - AWS_SECRET_ACCESS_KEY=HamwosY54TnccBOXES4+BI2k3toOAlhk5Ecjfi1I
+            - AWS_S3_VERSION=latest
+            - AWS_S3_BUCKET=monolith
+            - AWS_S3_ENDPOINT=http://host:9900
+            - AWS_REGION=us-east-1
         depends_on:
             - queue
         command: ["/scripts/wait-for-it.sh", "queue:5672", "-t", "0", "--", "/usr/bin/supervisord", "-n", "-c", "/etc/supervisord.conf"]
