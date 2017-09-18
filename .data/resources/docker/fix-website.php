@@ -7,7 +7,7 @@ preg_match('`<script src="scripts/scripts.([0-9a-z]+).js">`i', $html, $matches);
 
 $configFile = "/website/scripts/scripts.{$matches[1]}.js";
 $config = file_get_contents($configFile);
-if (!strpos($config, 'localhost/GO1/') !== false) {
+if (!strpos($config, 'localhost/GO1/') === false) {
     $config = str_replace('https://api-dev.mygo1.com/v3', 'http://localhost/GO1', $config);
     $config = str_replace('https://api-dev.mygo1.com/v2', 'http://localhost/GO1', $config);
     $config = str_replace('https://api-dev.mygo1.com', 'http://localhost/GO1', $config);
