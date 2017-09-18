@@ -17,6 +17,8 @@ GO1 monolith
     - npm
     - bower
     - grunt
+- /etc/hosts
+    - `127.0.0.1	localhost staff.local website.local host`
 
 ## 2. Usage
 
@@ -33,15 +35,13 @@ GO1 monolith
     - http://localhost/v3/ — #api
     - http://localhost/GO1/user/ — #service
     - http://staff.local — #staff, with some notes:
-        - You NEED config this domain name in `/etc/hosts`.
         - You can use staff@local/root to login.
     - http://localhost:7474/ - #neo4j admin
     - http://localhost/GO1/adminer/ — SQL database management.
     - http://localhost:15672/ - rabbitMQ admin
     - http://website.local — #website, to create portal:
-        - You NEED config this domain name in `/etc/hosts`.
-        - Go to http://website.local, click 'Free Trial' -> email 'admin@portal1.go1.local' -> click 'Get Started' to
-        add new portal.
+        -Click 'Free Trial' -> email 'admin@portal1.go1.local' -> click 'Get Started' to add new portal.
+    - http://localhost:9900/minio - #minio (s3) file management.
 - `php scripts/install.php` to install database.
 - If you are frontend developers:
     - `cd web/ui && grunt serve`
@@ -60,6 +60,7 @@ GO1 monolith
     - `php scripts/clean.php`
     - `docker images -q --filter "dangling=true" | xargs -r docker rmi` - Remove untagged images
     - `php scripts/build.php --skip-web --skip-drupal --skip-go`
+    - `cd php && rm composer.lock && composer install -v && cd ..`
     - `php scripts/start.php`
     - `php scripts/install.php`
 
@@ -72,13 +73,14 @@ To avoid PHPStorm to index too much, exclude these directory:
 
 ## 3. Tools
 
-- `php ./git/prune.php`
-- `php ./git/pull.php` — pull master
-- `php ./git/pull.php --confirm` — pull master with confirmation 
-- `php ./git/generate.php`
-- `php ./gitlab/build-configuration.php`
-- `php ./gitlab/deploy/staging.php`
-- `php ./gitlab/deploy/production.php`
+- `php scripts/git/prune.php`
+- `php scripts/git/pull.php` — pull master
+- `php scripts/git/pull.php --confirm` — pull master with confirmation
+- `php scripts/git/generate.php`
+- `php scripts/gitlab/build-configuration.php`
+- `php scripts/gitlab/deploy/staging.php`
+- `php scripts/gitlab/deploy/production.php`
+- `php scripts/ecs-ssh.php staging lo-staging` - to configure aws, see [this](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
 - `php scripts/migration/util/fix-namespace.php` - fix namespace errors, because not all microservices come with new
   version of util library.
 - Dummy: Generate dummy content for testing.

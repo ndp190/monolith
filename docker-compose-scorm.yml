@@ -6,9 +6,9 @@ services:
     ports:
       - '9999:80'
     extra_hosts:
-      - mysql:${MONOLITH_MYSQL_IP}
+      - host:${MONOLITH_HOST_IP}
     environment:
-      - RDS_HOST=mysql
+      - RDS_HOST=host
       - RDS_USER=root
       - RDS_PASS=root
       - RDS_NAME=scorm_dev
