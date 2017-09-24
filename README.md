@@ -18,7 +18,7 @@ GO1 monolith
     - bower
     - grunt
 - /etc/hosts
-    - `127.0.0.1	localhost staff.local website.local host`
+    - `127.0.0.1	localhost staff.local website.local host portal1.go1.local portal2.go1.local`
 
 ## 2. Usage
 
@@ -42,6 +42,7 @@ GO1 monolith
     - http://website.local — #website, to create portal:
         -Click 'Free Trial' -> email 'admin@portal1.go1.local' -> click 'Get Started' to add new portal.
     - http://localhost:9900/minio - #minio (s3) file management.
+    - http://portal1.go1.local/ or http://portal1.go1.local:9090 to test issues related to domain.
 - `php scripts/install.php` to install database.
 - If you are frontend developers:
     - `cd web/ui && grunt serve`
