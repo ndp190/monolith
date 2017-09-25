@@ -60,6 +60,7 @@ services:
         environment:
             - QUEUE_URL=amqp://go1:go1@queue:5672/
             - SERVICE_URL_PATTERN=http://web/GO1/SERVICE/consume
+            - CONSUMER_activity=asm.#,note.#,group.#
             - CONSUMER_algolia=lo.create,lo.update,lo.delete,vote.#
             - CONSUMER_api=do.public-api.webhook-request,lo.#,enrolment.#,user.#,ro.create,ro.delete
             - CONSUMER_assessor=lo.delete,enrolment.delete,enrolment.create
@@ -78,7 +79,6 @@ services:
             - CONSUMER_support=portal.update,portal#delete
             - CONSUMER_stash=stash.#
             # - CONSUMER_eck=enrolment.delete,lo.delete,portal.delete,user.delete
-            - CONSUMER_activity=asm.#
         depends_on:
             - queue
         command: ["/scripts/wait-for-it.sh", "queue:5672", "-t", "0", "--", "/app/app"]
