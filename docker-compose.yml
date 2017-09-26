@@ -73,7 +73,7 @@ services:
             - CONSUMER_low=group.#
             - CONSUMER_notify=enrolment.#,user.#,note.#,ro.#,award.#,plan.#,asm.#,lo.#,group.#,portal.#
             - CONSUMER_oembed=lo.update
-            - CONSUMER_quiz-rpc=user.update
+            - CONSUMER_quiz-rpc=user.update,enrolment.delete
             - CONSUMER_rules=portal.#,user.#,lo.#,enrolment.#,system.#
             - CONSUMER_scraping=scraping.#
             - CONSUMER_support=portal.update,portal#delete
