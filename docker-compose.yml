@@ -130,7 +130,7 @@ services:
             - './.data/cli/:/cli/'
             - './scripts/:/scripts/'
             - './.data/resources/docker/:/app/resources/docker/'
-            - './infrastructure/wait-for-it:/scripts'
+            - './infrastructure/wait-for-it/wait-for-it.sh:/scripts/wait-for-it.sh'
             - 'website:/website'
         volumes_from:
             - ui
