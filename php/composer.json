@@ -337,6 +337,7 @@
         "league/oauth2-client": "^2.2",
         "league/pipeline": "^0.2.2",
         "madcoda/php-youtube-api": "^1.2",
+        "microsoft/microsoft-graph": "^1.0",
         "mikemccabe/json-patch-php": "^0.1.0",
         "monolog/monolog": "^1.19.0",
         "mtdowling/cron-expression": "^v1.0",
