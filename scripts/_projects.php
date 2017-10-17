@@ -105,4 +105,7 @@ return [
         'report' => 'git@code.go1.com.au:microservices/report-index.git',
         # @TODO: realtime
     ],
+    'resources'      => [
+        'documentation' => 'git@code.go1.com.au:go1/documentation.git',
+    ],
 ];
