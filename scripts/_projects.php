@@ -74,7 +74,7 @@ return [
         'kv'             => 'git@github.com:go1com/kv.git',
         'middleware'     => 'git@code.go1.com.au:go1/middlewares.git',
         'util'           => 'git@github.com:go1com/util.git',
-        'report_helpers' => 'git@code.go1.com.au:go1/report-helpers.git',
+        'report_helpers' => 'git@github.com:go1com/report_helpers.git',
     ],
     'drupal'         => [
         'accounts' => 'git@code.go1.com.au:go1/accounts.git',
