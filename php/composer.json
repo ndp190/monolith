@@ -376,8 +376,8 @@
         "twig/extensions": "^v1.3.0",
         "twig/twig": "^1.24",
         "vectorface/whip": "^0.3.1",
-        "wyrihaximus/html-compress": "^1.2",
-        "vrana/adminer": "^4.0"
+        "vrana/adminer": "^4.0",
+        "wyrihaximus/html-compress": "^1.2"
     },
     "repositories": {
         "0": {
