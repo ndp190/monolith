@@ -4,6 +4,9 @@ RUN apk add --update supervisor php7-pear php7-dev autoconf build-base
 
 COPY supervisord.conf /etc/supervisord.conf
 
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod a+x /entrypoint.sh
+
 RUN pecl install xdebug
 
 RUN echo "zend_extension=/usr/lib/php7/modules/xdebug.so" > /etc/php7/conf.d/xdebug.ini \
@@ -17,3 +20,5 @@ RUN echo "zend_extension=/usr/lib/php7/modules/xdebug.so" > /etc/php7/conf.d/xde
     && echo "xdebug.idekey=PHPSTORM" >> /etc/php7/conf.d/xdebug.ini
 
 RUN apk del php7-pear php7-dev autoconf build-base
+
+CMD ["/entrypoint.sh"]
