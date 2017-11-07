@@ -97,7 +97,7 @@ return [
         'ecs'           => 'git@code.go1.com.au:go1/launch-configuration.git',
         'goweb'         => 'git@code.go1.com.au:microservices/goweb.git',
         'haproxy'       => 'git@code.go1.com.au:go1/haproxy.git',
-        'memcached'     => 'git@code.go1.com.au:server/memcached.git',
+        #'memcached'     => 'git@code.go1.com.au:server/memcached.git',
         'docker-php'    => 'https://github.com/go1com/docker-php.git',
         'wait-for-it'   => 'https://github.com/vishnubob/wait-for-it.git',
     ],
