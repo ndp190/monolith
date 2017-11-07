@@ -41,6 +41,7 @@ return [
         'report'         => 'git@code.go1.com.au:microservices/report.git',
         'rules'          => 'git@code.go1.com.au:microservices/rules.git',
         's3'             => 'git@code.go1.com.au:microservices/s3.git',
+        'scorm'          => 'git@code.go1.com.au:microservices/scorm.git',
         'scraping'       => 'git@code.go1.com.au:microservices/scraping.git',
         'support'        => 'git@code.go1.com.au:microservices/support.git',
         'sms'            => 'git@code.go1.com.au:microservices/sms.git',
