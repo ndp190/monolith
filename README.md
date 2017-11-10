@@ -22,16 +22,42 @@ GO1 monolith
 
 ## 2. Usage
 
-- `php ./scripts/build.php`: Build the code base.
+- To build:
+    ```
+    $ php scripts/build.php --skip-go --skip-web --skip-drupal # For backend developer
+    $ php scripts/build.php --skip-go --skip-drupal # For frontend developer
+    $ php scripts/start.php
+    $ php scripts/install.php
+    ```
+- To rebuild:
+    ```
+    $ docker-compose pull
+    $ php scripts/git/pull.php --confirm
+    $ php scripts/clean.php
+    $ docker images -q --filter "dangling=true" | xargs -r docker rmi
+    $ php scripts/build.php --skip-web --skip-drupal --skip-go
+    $ cd php && rm composer.lock && composer install -v && cd ..
+    $ php scripts/start.php
+    $ php scripts/install.php
+    ```
+
+## 2. Notes
+
+- `php ./scripts/build.php`: Here are some options:
     - `--skip-php`: Don't run composer commands. 
     - `--skip-web`: Don't run npm commands.
     - `--skip-drupal`: Don't build drupal code base.
     - `--skip-go`: Don't build golang code base.
     - `--skip-tools`: Don't build adminer.
-    - Backend developer: `php scripts/build.php --skip-go --skip-web --skip-drupal`
-    - Frontend developer: `php scripts/build.php --skip-go --skip-drupal`
-- `php scripts/start.php`, then try some links:
+- If you are frontend developers:
+    ```
+    $ cd web/ui && grunt serve
+    $ grunt build
+    $ grunt test
+    ```
+- Some useful links:
     - http://localhost/ — #ui
+    - http://localhost:9090/ — #ui live
     - http://localhost/v3/ — #api
     - http://localhost/GO1/user/ — #service
     - http://staff.local — #staff, with some notes:
@@ -43,34 +69,21 @@ GO1 monolith
         -Click 'Free Trial' -> email 'admin@portal1.go1.local' -> click 'Get Started' to add new portal.
     - http://localhost:9900/minio - #minio (s3) file management.
     - http://portal1.go1.local/ or http://portal1.go1.local:9090 to test issues related to domain.
-- `php scripts/install.php` to install database.
-- If you are frontend developers:
-    - `cd web/ui && grunt serve`
-    - Then try:
-        - http://localhost:9090/ — #ui live
-    - `grunt build`
-    - `grunt test`
-- If you need to work with interactive li:
+- If you need to work with scorm engine:
     - `php scripts/start-scorm.php`
 - Run test cases without Docker:
-    - `cd php/user/`
-    - `phpunit`
-- To rebuild microservices:
-    - `docker-compose pull`
-    - `php scripts/git/pull.php --confirm`
-    - `php scripts/clean.php`
-    - `docker images -q --filter "dangling=true" | xargs -r docker rmi` - Remove untagged images
-    - `php scripts/build.php --skip-web --skip-drupal --skip-go`
-    - `cd php && rm composer.lock && composer install -v && cd ..`
-    - `php scripts/start.php`
-    - `php scripts/install.php`
-
-To avoid PHPStorm to index too much, exclude these directory:
-
-- .data
-- drupal/gc/test
-- php/adminer
-- web/ui (if you're not #ui dev)
+    ```
+    $ cd php/[MICROSERVICE]
+    $ phpunit
+    ```
+- To avoid PHPStorm to index too much, exclude these directory:
+    - .data
+    - drupal/gc/test
+    - php/adminer
+    - web/ui (if you're not #ui dev)
+- To setup xdebug with PHPStorm, please read:
+    - [Debug command line](resources/docs/debug-command-line.md)
+    - [Debug web](resources/docs/debug-web.md)
 
 ## 3. Tools
 
