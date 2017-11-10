@@ -1,3 +1,4 @@
+# Call hook-start
 FROM go1com/php:7-nginx
 
 RUN apk add --update supervisor php7-pear php7-dev autoconf build-base
