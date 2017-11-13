@@ -16,6 +16,11 @@ createDatabase($db, 'quiz_dev');
 
 # Make sure we have database for all services
 $projects = require __DIR__ . '/_projects.php';
+$options = [
+  'http' => [
+    'method'  => 'POST'
+  ]
+];
 foreach (array_keys($projects['php']) as $name) {
     $url = "http://localhost/GO1/{$name}/install";
     // Install via GET requests.
@@ -23,14 +28,13 @@ foreach (array_keys($projects['php']) as $name) {
     @file_get_contents($url);
     // Install via POST requests.
     echo "[install] POST http://localhost/GO1/{$name}/install\n";
-    $options = [
-      'http' => [
-        'method'  => 'POST'
-      ]
-    ];
     $context  = @stream_context_create($options);
     @file_get_contents($url, false, $context);
 }
+// Install staff via POST requests.
+echo "[install] POST http://staff.local/api/install\n";
+$context  = @stream_context_create($options);
+@file_get_contents("http://staff.local/api/install", false, $context);
 
 if ($db->select_db('go1_dev')) {
     # Make sure default portals 'default.go1.local' and 'accounts-dev.gocatalyze.com' are created.
