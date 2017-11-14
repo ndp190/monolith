@@ -84,6 +84,7 @@ GO1 monolith
 - To setup xdebug with PHPStorm, please read:
     - [Debug command line](resources/docs/debug-command-line.md)
     - [Debug web](resources/docs/debug-web.md)
+- If docker-compose fails to pull image from GO1 private registry, please signing out personal Docker ID because Docker uses your Docker ID to save your account settings.
 
 ## 3. Tools
 
