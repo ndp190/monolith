@@ -6,10 +6,10 @@ use Doctrine\DBAL\DriverManager;
 use go1\clients\MqClient;
 use go1\util\schema\InstallTrait;
 use go1\xxxxx\App;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
-abstract class XxxxxTestCase extends PHPUnit_Framework_TestCase
+abstract class XxxxxTestCase extends TestCase
 {
     use InstallTrait;
 
