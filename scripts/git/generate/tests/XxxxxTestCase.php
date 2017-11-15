@@ -50,6 +50,6 @@ abstract class XxxxxTestCase extends PHPUnit_Framework_TestCase
     {
         $this->timestamp = time();
 
-        $app->handle(Request::create('/install'));
+        $app->handle(Request::create('/install', 'POST));
     }
 }
