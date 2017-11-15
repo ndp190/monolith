@@ -50,6 +50,6 @@ abstract class XxxxxTestCase extends TestCase
     {
         $this->timestamp = time();
 
-        $app->handle(Request::create('/install', 'POST));
+        $app->handle(Request::create('/install', 'POST'));
     }
 }
