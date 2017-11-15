@@ -15,7 +15,7 @@ class CronController
         $this->logger = $logger;
     }
 
-    public function get(Request $req)
+    public function post(Request $req)
     {
         $this->logger->debug('Cron start.');
 
