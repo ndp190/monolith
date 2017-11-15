@@ -15,7 +15,7 @@ class InstallController
         $this->db = $db;
     }
 
-    public function get()
+    public function post()
     {
         return DB::install($this->db, [
             function (Schema $schema) {
