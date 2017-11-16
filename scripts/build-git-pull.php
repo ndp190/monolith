@@ -7,7 +7,7 @@ return function ($pwd, $projects, $custom) {
 
     foreach ($projects as $lang => $services) {
         foreach ($services as $name => $path) {
-            $branch = isset($custom[$name]['branch']) ? $custom[$name]['branch'] : $defaultBranch;
+            $branch = isset($custom['features']['services'][$name]['branch']) ? $custom['features']['services'][$name]['branch'] : $defaultBranch;
             $target = ('golang' === $lang) ? "$pwd/$lang/src/vendor/go1/$name" : "$pwd/$lang/$name";
 
             if (!is_dir($target)) {
