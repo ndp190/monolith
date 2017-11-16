@@ -1,6 +1,6 @@
 <?php
 
-namespace at\labs;
+namespace go1\monolith\scripts;
 
 use Symfony\Component\Yaml\Yaml;
 

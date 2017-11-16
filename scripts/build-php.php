@@ -1,6 +1,6 @@
 <?php
 
-namespace at\labs;
+namespace go1\monolith\scripts;
 
 function buildComposerJson($pwd, $projects, $baseDir = 'php')
 {
