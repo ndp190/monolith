@@ -11,7 +11,9 @@ if (is_file("$home/.composer/vendor/autoload.php")) {
 }
 
 $projects = require __DIR__ . '/_projects.php';
-call_user_func(require $pwd . '/scripts/build-git-pull.php', $pwd, $projects);
+$custom = $pwd . '/build.json';
+$custom = is_file($custom) ? json_decode(file_get_contents($custom), true) : [];
+call_user_func(require $pwd . '/scripts/build-git-pull.php', $pwd, $projects, $custom);
 
 echo "docker login registry.code.go1.com.au\n";
 passthru('docker login registry.code.go1.com.au');
