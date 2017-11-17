@@ -10,7 +10,7 @@ $gh = function ($path) use ($custom) {
     #   from git@github.com:go1com/util.git
     #   to   https://github.com/go1com/util.git
 
-    return !$custom ? $path : str_replace('git@github.com:', 'https://github.com/');
+    return !$custom ? $path : str_replace('git@github.com:', 'https://github.com/', $path);
 };
 
 return [
