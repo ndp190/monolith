@@ -69,7 +69,7 @@ create_portal($db, $accountsName);
     'uuid'         => Uuid::uuid4()->toString(),
     'name'         => 'staff@local',
     'mail'         => isset($custom['admin']['mail']) ? $custom['admin']['mail'] : 'staff@local',
-    'pass'         => _password_crypt('sha512', isset($custom['admin']['password']) ? $custom['admin']['password'] : 'root', _password_generate_salt(10)),
+    'password'     => _password_crypt('sha512', isset($custom['admin']['password']) ? $custom['admin']['password'] : 'root', _password_generate_salt(10)),
     'first_name'   => isset($custom['admin']['first_name']) ? $custom['admin']['first_name'] : 'Staff',
     'last_name'    => isset($custom['admin']['last_name']) ? $custom['admin']['last_name'] : 'Local',
     'profile_id'   => 1,
