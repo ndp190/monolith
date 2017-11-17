@@ -2,8 +2,6 @@
 
 namespace go1\monolith;
 
-use GuzzleHttp\Client;
-
 $cmd = implode(' ', $argv);
 $pwd = dirname(__DIR__);
 $home = getenv('HOME');
@@ -29,18 +27,4 @@ else {
 if (empty($custom)) {
     !strpos($cmd, '--skip-drupal') && call_user_func(require $pwd . '/scripts/build-drupal.php', $pwd, $home);
     !strpos($cmd, '--skip-go') && call_user_func(require $pwd . '/scripts/build-go.php', $pwd, $home, $projects);
-}
-else {
-    require_once $pwd . '/php/vendor/autoload.php';
-
-    if (!empty($custom['webhooks'])) {
-        $client = new Client;
-
-        # Notify #launcher that the installation is completed.
-        foreach ($custom['webhooks'] as $url) {
-            echo "POST $url\n";
-
-            $client->post($url, ['event' => 'completed']);
-        }
-    }
 }
