@@ -2,105 +2,111 @@
 
 namespace go1\monolith;
 
+use Doctrine\DBAL\Connection;
 use go1\util\portal\PortalHelper;
-use mysqli;
+use go1\util\user\Roles;
+use GuzzleHttp\Client;
+use Pimple\Container;
+use Ramsey\Uuid\Uuid;
+use Silex\Provider\DoctrineServiceProvider;
 
 require_once __DIR__ . '/../php/vendor/go1.autoload.php';
 require_once __DIR__ . '/../php/user/domain/password.php';
 
-$db = new mysqli('127.0.0.1', 'root', 'root');
+/** @var Connection $con */
+$accountsName = 'accounts-dev.gocatalyze.com';
+$domain = 'default.go1.local';
+$client = new Client;
 
-# Make sure database 'go1_dev' and 'quiz_dev' are created.
-createDatabase($db, 'go1_dev');
-createDatabase($db, 'quiz_dev');
+# If the table is not yet available => create it.
+# ---------------------
+$c = (new Container)->register(new DoctrineServiceProvider, ['dbs.options' => [
+    'install' => $base = [
+        'host'          => '127.0.0.1',
+        'user'          => 'root',
+        'password'      => 'root',
+        'port'          => '3306',
+        'driver'        => 'pdo_mysql',
+        'driverOptions' => [1002 => 'SET NAMES utf8'],
+    ],
+    'core'    => $base + ['dbname' => 'go1_dev'],
+]]);
 
-# Make sure we have database for all services
-$projects = require __DIR__ . '/_projects.php';
-$options['http']['method'] = 'POST';
+$con = $c['dbs']['install'];
+$databases = $con->getSchemaManager()->listDatabases();
+!in_array('go1_dev', $databases) && $con->getSchemaManager()->createDatabase('go1_dev');
+!in_array('quiz_dev', $databases) && $con->getSchemaManager()->createDatabase('quiz_dev');
+
+# POST $service/install
+# ---------------------
+$projects = require __DIR__ . '/_projects.php'; # Make sure we have database for all services
 foreach (array_keys($projects['php']) as $name) {
-    $url = "http://localhost/GO1/{$name}/install";
-    // Install via GET requests.
-    echo "[install] GET http://localhost/GO1/{$name}/install\n";
-    @file_get_contents($url);
-    // Install via POST requests.
-    echo "[install] POST http://localhost/GO1/{$name}/install\n";
-    $context  = @stream_context_create($options);
-    @file_get_contents($url, false, $context);
+    echo "[install] GET|POST http://localhost/GO1/{$name}/install\n";
+    $client->get($url = "http://localhost/GO1/{$name}/install", ['http_errors' => false]);
+    $client->post($url, ['http_errors' => false]);
 }
-// Install staff via POST requests.
-echo "[install] POST http://staff.local/api/install\n";
-$context  = @stream_context_create($options);
-@file_get_contents("http://staff.local/api/install", false, $context);
 
-if ($db->select_db('go1_dev')) {
-    # Make sure default portals 'default.go1.local' and 'accounts-dev.gocatalyze.com' are created.
-    createPortal($db, 'default.go1.local');
-    createPortal($db, 'accounts-dev.gocatalyze.com');
-    # Create user for #staff.
-    $result = $db->query("SELECT * FROM gc_user WHERE mail = 'staff@local'");
-    if ($result->num_rows === 0) {
-        $pass = _password_crypt('sha512', 'root', _password_generate_salt(10));
-        $now = time();
-        $data = '{"roles":["Admin on #Accounts"]}';
-        $sql = "INSERT INTO gc_user (uuid, name, instance, profile_id, mail, password, created, access, login, status, first_name, last_name, allow_public, data, timestamp)
-            VALUES ('', null, 'accounts-dev.gocatalyze.com', 0, 'staff@local', '{$pass}', {$now}, {$now}, {$now}, 1, '', '', 0, '{$data}', {$now})";
-        if (true !== $db->query($sql)) {
-            die("Failed to create user 'staff@local': {$db->error}\n");
-        }
-    }
-    $result->close();
-}
-$db->close();
+echo "[install] POST http://staff.local/api/install\n";
+$client->post('http://staff.local/api/install', ['http_errors' => false]);
+
+/** @var Connection $db */
+$db = $c['dbs']['core'];
+create_portal($db, $domain);
+create_portal($db, $accountsName);
+
+# Create user for #staff.
+!$db->fetchColumn("SELECT 1 FROM gc_user WHERE mail = ?", ['staff@local']) && $db->insert('gc_user', [
+    'uuid'         => Uuid::uuid4()->toString(),
+    'name'         => 'staff@local',
+    'mail'         => 'staff@local',
+    'pass'         => _password_crypt('sha512', 'root', _password_generate_salt(10)),
+    'first_name'   => 'Staff',
+    'last_name'    => 'Local',
+    'profile_id'   => 1,
+    'instance'     => $accountsName,
+    'allow_public' => 0,
+    'status'       => 1,
+    'created'      => $now = time(),
+    'access'       => $now,
+    'login'        => $now,
+    'timestamp'    => $now,
+    'data'         => json_encode(['roles' => [Roles::ROOT]]),
+]);
 
 passthru('docker exec -it monolith_web_1 /app/quiz/bin/console migrations:migrate --no-interaction -e=monolith');
 
 /**
- * @param mysqli $db
- * @param string $name
+ * @param Connection $db
+ * @param string     $name
  */
-function createDatabase($db, $name)
+function create_portal($db, $name)
 {
-  if (!$db->select_db($name)) {
-      if (true !== $db->query("CREATE DATABASE {$name}")) {
-          die("Failed to create '{$name}': {$db->error}\n");
-      }
-  }
-}
-
-/**
- * @param mysqli $db
- * @param string $name
- */
-function createPortal($db, $name)
-{
-    $version = PortalHelper::STABLE_VERSION;
-    $result = $db->query("SELECT * FROM gc_instance WHERE title = '{$name}'");
-    if ($result->num_rows === 0) {
-        $data = json_encode([
-            'author'        => 'admin@' . $name,
-            'configuration' => [
-                'is_virtual'                             => 1,
-                'user_invite'                            => 1,
-                PortalHelper::FEATURE_SEND_WELCOME_EMAIL => 1,
-            ],
-            'features'      => [
-                'marketplace' => true,
-                'user_invite' => true,
-                'auth0'       => false,
-            ],
-            'user_plan'     => [
-                'license' => 10,
-                'price'   => 3620,
-                'product' => 'marketplace',
-            ],
+    if ($db->fetchColumn('SELECT 1 FROM gc_instance WHERE title = ?', [$name])) {
+        $db->insert('gc_instance', [
+            'title'      => $name,
+            'status'     => 1,
+            'is_primary' => 1,
+            'version'    => PortalHelper::STABLE_VERSION,
+            'timestamp'  => $now = time(),
+            'created'    => $now,
+            'data'       => json_encode([
+                'author'        => 'admin@' . $name,
+                'configuration' => [
+                    'is_virtual'                             => 1,
+                    'user_invite'                            => 1,
+                    PortalHelper::FEATURE_SEND_WELCOME_EMAIL => 1,
+                ],
+                'features'      => [
+                    'marketplace' => true,
+                    'user_invite' => true,
+                    'auth0'       => false,
+                ],
+                'user_plan'     => [
+                    'license' => 10,
+                    'price'   => 3620,
+                    'product' => 'marketplace',
+                ],
+            ]),
         ]);
-
-        $now = time();
-        $sql = "INSERT INTO gc_instance (title, status, is_primary, version, data, timestamp, created)
-            VALUES ('{$name}', 1, 1, '{$version}', '{$data}', {$now}, {$now})";
-        if (true !== $db->query($sql)) {
-            die("Failed to create portal '{$name}': {$db->error}\n");
-        }
     }
-    $result->close();
 }
