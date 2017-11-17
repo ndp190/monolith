@@ -25,7 +25,9 @@ else {
 }
 
 !strpos($cmd, '--skip-php') && call_user_func(require $pwd . '/scripts/build-php.php', $pwd, $home, $projects);
-!strpos($cmd, '--skip-drupal') && call_user_func(require $pwd . '/scripts/build-drupal.php', $pwd, $home);
 !strpos($cmd, '--skip-web') && call_user_func(require $pwd . '/scripts/build-web.php', $pwd, $home);
-!strpos($cmd, '--skip-tools') && call_user_func(require $pwd . '/scripts/build-tools.php', $pwd);
-!strpos($cmd, '--skip-go') && call_user_func(require $pwd . '/scripts/build-go.php', $pwd, $home, $projects);
+
+if (!empty($custom)) {
+    !strpos($cmd, '--skip-drupal') && call_user_func(require $pwd . '/scripts/build-drupal.php', $pwd, $home);
+    !strpos($cmd, '--skip-go') && call_user_func(require $pwd . '/scripts/build-go.php', $pwd, $home, $projects);
+}
