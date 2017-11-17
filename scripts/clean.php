@@ -7,6 +7,7 @@ passthru('docker rm monolith_consumer_1');
 passthru('docker rm monolith_es_1');
 passthru('docker rm monolith_memcached_1');
 passthru('docker rm monolith_minio_1');
+passthru('docker rm monolith_mysql_1');
 passthru('docker rm monolith_neo4j_1');
 passthru('docker rm monolith_queue_1');
 passthru('docker rm monolith_ui_1');
