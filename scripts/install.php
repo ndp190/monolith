@@ -14,10 +14,15 @@ require_once __DIR__ . '/../php/vendor/go1.autoload.php';
 require_once __DIR__ . '/../php/user/domain/password.php';
 
 /** @var Connection $con */
+/** @var Connection $db */
 $accountsName = 'accounts-dev.gocatalyze.com';
 $domain = 'default.go1.local';
 $client = new Client;
+$pwd = dirname(__DIR__);
+$custom = $pwd . '/build.json';
+$custom = is_file($custom) ? json_decode(file_get_contents($custom), true) : [];
 
+# ---------------------
 # If the table is not yet available => create it.
 # ---------------------
 $c = (new Container)->register(new DoctrineServiceProvider, ['dbs.options' => [
@@ -37,6 +42,7 @@ $databases = $con->getSchemaManager()->listDatabases();
 !in_array('go1_dev', $databases) && $con->getSchemaManager()->createDatabase('go1_dev');
 !in_array('quiz_dev', $databases) && $con->getSchemaManager()->createDatabase('quiz_dev');
 
+# ---------------------
 # POST $service/install
 # ---------------------
 $projects = require __DIR__ . '/_projects.php'; # Make sure we have database for all services
@@ -49,19 +55,23 @@ foreach (array_keys($projects['php']) as $name) {
 echo "[install] POST http://staff.local/api/install\n";
 $client->post('http://staff.local/api/install', ['http_errors' => false]);
 
-/** @var Connection $db */
+# ---------------------
+# Create portals
+# ---------------------
 $db = $c['dbs']['core'];
 create_portal($db, $domain);
 create_portal($db, $accountsName);
 
+# ---------------------
 # Create user for #staff.
+# ---------------------
 !$db->fetchColumn("SELECT 1 FROM gc_user WHERE mail = ?", ['staff@local']) && $db->insert('gc_user', [
     'uuid'         => Uuid::uuid4()->toString(),
     'name'         => 'staff@local',
-    'mail'         => 'staff@local',
-    'pass'         => _password_crypt('sha512', 'root', _password_generate_salt(10)),
-    'first_name'   => 'Staff',
-    'last_name'    => 'Local',
+    'mail'         => isset($custom['admin']['mail']) ? $custom['admin']['mail'] : 'staff@local',
+    'pass'         => _password_crypt('sha512', isset($custom['admin']['password']) ? $custom['admin']['password'] : 'root', _password_generate_salt(10)),
+    'first_name'   => isset($custom['admin']['first_name']) ? $custom['admin']['first_name'] : 'Staff',
+    'last_name'    => isset($custom['admin']['last_name']) ? $custom['admin']['last_name'] : 'Local',
     'profile_id'   => 1,
     'instance'     => $accountsName,
     'allow_public' => 0,
@@ -75,11 +85,7 @@ create_portal($db, $accountsName);
 
 passthru('docker exec -it monolith_web_1 /app/quiz/bin/console migrations:migrate --no-interaction -e=monolith');
 
-/**
- * @param Connection $db
- * @param string     $name
- */
-function create_portal($db, $name)
+function create_portal(Connection $db, string $name)
 {
     if ($db->fetchColumn('SELECT 1 FROM gc_instance WHERE title = ?', [$name])) {
         $db->insert('gc_instance', [
