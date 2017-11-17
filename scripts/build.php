@@ -2,13 +2,11 @@
 
 namespace go1\monolith;
 
+use GuzzleHttp\Client;
+
 $cmd = implode(' ', $argv);
 $pwd = dirname(__DIR__);
 $home = getenv('HOME');
-
-if (is_file("$home/.composer/vendor/autoload.php")) {
-    require_once "$home/.composer/vendor/autoload.php";
-}
 
 $projects = require __DIR__ . '/_projects.php';
 $custom = $pwd . '/build.json';
@@ -17,17 +15,32 @@ call_user_func(require $pwd . '/scripts/build-git-pull.php', $pwd, $projects, $c
 
 if (isset($custom['gitlab']['username']) && isset($custom['gitlab']['password'])) {
     echo "docker login registry.code.go1.com.au --username={$custom['gitlab']['username']} --password=*******\n";
-    passthru("docker login registry.code.go1.com.au --username={$custom['gitlab']['username']} -password={$custom['gitlab']['password']}");
+    passthru("docker login registry.code.go1.com.au --username={$custom['gitlab']['username']} --password={$custom['gitlab']['password']}");
 }
 else {
     echo "docker login registry.code.go1.com.au\n";
     passthru('docker login registry.code.go1.com.au');
 }
 
+# Build PHP tools, from now we already have PHP libraries for later uses.
 !strpos($cmd, '--skip-php') && call_user_func(require $pwd . '/scripts/build-php.php', $pwd, $home, $projects);
 !strpos($cmd, '--skip-web') && call_user_func(require $pwd . '/scripts/build-web.php', $pwd, $home);
 
-if (!empty($custom)) {
+if (empty($custom)) {
     !strpos($cmd, '--skip-drupal') && call_user_func(require $pwd . '/scripts/build-drupal.php', $pwd, $home);
     !strpos($cmd, '--skip-go') && call_user_func(require $pwd . '/scripts/build-go.php', $pwd, $home, $projects);
+}
+else {
+    require_once $pwd . '/php/vendor/autoload.php';
+
+    if (!empty($custom['webhooks'])) {
+        $client = new Client;
+
+        # Notify #launcher that the installation is completed.
+        foreach ($custom['webhooks'] as $url) {
+            echo "POST $url\n";
+
+            $client->post($url, ['event' => 'completed']);
+        }
+    }
 }
