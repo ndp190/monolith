@@ -108,7 +108,7 @@ passthru('docker exec -it monolith_web_1 /app/quiz/bin/console migrations:migrat
 
 function create_portal(Connection $db, string $name)
 {
-    if ($db->fetchColumn('SELECT 1 FROM gc_instance WHERE title = ?', [$name])) {
+    if (!$db->fetchColumn('SELECT 1 FROM gc_instance WHERE title = ?', [$name])) {
         $db->insert('gc_instance', [
             'title'      => $name,
             'status'     => 1,
