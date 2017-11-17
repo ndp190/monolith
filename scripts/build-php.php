@@ -1,6 +1,6 @@
 <?php
 
-namespace at\labs;
+namespace go1\monolith\scripts;
 
 function buildComposerJson($pwd, $projects, $baseDir = 'php')
 {
@@ -81,12 +81,5 @@ function buildComposerJson($pwd, $projects, $baseDir = 'php')
 return function ($pwd, $home, $projects) {
     buildComposerJson($pwd, $projects['php'], 'php');
     buildComposerJson($pwd, $projects['php/libraries'], 'php/libraries');
-
     passthru("cd $pwd/php && composer install -vvv --no-scripts -vvv");
-
-    // Our #adminer is not yet compatible with #monolith. We try to hack it.
-    $adminer = 'https://github.com/vrana/adminer/releases/download/v4.3.1/adminer-4.3.1-mysql-en.php';
-    passthru("rm -rf {$pwd}/php/adminer/*");
-    mkdir("{$pwd}/php/adminer/public");
-    file_put_contents("{$pwd}/php/adminer/public/index.php", file_get_contents($adminer));
 };

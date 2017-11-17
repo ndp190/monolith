@@ -48,7 +48,6 @@ GO1 monolith
     - `--skip-web`: Don't run npm commands.
     - `--skip-drupal`: Don't build drupal code base.
     - `--skip-go`: Don't build golang code base.
-    - `--skip-tools`: Don't build adminer.
 - If you are frontend developers:
     ```
     $ cd web/ui && grunt serve
@@ -63,7 +62,6 @@ GO1 monolith
     - http://staff.local — #staff, with some notes:
         - You can use staff@local/root to login.
     - http://localhost:7474/ - #neo4j admin
-    - http://localhost/GO1/adminer/ — SQL database management.
     - http://localhost:15672/ - rabbitMQ admin
     - http://website.local — #website, to create portal:
         -Click 'Free Trial' -> email 'admin@portal1.go1.local' -> click 'Get Started' to add new portal.
@@ -79,7 +77,6 @@ GO1 monolith
 - To avoid PHPStorm to index too much, exclude these directory:
     - .data
     - drupal/gc/test
-    - php/adminer
     - web/ui (if you're not #ui dev)
 - To setup xdebug with PHPStorm, please read:
     - [Debug command line](resources/docs/debug-command-line.md)

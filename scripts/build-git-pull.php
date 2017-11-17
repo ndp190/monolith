@@ -1,12 +1,13 @@
 <?php
 
-namespace at\labs;
+namespace go1\monolith\scripts;
 
-return function ($pwd, $projects) {
-    $branch = 'master';
+return function ($pwd, $projects, $custom) {
+    $defaultBranch = 'master';
 
     foreach ($projects as $lang => $services) {
         foreach ($services as $name => $path) {
+            $branch = isset($custom['features']['services'][$name]['branch']) ? $custom['features']['services'][$name]['branch'] : $defaultBranch;
             $target = ('golang' === $lang) ? "$pwd/$lang/src/vendor/go1/$name" : "$pwd/$lang/$name";
 
             if (!is_dir($target)) {

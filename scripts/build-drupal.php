@@ -1,6 +1,6 @@
 <?php
 
-namespace at\labs;
+namespace go1\monolith\scripts;
 
 return function ($pwd, $home) {
     $docker = "docker run --rm"; # -it

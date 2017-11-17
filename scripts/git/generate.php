@@ -1,6 +1,6 @@
 <?php
 
-namespace at\labs\git\generate;
+namespace go1\monolith\scripts\git\generate;
 
 use FilesystemIterator;
 use RegexIterator;

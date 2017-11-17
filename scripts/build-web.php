@@ -1,6 +1,6 @@
 <?php
 
-namespace at\labs;
+namespace go1\monolith\scripts;
 
 return function ($pwd) {
     passthru("cd $pwd/web/ui && npm install");

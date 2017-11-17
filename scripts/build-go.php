@@ -1,15 +1,12 @@
 <?php
 
-namespace at\labs;
+namespace go1\monolith\scripts;
 
 use Symfony\Component\Yaml\Yaml;
 
 function buildGlideYaml(string $pwd, array $projects)
 {
-    $glide = [
-        'import'     => [],
-        // 'testImport' => [],
-    ];
+    $glide = ['import' => []];
 
     if (!class_exists(Yaml::class)) {
         die("Please install YAML: composer global require symfony/yaml.\n");
