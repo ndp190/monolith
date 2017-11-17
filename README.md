@@ -7,39 +7,34 @@ GO1 monolith
 ## 1. Dependencies
 
 - git
-- php7
-    - composer
+- php7 & composer
 - golang:
     - `composer global require symfony/yaml`
     - glide: `curl https://glide.sh/get | sh`
     - `export PATH="/path/to/monolith/scripts:$PATH"`
-- nodejs if you are frontend developers.
-    - npm
-    - bower
-    - grunt
+- nodejs if you are frontend developers: npm, bower, grunt. 
 - /etc/hosts
     - `127.0.0.1	localhost staff.local website.local host portal1.go1.local portal2.go1.local`
 
 ## 2. Usage
 
-- To build:
-    ```
-    $ php scripts/build.php --skip-go --skip-web --skip-drupal # For backend developer
-    $ php scripts/build.php --skip-go --skip-drupal # For frontend developer
-    $ php scripts/start.php
-    $ php scripts/install.php
-    ```
-- To rebuild:
-    ```
-    $ docker-compose pull
-    $ php scripts/git/pull.php --confirm
-    $ php scripts/clean.php
-    $ docker images -q --filter "dangling=true" | xargs -r docker rmi
-    $ php scripts/build.php --skip-web --skip-drupal --skip-go
-    $ cd php && rm composer.lock && composer install -v && cd ..
-    $ php scripts/start.php
-    $ php scripts/install.php
-    ```
+### Build
+
+    php scripts/build.php --skip-go --skip-web --skip-drupal # For backend developer
+    php scripts/build.php --skip-go --skip-drupal # For frontend developer
+    php scripts/start.php
+    php scripts/install.php
+
+### Rebuild
+
+    docker-compose pull
+    php scripts/git/pull.php --confirm
+    php scripts/clean.php
+    docker images -q --filter "dangling=true" | xargs -r docker rmi
+    php scripts/build.php --skip-web --skip-drupal --skip-go
+    cd php && rm composer.lock && composer install -v && cd ..
+    php scripts/start.php
+    php scripts/install.php
 
 ## 2. Notes
 
@@ -106,5 +101,5 @@ GO1 monolith
 
 ## 4. TODO
 
-- Install #realtime
-- Install #cron
+- Install #cron (GO1P-16718)
+- Install #realtime (GO1P-xxxxx)
