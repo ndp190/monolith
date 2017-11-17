@@ -1,5 +1,18 @@
 <?php
 
+namespace go1\monolith\scripts;
+
+$pwd = dirname(__DIR__);
+$custom = file_exists($pwd . '/build.json') ? true : false;
+
+$gh = function ($path) use ($custom) {
+    # if custom, change
+    #   from git@github.com:go1com/util.git
+    #   to   https://github.com/go1com/util.git
+
+    return !$custom ? $path : str_replace('git@github.com:', 'https://github.com/');
+};
+
 return [
     'php'            => [
         'activity'       => 'git@code.go1.com.au:microservices/activity.git',
@@ -54,28 +67,20 @@ return [
         'vote'           => 'git@code.go1.com.au:microservices/vote.git',
         'interactive-li' => 'git@code.go1.com.au:microservices/interactive-li.git',
         'mbosi-export'   => 'git@code.go1.com.au:microservices/mbosi-export.git',
-        # 'batch'        => 'git@code.go1.com.au:microservices/batch.git',
-        # 'endpoint'     => 'git@code.go1.com.au:microservices/endpoint.git',
-        # 'lib'          => 'git@code.go1.com.au:microservices/lib.git',
-        # 'natero'         => 'git@code.go1.com.au:microservices/natero.git',
-        # 'queue'          => 'git@code.go1.com.au:microservices/queue.git',
-        # 'status'       => 'git@code.go1.com.au:microservices/status.git',
-        # 'uptime'       => 'git@code.go1.com.au:microservices/uptime.git',
-        # 'workshop'     => 'git@code.go1.com.au:microservices/workshop.git',
     ],
     'php/libraries'  => [
         # 'clients'        => 'git@code.go1.com.au:go1/clients.git',
         # 'schema'         => 'git@code.go1.com.au:go1/schema.git',
         # 'graph_mock'     => 'git@code.go1.com.au:go1/graph-mock.git',
         # 'stash'          => 'git@code.go1.com.au:microservices/stash.git',
-        'app'            => 'git@github.com:go1com/app.git',
-        'edge'           => 'git@github.com:go1com/edge.git',
-        'flood'          => 'git@github.com:go1com/flood.git',
-        'jwt_middleware' => 'git@github.com:go1com/JwtMiddleware.git',
-        'kv'             => 'git@github.com:go1com/kv.git',
+        'app'            => $gh('git@github.com:go1com/app.git'),
+        'edge'           => $gh('git@github.com:go1com/edge.git'),
+        'flood'          => $gh('git@github.com:go1com/flood.git'),
+        'jwt_middleware' => $gh('git@github.com:go1com/JwtMiddleware.git'),
+        'kv'             => $gh('git@github.com:go1com/kv.git'),
         'middleware'     => 'git@code.go1.com.au:go1/middlewares.git',
-        'util'           => 'git@github.com:go1com/util.git',
-        'report_helpers' => 'git@github.com:go1com/report_helpers.git',
+        'util'           => $gh('git@github.com:go1com/util.git'),
+        'report_helpers' => $gh('git@github.com:go1com/report_helpers.git'),
     ],
     'drupal'         => [
         'accounts' => 'git@code.go1.com.au:go1/accounts.git',
@@ -94,7 +99,7 @@ return [
     'infrastructure' => [
         'ci'            => 'git@code.go1.com.au:go1/ci.git',
         'cron'          => 'git@code.go1.com.au:microservices/cron.git',
-        'deploy_helper' => 'git@github.com:go1com/deploy_helper.git',
+        'deploy_helper' => $gh('git@github.com:go1com/deploy_helper.git'),
         'ecs'           => 'git@code.go1.com.au:go1/launch-configuration.git',
         'goweb'         => 'git@code.go1.com.au:microservices/goweb.git',
         'haproxy'       => 'git@code.go1.com.au:go1/haproxy.git',
@@ -110,3 +115,17 @@ return [
         'documentation' => 'git@code.go1.com.au:go1/documentation.git',
     ],
 ];
+
+# ---------------------
+# Disabled
+# ---------------------
+# PHP
+# ---
+#   'batch'    => 'git@code.go1.com.au:microservices/batch.git',
+#   'endpoint' => 'git@code.go1.com.au:microservices/endpoint.git',
+#   'lib'      => 'git@code.go1.com.au:microservices/lib.git',
+#   'natero'   => 'git@code.go1.com.au:microservices/natero.git',
+#   'queue'    => 'git@code.go1.com.au:microservices/queue.git',
+#   'status'   => 'git@code.go1.com.au:microservices/status.git',
+#   'uptime'   => 'git@code.go1.com.au:microservices/uptime.git',
+#   'workshop' => 'git@code.go1.com.au:microservices/workshop.git',
