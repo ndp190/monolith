@@ -3,6 +3,7 @@
 namespace go1\monolith;
 
 use Doctrine\DBAL\Connection;
+use go1\util\edge\EdgeTypes;
 use go1\util\portal\PortalHelper;
 use go1\util\user\Roles;
 use GuzzleHttp\Client;
@@ -21,6 +22,7 @@ $client = new Client;
 $pwd = dirname(__DIR__);
 $custom = $pwd . '/build.json';
 $custom = is_file($custom) ? json_decode(file_get_contents($custom), true) : [];
+$mail = isset($custom['admin']['mail']) ? $custom['admin']['mail'] : 'staff@local';
 
 # ---------------------
 # If the table is not yet available => create it.
@@ -64,24 +66,43 @@ create_portal($db, $accountsName);
 
 # ---------------------
 # Create user for #staff.
+#
+# TODO: Publish message to rabbitMQ.
 # ---------------------
-!$db->fetchColumn("SELECT 1 FROM gc_user WHERE mail = ?", ['staff@local']) && $db->insert('gc_user', [
-    'uuid'         => Uuid::uuid4()->toString(),
-    'name'         => 'staff@local',
-    'mail'         => isset($custom['admin']['mail']) ? $custom['admin']['mail'] : 'staff@local',
-    'password'     => _password_crypt('sha512', isset($custom['admin']['password']) ? $custom['admin']['password'] : 'root', _password_generate_salt(10)),
-    'first_name'   => isset($custom['admin']['first_name']) ? $custom['admin']['first_name'] : 'Staff',
-    'last_name'    => isset($custom['admin']['last_name']) ? $custom['admin']['last_name'] : 'Local',
-    'profile_id'   => 1,
-    'instance'     => $accountsName,
-    'allow_public' => 0,
-    'status'       => 1,
-    'created'      => $now = time(),
-    'access'       => $now,
-    'login'        => $now,
-    'timestamp'    => $now,
-    'data'         => json_encode(['roles' => [Roles::ROOT]]),
-]);
+if (!$db->fetchColumn("SELECT 1 FROM gc_user WHERE mail = ?", ['staff@local'])) {
+    $userRow = [
+        'uuid'         => Uuid::uuid4()->toString(),
+        'name'         => $mail,
+        'mail'         => $mail,
+        'password'     => _password_crypt('sha512', isset($custom['admin']['password']) ? $custom['admin']['password'] : 'root', _password_generate_salt(10)),
+        'first_name'   => isset($custom['admin']['first_name']) ? $custom['admin']['first_name'] : 'Staff',
+        'last_name'    => isset($custom['admin']['last_name']) ? $custom['admin']['last_name'] : 'Local',
+        'profile_id'   => 1,
+        'instance'     => $accountsName,
+        'allow_public' => 0,
+        'status'       => 1,
+        'created'      => $now = time(),
+        'access'       => $now,
+        'login'        => $now,
+        'timestamp'    => $now,
+        'data'         => json_encode(['roles' => [Roles::ROOT]]),
+    ];
+
+    $accountRow = ['instance' => $domain] + $userRow;
+    $db->insert('gc_user', $userRow);
+    $userId = $db->lastInsertId('gc_user');
+    $db->insert('gc_user', $accountRow);
+    $accountId = $db->lastInsertId('gc_user');
+
+    # EdgeHelper::link($db, EdgeTypes::HAS_ACCOUNT);
+    $db->insert('gc_ro', [
+        'type'      => EdgeTypes::HAS_ACCOUNT,
+        'source_id' => $userId,
+        'target_id' => $accountId,
+        'weight'    => 0,
+        'data'      => json_encode(['source' => 'monolith']),
+    ]);
+}
 
 passthru('docker exec -it monolith_web_1 /app/quiz/bin/console migrations:migrate --no-interaction -e=monolith');
 
