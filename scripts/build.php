@@ -18,7 +18,7 @@ call_user_func(require $pwd . '/scripts/build-git-pull.php', $pwd, $projects, $c
 echo "docker login registry.code.go1.com.au\n";
 
 if (isset($custom['gitlab']['username']) && isset($custom['gitlab']['password'])) {
-    passthru("docker login registry.code.go1.com.au --user={$custom['gitlab']['username']} -password={$custom['gitlab']['password']}");
+    passthru("docker login registry.code.go1.com.au --username={$custom['gitlab']['username']} -password={$custom['gitlab']['password']}");
 }
 else {
     passthru('docker login registry.code.go1.com.au');
