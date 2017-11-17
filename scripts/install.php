@@ -76,7 +76,25 @@ function createPortal($db, $name)
     $version = PortalHelper::STABLE_VERSION;
     $result = $db->query("SELECT * FROM gc_instance WHERE title = '{$name}'");
     if ($result->num_rows === 0) {
-        $data = '{"author":"admin@' . $name . '","configuration":{"is_virtual":1,"user_invite":1,"send_welcome_email":1},"features":{"marketplace":true,"user_invite":true,"auth0":false},"user_plan":{"license":10,"price":3620,"product":"marketplace"}}';
+        $data = json_encode([
+            'author'        => 'admin@' . $name,
+            'configuration' => [
+                'is_virtual'                             => 1,
+                'user_invite'                            => 1,
+                PortalHelper::FEATURE_SEND_WELCOME_EMAIL => 1,
+            ],
+            'features'      => [
+                'marketplace' => true,
+                'user_invite' => true,
+                'auth0'       => false,
+            ],
+            'user_plan'     => [
+                'license' => 10,
+                'price'   => 3620,
+                'product' => 'marketplace',
+            ],
+        ]);
+
         $now = time();
         $sql = "INSERT INTO gc_instance (title, status, is_primary, version, data, timestamp, created)
             VALUES ('{$name}', 1, 1, '{$version}', '{$data}', {$now}, {$now})";
