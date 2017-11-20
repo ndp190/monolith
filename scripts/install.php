@@ -17,12 +17,12 @@ require_once __DIR__ . '/../php/user/domain/password.php';
 /** @var Connection $con */
 /** @var Connection $db */
 $accountsName = 'accounts-dev.gocatalyze.com';
-$domain = 'default.go1.local';
 $client = new Client;
 $pwd = dirname(__DIR__);
 $custom = $pwd . '/build.json';
 $custom = is_file($custom) ? json_decode(file_get_contents($custom), true) : [];
-$mail = isset($custom['admin']['mail']) ? $custom['admin']['mail'] : 'staff@local';
+$domain = $custom['features']['domain'] ?? 'default.go1.local';
+$mail = $custom['features']['admin']['mail'] ?? 'staff@go1.co';
 
 # ---------------------
 # If the table is not yet available => create it.
@@ -54,8 +54,8 @@ foreach (array_keys($projects['php']) as $name) {
     $client->post($url, ['http_errors' => false]);
 }
 
-echo "[install] POST http://staff.local/api/install\n";
-$client->post('http://staff.local/api/install', ['http_errors' => false]);
+echo "[install] POST http://localhost/GO1/staff/api/install\n";
+$client->post('http://localhost/GO1/staff/api/install', ['http_errors' => false]);
 
 # ---------------------
 # Create portals
@@ -69,14 +69,14 @@ create_portal($db, $accountsName);
 #
 # TODO: Publish message to rabbitMQ.
 # ---------------------
-if (!$db->fetchColumn("SELECT 1 FROM gc_user WHERE mail = ?", ['staff@local'])) {
+if (!$db->fetchColumn("SELECT 1 FROM gc_user WHERE mail = ?", ['staff@go1.co'])) {
     $userRow = [
         'uuid'         => Uuid::uuid4()->toString(),
         'name'         => $mail,
         'mail'         => $mail,
         'password'     => _password_crypt('sha512', isset($custom['admin']['password']) ? $custom['admin']['password'] : 'root', _password_generate_salt(10)),
-        'first_name'   => isset($custom['admin']['first_name']) ? $custom['admin']['first_name'] : 'Staff',
-        'last_name'    => isset($custom['admin']['last_name']) ? $custom['admin']['last_name'] : 'Local',
+        'first_name'   => $custom['features']['admin']['first_name'] ?? 'Staff',
+        'last_name'    => $custom['features']['admin']['last_name'] ?? 'Local',
         'profile_id'   => 1,
         'instance'     => $accountsName,
         'allow_public' => 0,
@@ -88,7 +88,7 @@ if (!$db->fetchColumn("SELECT 1 FROM gc_user WHERE mail = ?", ['staff@local'])) 
         'data'         => json_encode(['roles' => [Roles::ROOT]]),
     ];
 
-    $accountRow = ['instance' => $domain] + $userRow;
+    $accountRow = ['instance' => $domain, 'uuid' => Uuid::uuid4()->toString(), 'data' => json_encode(['roles' => [Roles::ADMIN]])] + $userRow;
     $db->insert('gc_user', $userRow);
     $userId = $db->lastInsertId('gc_user');
     $db->insert('gc_user', $accountRow);
