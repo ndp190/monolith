@@ -13,6 +13,6 @@ $custom = is_file($pwd . '/build.json');
 
 $ip = require 'ip.php';
 $cmd = "MONOLITH_HOST_IP='{$ip}' docker-compose up --force-recreate";
-$cmd .= $custom ? '' : ' -d';
+$cmd .= $custom ? ' -d' : '';
 
 passthru($cmd);
