@@ -355,6 +355,7 @@
         "phpunit/phpunit": "^6.0",
         "pimple/pimple": "^v3.0.0",
         "psr/log": "~1.0",
+        "ralouphie/mimey": "^1.0",
         "ramsey/uuid": "^3.4",
         "rappasoft/laravel-helpers": "dev-master",
         "silex/silex": "~2.0@dev",
