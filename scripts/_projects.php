@@ -95,6 +95,7 @@ return [
         'website'          => 'git@code.go1.com.au:web/go1web.git',
         'report-component' => 'git@code.go1.com.au:angularjs/report-component.git',
         'report-monitor'   => 'git@code.go1.com.au:web/report-monitor.git',
+        'staff-reports'    => 'git@code.go1.com.au:angularjs/staff-reports.git',
     ],
     'infrastructure' => [
         'ci'            => 'git@code.go1.com.au:go1/ci.git',
