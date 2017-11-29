@@ -81,6 +81,7 @@ services:
             - CONSUMER_support=portal.update,portal#delete
             - CONSUMER_stash=stash.#
             - CONSUMER_history=history.#
+            - CONSUMER_assignment=enrolment.update,enrolment.delete
             # - CONSUMER_eck=enrolment.delete,lo.delete,portal.delete,user.delete
         depends_on:
             - queue
