@@ -2,21 +2,12 @@
 
 namespace go1\monolith\scripts;
 
-# Remove containers
-passthru('docker rm monolith_consumer_1');
-passthru('docker rm monolith_es_1');
-passthru('docker rm monolith_memcached_1');
-passthru('docker rm monolith_minio_1');
-passthru('docker rm monolith_mysql_1');
-passthru('docker rm monolith_neo4j_1');
-passthru('docker rm monolith_queue_1');
-passthru('docker rm monolith_ui_1');
-passthru('docker rm monolith_web_1');
-passthru('docker rm monolith_website_1');
-passthru('docker rm monolith_wkhtmltopdf_1');
-passthru('docker rm monolith_worker_1');
+if (PHP_OS === 'Darwin') {
+    passthru('docker-sync-stack clean');
+}
+elseif (PHP_OS === 'Linux' || PHP_OS === 'Windows') {
+    passthru('docker-compose down');
+}
 
-# Remove images
-passthru('docker rmi monolith_consumer');
-passthru('docker rmi monolith_worker');
-passthru('docker rmi monolith_web');
+passthru('docker rmi $(docker images | grep monolith | awk "{print \$3}")');
+passthru('docker images -q --filter "dangling=true" | xargs docker rmi');

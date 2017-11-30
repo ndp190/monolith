@@ -1,6 +1,4 @@
 version: '2'
-volumes:
-  website:
 services:
     wkhtmltopdf:
         image: 'registry.code.go1.com.au/microservices/wkhtmltopdf:master'
@@ -51,7 +49,7 @@ services:
         ports:
             - '9200:9200'
         environment:
-              - "ES_JAVA_OPTS=-Xms512m -Xmx512m"    
+              - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     consumer:
         build: ./.data/resources/docker/consumer
         command:
@@ -85,9 +83,7 @@ services:
             # - CONSUMER_eck=enrolment.delete,lo.delete,portal.delete,user.delete
         depends_on:
             - queue
-        command: ["/scripts/wait-for-it.sh", "queue:5672", "-t", "0", "--", "/app/app"]
-        volumes:
-            - './infrastructure/wait-for-it:/scripts'
+        command: ["/wait-for-it.sh", "queue:5672", "-t", "0", "--", "/app/app"]
     worker:
         build: ./.data/resources/docker/worker
         command:
@@ -100,17 +96,7 @@ services:
             - SERVICE_URL_PATTERN=http://web/GO1/SERVICE/consume
         depends_on:
             - queue
-        command: ["/scripts/wait-for-it.sh", "queue:5672", "-t", "0", "--", "/app/app"]
-        volumes:
-            - './infrastructure/wait-for-it:/scripts'
-    ui:
-        image: 'registry.code.go1.com.au/apiom/apiom-ui:master'
-        command: ["ping", "127.0.0.1", "-q"]
-    website:
-        image: 'registry.code.go1.com.au/web/go1web:master'
-        command: ["ping", "127.0.0.1", "-q"]
-        volumes:
-            - 'website:/usr/local/apache2/htdocs/'
+        command: ["/wait-for-it.sh", "queue:5672", "-t", "0", "--", "/app/app"]
     web:
         build: ./.data/resources/docker/web
         links:
@@ -128,16 +114,8 @@ services:
         volumes:
             - './php/:/app/'
             - './php/vendor:/vendor/'
-            - './.data/drupal/:/drupal/'
             - './.data/nginx/sites-available/:/etc/nginx/sites-available/'
             - './.data/nginx/autoload/:/autoload/'
-            - './.data/cli/:/cli/'
-            - './scripts/:/scripts/'
-            - './.data/resources/docker/:/app/resources/docker/'
-            - './infrastructure/wait-for-it/wait-for-it.sh:/scripts/wait-for-it.sh'
-            - 'website:/website'
-        volumes_from:
-            - ui
         environment:
             - _DOCKER_RDS_DB_NAME=go1_dev
             - _DOCKER_RDS_HOSTNAME=mysql

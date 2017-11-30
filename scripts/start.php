@@ -1,6 +1,6 @@
 <?php
 
-namespace go1\monolith;
+namespace go1\monolith\scripts;
 
 $pwd = dirname(__DIR__);
 $custom = is_file($pwd . '/build.json');
@@ -12,7 +12,12 @@ $custom = is_file($pwd . '/build.json');
 @copy("$pwd/.data/nginx/app.conf", "$pwd/.data/nginx/sites-available/default.conf");
 
 $ip = require 'ip.php';
-$cmd = "MONOLITH_HOST_IP='{$ip}' docker-compose up --force-recreate";
-$cmd .= $custom ? ' -d' : '';
+$custom ? ' -d' : '';
 
-passthru($cmd);
+if (PHP_OS === 'Darwin') {
+    passthru('docker-sync start');
+    passthru("MONOLITH_HOST_IP='{$ip}' docker-compose -f docker-compose.yml -f docker-compose-dev.yml up --force-recreate {$custom}");
+}
+elseif (PHP_OS === 'Linux' || PHP_OS === 'Windows') {
+    passthru("MONOLITH_HOST_IP='{$ip}' docker-compose -f docker-compose.yml up --force-recreate {$custom}");
+}
