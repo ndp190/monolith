@@ -7,5 +7,6 @@ if (PHP_OS === 'Darwin') {
 }
 elseif (PHP_OS === 'Linux' || PHP_OS === 'Windows') {
     passthru('docker-compose down');
-    passthru('docker rmi $(docker images | grep monolith | awk "{print \$3}")');
 }
+
+passthru('docker rmi $(docker images | grep monolith | awk "{print \$3}")');
