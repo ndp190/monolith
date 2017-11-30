@@ -10,9 +10,7 @@ passthru('docker rm monolith_minio_1');
 passthru('docker rm monolith_mysql_1');
 passthru('docker rm monolith_neo4j_1');
 passthru('docker rm monolith_queue_1');
-passthru('docker rm monolith_ui_1');
 passthru('docker rm monolith_web_1');
-passthru('docker rm monolith_website_1');
 passthru('docker rm monolith_wkhtmltopdf_1');
 passthru('docker rm monolith_worker_1');
 

@@ -1,6 +1,4 @@
 version: '2'
-volumes:
-  website:
 services:
     wkhtmltopdf:
         image: 'registry.code.go1.com.au/microservices/wkhtmltopdf:master'
@@ -103,14 +101,6 @@ services:
         command: ["/scripts/wait-for-it.sh", "queue:5672", "-t", "0", "--", "/app/app"]
         volumes:
             - './infrastructure/wait-for-it:/scripts'
-    ui:
-        image: 'registry.code.go1.com.au/apiom/apiom-ui:master'
-        command: ["ping", "127.0.0.1", "-q"]
-    website:
-        image: 'registry.code.go1.com.au/web/go1web:master'
-        command: ["ping", "127.0.0.1", "-q"]
-        volumes:
-            - 'website:/usr/local/apache2/htdocs/'
     web:
         build: ./.data/resources/docker/web
         links:
@@ -135,9 +125,6 @@ services:
             - './scripts/:/scripts/'
             - './.data/resources/docker/:/app/resources/docker/'
             - './infrastructure/wait-for-it/wait-for-it.sh:/scripts/wait-for-it.sh'
-            - 'website:/website'
-        volumes_from:
-            - ui
         environment:
             - _DOCKER_RDS_DB_NAME=go1_dev
             - _DOCKER_RDS_HOSTNAME=mysql

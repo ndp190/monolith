@@ -1,4 +1,6 @@
-# Call hook-start
+FROM registry.code.go1.com.au/apiom/apiom-ui:master as ui
+FROM registry.code.go1.com.au/web/go1web:master as website
+
 FROM go1com/php:7-nginx
 
 RUN apk add --update supervisor php7-pear php7-dev autoconf build-base
@@ -7,6 +9,9 @@ COPY supervisord.conf /etc/supervisord.conf
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod a+x /entrypoint.sh
+
+COPY --from=ui /apiomui /apiomui
+COPY --from=website /usr/local/apache2/htdocs /website
 
 RUN pecl install xdebug
 
