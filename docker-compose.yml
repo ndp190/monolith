@@ -49,7 +49,7 @@ services:
         ports:
             - '9200:9200'
         environment:
-              - "ES_JAVA_OPTS=-Xms512m -Xmx512m"    
+              - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     consumer:
         build: ./.data/resources/docker/consumer
         command:
