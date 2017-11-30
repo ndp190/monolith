@@ -6,4 +6,4 @@ namespace go1\monolith\scripts;
 passthru('docker rm $(docker ps -aq --filter name=monolith)');
 
 # Remove images
-passthru('docker rmi $(docker images | grep test | awk "{print \$3}")');
+passthru('docker rmi $(docker images | grep monolith | awk "{print \$3}")');
