@@ -1,0 +1,12 @@
+version: "2"
+services:
+    scormengine:
+        volumes:
+            - scormengine-sync:/Library:nocopy
+            - scormengine-documents-sync:/usr/local/tomcat/webapps/Scorm:nocopy
+
+volumes:
+    scormengine-sync:
+        external: true
+    scormengine-documents-sync:
+        external: true

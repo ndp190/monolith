@@ -26,3 +26,9 @@ syncs:
     autoload-sync:
         sync_strategy: unison
         src: './.data/nginx/autoload/'
+    scormengine-sync:
+        sync_strategy: unison
+        src: './.data/scormengine'
+    scormengine-documents-sync:
+        sync_strategy: unison
+        src: './.data/scormengine/WebServer/Documents'

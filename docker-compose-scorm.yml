@@ -2,7 +2,7 @@ version: '2'
 services:
   scormengine:
     image: 'registry.code.go1.com.au/microservices/scormengine:master'
-    mem_limit: '2G'
+    mem_reservation: '128M'
     ports:
       - '9999:80'
     extra_hosts:
