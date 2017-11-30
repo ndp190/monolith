@@ -9,5 +9,5 @@ drupal/*
 infrastructure/*
 dev/*
 nodejs/*
-scripts/wait-for-it.sh
 resources/documentation
+.docker-sync/

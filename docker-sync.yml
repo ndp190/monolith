@@ -1,0 +1,28 @@
+version: "2"
+options:
+  verbose: true
+syncs:
+    mysql-sync:
+        sync_strategy: unison
+        src: './.data/mysql'
+    neo4j-sync:
+        sync_strategy: unison
+        src: './.data/neo4j'
+    minio-sync:
+        sync_strategy: unison
+        src: './.data/minio'
+    es-sync:
+        sync_strategy: unison
+        src: './.data/elasticsearch'
+    php-sync:
+        sync_strategy: unison
+        src: './php/'
+    vendor-sync:
+        sync_strategy: unison
+        src: './php/vendor'
+    nginx-conf-sync:
+        sync_strategy: unison
+        src: './.data/nginx/sites-available/'
+    autoload-sync:
+        sync_strategy: unison
+        src: './.data/nginx/autoload/'

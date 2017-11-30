@@ -6,13 +6,14 @@ GO1 monolith
 
 ## 1. Dependencies
 
+- docker-sync & unison # Mac OS only - https://github.com/EugenMayer/docker-sync/wiki/1.-Installation and OS-Specific link
 - git
 - php7 & composer
 - golang:
     - `composer global require symfony/yaml`
     - glide: `curl https://glide.sh/get | sh`
     - `export PATH="/path/to/monolith/scripts:$PATH"`
-- nodejs if you are frontend developers: npm, bower, grunt. 
+- If you are frontend developers: nodejs, npm, bower, grunt.
 - /etc/hosts
     - `127.0.0.1	localhost staff.local website.local host portal1.go1.local portal2.go1.local`
 

@@ -83,9 +83,7 @@ services:
             # - CONSUMER_eck=enrolment.delete,lo.delete,portal.delete,user.delete
         depends_on:
             - queue
-        command: ["/scripts/wait-for-it.sh", "queue:5672", "-t", "0", "--", "/app/app"]
-        volumes:
-            - './infrastructure/wait-for-it:/scripts'
+        command: ["/wait-for-it.sh", "queue:5672", "-t", "0", "--", "/app/app"]
     worker:
         build: ./.data/resources/docker/worker
         command:
@@ -98,9 +96,7 @@ services:
             - SERVICE_URL_PATTERN=http://web/GO1/SERVICE/consume
         depends_on:
             - queue
-        command: ["/scripts/wait-for-it.sh", "queue:5672", "-t", "0", "--", "/app/app"]
-        volumes:
-            - './infrastructure/wait-for-it:/scripts'
+        command: ["/wait-for-it.sh", "queue:5672", "-t", "0", "--", "/app/app"]
     web:
         build: ./.data/resources/docker/web
         links:
@@ -118,13 +114,8 @@ services:
         volumes:
             - './php/:/app/'
             - './php/vendor:/vendor/'
-            - './.data/drupal/:/drupal/'
             - './.data/nginx/sites-available/:/etc/nginx/sites-available/'
             - './.data/nginx/autoload/:/autoload/'
-            - './.data/cli/:/cli/'
-            - './scripts/:/scripts/'
-            - './.data/resources/docker/:/app/resources/docker/'
-            - './infrastructure/wait-for-it/wait-for-it.sh:/scripts/wait-for-it.sh'
         environment:
             - _DOCKER_RDS_DB_NAME=go1_dev
             - _DOCKER_RDS_HOSTNAME=mysql

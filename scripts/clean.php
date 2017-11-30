@@ -2,8 +2,10 @@
 
 namespace go1\monolith\scripts;
 
-# Remove containers
-passthru('docker rm $(docker ps -aq --filter name=monolith)');
-
-# Remove images
-passthru('docker rmi $(docker images | grep monolith | awk "{print \$3}")');
+if (PHP_OS === 'Darwin') {
+    passthru('docker-sync-stack clean');
+}
+elseif (PHP_OS === 'Linux' || PHP_OS === 'Windows') {
+    passthru('docker-compose down');
+    passthru('docker rmi $(docker images | grep monolith | awk "{print \$3}")');
+}

@@ -1,0 +1,38 @@
+version: "2"
+services:
+    mysql:
+        volumes:
+            - mysql-sync:/var/lib/mysql:nocopy
+    neo4j:
+        volumes:
+            - neo4j-sync:/data:nocopy
+    minio:
+        volumes:
+            - minio-sync:/export:nocopy
+    es:
+        volumes:
+            - es-sync:/usr/share/elasticsearch/data:nocopy
+    web:
+        volumes:
+            - php-sync:/app/:nocopy
+            - vendor-sync:/vendor/:nocopy
+            - nginx-conf-sync:/etc/nginx/sites-available/:nocopy
+            - autoload-sync:/autoload/:nocopy
+
+volumes:
+    mysql-sync:
+        external: true
+    neo4j-sync:
+        external: true
+    minio-sync:
+        external: true
+    es-sync:
+        external: true
+    php-sync:
+        external: true
+    vendor-sync:
+        external: true
+    nginx-conf-sync:
+        external: true
+    autoload-sync:
+        external: true
