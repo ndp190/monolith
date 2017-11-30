@@ -31,7 +31,6 @@ GO1 monolith
     docker-compose pull
     php scripts/git/pull.php --confirm # Add --reset if you want to reset the code
     php scripts/clean.php
-    docker images -q --filter "dangling=true" | xargs docker rmi
     php scripts/build.php --skip-web --skip-drupal --skip-go
     cd php && rm composer.lock && composer install -v && cd ..
     php scripts/start.php

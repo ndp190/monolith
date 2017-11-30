@@ -10,3 +10,4 @@ elseif (PHP_OS === 'Linux' || PHP_OS === 'Windows') {
 }
 
 passthru('docker rmi $(docker images | grep monolith | awk "{print \$3}")');
+passthru('docker images -q --filter "dangling=true" | xargs docker rmi');
