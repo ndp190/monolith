@@ -7,6 +7,7 @@ use go1\util\edge\EdgeTypes;
 use go1\util\portal\PortalHelper;
 use go1\util\user\Roles;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ConnectException;
 use Pimple\Container;
 use Ramsey\Uuid\Uuid;
 use Silex\Provider\DoctrineServiceProvider;
@@ -47,11 +48,51 @@ $databases = $con->getSchemaManager()->listDatabases();
 # ---------------------
 # POST $service/install
 # ---------------------
+function serviceInstall(Client $client, $name)
+{
+    $retries = 0;
+    $MAX_TRY = 5;
+
+    while (1) {
+        try {
+            $client->get("http://localhost/GO1/{$name}");
+            $client->get($url = "http://localhost/GO1/{$name}/install", ['http_errors' => false]);
+            $client->post($url, ['http_errors' => false]);
+
+            return;
+        }
+        catch (\Exception $e) {
+            if ($e instanceof ConnectException || false !== strpos($e->getMessage(), 'Connection reset')) {
+                if ($retries > $MAX_TRY) {
+                    echo "[$name] give up.";
+
+                    return;
+                }
+
+                $retries += 1;
+                $t = pow(2, $retries);
+
+                echo " + Waiting {$t}s\n";
+                sleep($t);
+            }
+            else {
+                echo " + [{$name}] Unexpected exception: " . $e->getMessage() . ". skipped\n";
+
+                return;
+            }
+        }
+    }
+}
+
 $projects = require __DIR__ . '/_projects.php'; # Make sure we have database for all services
+$installExcluded = ['console', 'lti-consumer'];
 foreach (array_keys($projects['php']) as $name) {
+    if (in_array($name, $installExcluded)) {
+        continue;
+    }
+
     echo "[install] GET|POST http://localhost/GO1/{$name}/install\n";
-    $client->get($url = "http://localhost/GO1/{$name}/install", ['http_errors' => false]);
-    $client->post($url, ['http_errors' => false]);
+    serviceInstall($client, $name);
 }
 
 echo "[install] POST http://localhost/GO1/staff/api/install\n";
@@ -69,7 +110,7 @@ create_portal($db, $accountsName);
 #
 # TODO: Publish message to rabbitMQ.
 # ---------------------
-if (!$db->fetchColumn("SELECT 1 FROM gc_user WHERE mail = ?", ['staff@go1.co'])) {
+if (!$db->fetchColumn("SELECT 1 FROM gc_user WHERE mail = ?", [$mail])) {
     $userRow = [
         'uuid'         => Uuid::uuid4()->toString(),
         'name'         => $mail,
@@ -104,7 +145,7 @@ if (!$db->fetchColumn("SELECT 1 FROM gc_user WHERE mail = ?", ['staff@go1.co']))
     ]);
 }
 
-passthru('docker exec -it monolith_web_1 /app/quiz/bin/console migrations:migrate --no-interaction -e=monolith');
+passthru('docker exec -it monolith_web_1 /app/quiz/bin/console migrations:migrate --no-interaction -e monolith');
 
 function create_portal(Connection $db, string $name)
 {

@@ -12,12 +12,13 @@ $custom = is_file($pwd . '/build.json');
 @copy("$pwd/.data/nginx/app.conf", "$pwd/.data/nginx/sites-available/default.conf");
 
 $ip = require 'ip.php';
-$custom ? ' -d' : '';
+$ip = str_replace("\n", '', $ip);
+$custom = $custom ? ' -d' : '';
 
 if (PHP_OS === 'Darwin') {
     passthru('docker-sync start');
     passthru("MONOLITH_HOST_IP='{$ip}' docker-compose -f docker-compose.yml -f docker-compose-dev.yml up --force-recreate {$custom}");
 }
 elseif (PHP_OS === 'Linux' || PHP_OS === 'Windows') {
-    passthru("MONOLITH_HOST_IP='{$ip}' docker-compose -f docker-compose.yml up --force-recreate {$custom}");
+    passthru("MONOLITH_HOST_IP='{$ip}' docker-compose -f {$pwd}/docker-compose.yml up --force-recreate {$custom}");
 }

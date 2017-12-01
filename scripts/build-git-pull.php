@@ -21,6 +21,10 @@ return function ($pwd, $projects, $custom) {
                     passthru("git clone -q --branch=$branch $path $target");
                 }
             }
+            else {
+                $cmd = "cd $target; git pull origin $branch; cd - >/dev/null";
+                passthru($cmd);
+            }
         }
     }
 };
