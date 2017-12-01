@@ -55,7 +55,7 @@ GO1 monolith
     - http://localhost/v3/ — #api
     - http://localhost/GO1/user/ — #service
     - http://staff.local — #staff, with some notes:
-        - You can use staff@local/root to login.
+        - You can use staff@go1.co/root to login.
     - http://localhost:7474/ - #neo4j admin
     - http://localhost:15672/ - rabbitMQ admin
     - http://website.local — #website, to create portal:
