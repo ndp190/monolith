@@ -29,8 +29,6 @@ volumes:
         external: true
     php-sync:
         external: true
-    vendor-sync:
-        external: true
     nginx-conf-sync:
         external: true
     autoload-sync:
