@@ -17,9 +17,6 @@ syncs:
     php-sync:
         sync_strategy: unison
         src: './php/'
-    vendor-sync:
-        sync_strategy: unison
-        src: './php/vendor'
     nginx-conf-sync:
         sync_strategy: unison
         src: './.data/nginx/sites-available/'
@@ -29,6 +26,3 @@ syncs:
     scormengine-sync:
         sync_strategy: unison
         src: './.data/scormengine'
-    scormengine-documents-sync:
-        sync_strategy: unison
-        src: './.data/scormengine/WebServer/Documents'
