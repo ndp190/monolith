@@ -15,7 +15,6 @@ services:
     web:
         volumes:
             - php-sync:/app/:nocopy
-            - vendor-sync:/vendor/:nocopy
             - nginx-conf-sync:/etc/nginx/sites-available/:nocopy
             - autoload-sync:/autoload/:nocopy
 
@@ -29,8 +28,6 @@ volumes:
     es-sync:
         external: true
     php-sync:
-        external: true
-    vendor-sync:
         external: true
     nginx-conf-sync:
         external: true

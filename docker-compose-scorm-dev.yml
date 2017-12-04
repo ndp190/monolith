@@ -3,10 +3,8 @@ services:
     scormengine:
         volumes:
             - scormengine-sync:/Library:nocopy
-            - scormengine-documents-sync:/usr/local/tomcat/webapps/Scorm:nocopy
+            - scormengine-sync:/usr/local/tomcat/webapps/Scorm/WebServer/Documents:nocopy
 
 volumes:
     scormengine-sync:
-        external: true
-    scormengine-documents-sync:
         external: true

@@ -115,7 +115,6 @@ services:
             - '80:80'
         volumes:
             - './php/:/app/'
-            - './php/vendor:/vendor/'
             - './.data/nginx/sites-available/:/etc/nginx/sites-available/'
             - './.data/nginx/autoload/:/autoload/'
         environment:
