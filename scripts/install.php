@@ -41,6 +41,25 @@ $c = (new Container)->register(new DoctrineServiceProvider, ['dbs.options' => [
 ]]);
 
 $con = $c['dbs']['install'];
+// wait for MySQL, sometime mysql can not ready immediately after docker-compose task
+$retries = 0;
+$MAX_TRY = 5;
+while ($retries < 5) {
+    try {
+        $con->ping();
+        break;
+    }
+    catch (\Exception $e) {
+        $retries += 1;
+        if ($retries > $MAX_TRY) {
+            echo "MySQL > hang up.\n";
+            exit(1);
+        }
+        $t = pow(2, $retries);
+        echo " - MySQL > waiting {$t}s . {$e->getMessage()}\n";
+        sleep($t);
+    }
+}
 $databases = $con->getSchemaManager()->listDatabases();
 !in_array('go1_dev', $databases) && $con->getSchemaManager()->createDatabase('go1_dev');
 !in_array('quiz_dev', $databases) && $con->getSchemaManager()->createDatabase('quiz_dev');
