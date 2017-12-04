@@ -9,6 +9,7 @@ $home = getenv('HOME');
 $projects = require __DIR__ . '/_projects.php';
 $custom = $pwd . '/build.json';
 $custom = is_file($custom) ? json_decode(file_get_contents($custom), true) : [];
+$customOptions = isset($custom['options']) ?? [];
 
 !strpos($cmd, '--skip-pull') && call_user_func(require $pwd . '/scripts/build-git-pull.php', $pwd, $projects, $custom);
 
@@ -24,7 +25,7 @@ else {
 # Build PHP tools, from now we already have PHP libraries for later uses.
 !strpos($cmd, '--skip-php') && call_user_func(require $pwd . '/scripts/build-php.php', $pwd, $home, $projects);
 
-$skipBuildWeb = !strpos($cmd, '--skip-web') || in_array('skip-web', $custom['options']);
+$skipBuildWeb = false !== strpos($cmd, '--skip-web') || in_array('skip-web', $customOptions);
 if (!$skipBuildWeb) {
     call_user_func(require $pwd . '/scripts/build-web.php', $pwd, $home);
 }
