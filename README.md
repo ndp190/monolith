@@ -28,7 +28,7 @@ GO1 monolith
 
 ### Rebuild
 
-    docker-compose pull
+    php scripts/pull.php
     php scripts/git/pull.php --confirm # Add --reset if you want to reset the code
     php scripts/clean.php
     php scripts/build.php --skip-web --skip-drupal --skip-go --skip-pull
