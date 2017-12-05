@@ -32,12 +32,4 @@ return call_user_func(function () use ($cmd, $confirm, $reset, $branch) {
             }
         }
     }
-
-    // Update Docker images
-    passthru('docker pull registry.code.go1.com.au/apiom/apiom-ui:master');
-    passthru('docker pull registry.code.go1.com.au/web/go1web:master');
-    passthru('docker pull go1com/php:7-nginx');
-    passthru('docker pull node:7-alpine');
-    passthru('docker pull registry.code.go1.com.au/microservices/work:master');
-    passthru('docker pull registry.code.go1.com.au/microservices/consumer:master');
 });
