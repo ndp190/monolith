@@ -104,7 +104,7 @@ function serviceInstall(Client $client, $name)
 }
 
 $projects = require __DIR__ . '/_projects.php'; # Make sure we have database for all services
-$installExcluded = ['console', 'lti-consumer'];
+$installExcluded = ['console', 'lti-consumer', 'mbosi-export'];
 foreach (array_keys($projects['php']) as $name) {
     if (in_array($name, $installExcluded)) {
         continue;
