@@ -130,11 +130,12 @@ create_portal($db, $accountsName);
 # TODO: Publish message to rabbitMQ.
 # ---------------------
 if (!$db->fetchColumn("SELECT 1 FROM gc_user WHERE mail = ?", [$mail])) {
+    $password = $custom['features']['admin']['password'] ?? 'root';
     $userRow = [
         'uuid'         => Uuid::uuid4()->toString(),
         'name'         => $mail,
         'mail'         => $mail,
-        'password'     => _password_crypt('sha512', isset($custom['admin']['password']) ? $custom['admin']['password'] : 'root', _password_generate_salt(10)),
+        'password'     => _password_crypt('sha512', $password, _password_generate_salt(10)),
         'first_name'   => $custom['features']['admin']['first_name'] ?? 'Staff',
         'last_name'    => $custom['features']['admin']['last_name'] ?? 'Local',
         'profile_id'   => 1,
