@@ -13,7 +13,7 @@ $hasCustom = is_file($pwd . '/build.json');
 
 $ip        = require 'ip.php';
 $ip        = str_replace("\n", '', $ip);
-$extraArgs = $hasCustom ? ' -d' : '';
+$extraArgs = $hasCustom ? ' -d --build' : '';
 $domain    = 'localhost';
 if ($hasCustom) {
     $custom = json_decode(file_get_contents($pwd . '/build.json'), true);
