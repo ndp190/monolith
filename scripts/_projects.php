@@ -2,15 +2,15 @@
 
 namespace go1\monolith\scripts;
 
-$pwd = dirname(__DIR__);
-$custom = file_exists($pwd . '/build.json') ? true : false;
+$pwd       = dirname(__DIR__);
+$hasCustom = file_exists($pwd . '/build.json') ? true : false;
 
-$gh = function ($path) use ($custom) {
+$gh = function ($path) use ($hasCustom) {
     # if custom, change
     #   from git@github.com:go1com/util.git
     #   to   https://github.com/go1com/util.git
 
-    return !$custom ? $path : str_replace('git@github.com:', 'https://github.com/', $path);
+    return !$hasCustom ? $path : str_replace('git@github.com:', 'https://github.com/', $path);
 };
 
 return [
