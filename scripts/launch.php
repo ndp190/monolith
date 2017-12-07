@@ -48,6 +48,18 @@ if ($domain) {
     }
 }
 
+# replace apiom image tag with customized
+$tag = $custom['features']['apiom_tag'] ?? 'master';
+if ('master' !== $tag) {
+    $dockerfilePath = $pwd . '/.data/resources/docker/web/Dockerfile';
+    $dockerfile = file_get_contents($dockerfilePath);
+    $dockerfile = str_replace(
+        'registry.code.go1.com.au/apiom/apiom-ui:master',
+        "registry.code.go1.com.au/apiom/apiom-ui:{$tag}",
+        $dockerfile);
+    file_put_contents($dockerfilePath, $dockerfile);
+}
+
 # ---------------------
 # Start docker compose
 # ---------------------
