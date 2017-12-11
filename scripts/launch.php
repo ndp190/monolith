@@ -50,12 +50,19 @@ if ($domain) {
 
 # replace apiom image tag with customized
 $tag = $custom['features']['apiom_tag'] ?? 'master';
-if ('master' !== $tag) {
+if ('master' !== $tag && !empty($custom['features']['s3_key']) && !empty($custom['features']['s3_secret'])) {
+    // fetch custom apiom local
+    $accessKey = $custom['features']['s3_key'];
+    $secretKey = $custom['features']['s3_secret'];
+    $cmd = "AWS_ACCESS_KEY_ID=$accessKey AWS_SECRET_ACCESS_KEY=$secretKey aws s3 sync s3://apiomtest/$tag-prod/ $pwd/.data/resources/docker/web/apiom";
+
+    passthru($cmd);
+
     $dockerfilePath = $pwd . '/.data/resources/docker/web/Dockerfile';
     $dockerfile = file_get_contents($dockerfilePath);
     $dockerfile = str_replace(
-        'registry.code.go1.com.au/apiom/apiom-ui:master',
-        "registry.code.go1.com.au/apiom/apiom-ui:{$tag}",
+        'COPY --from=ui /apiomui /apiomui',
+        "ADD ./apiom /apiomui",
         $dockerfile);
     file_put_contents($dockerfilePath, $dockerfile);
 }
