@@ -6,14 +6,14 @@ GO1 monolith
 
 ## 1. Dependencies
 
-- docker (at least 17.09.1-ce on MAC OS)
+- docker (at least 17.09.1-ce on MAC OS) & docker-compose
 - git
 - php7 & composer
 - golang:
     - `composer global require symfony/yaml`
     - glide: `curl https://glide.sh/get | sh`
     - `export PATH="/path/to/monolith/scripts:$PATH"`
-- If you are frontend developers: nodejs, npm, bower, grunt.
+- nodejs & npm & bower & grunt
 - /etc/hosts
     - `127.0.0.1	localhost staff.local website.local host portal1.go1.local portal2.go1.local`
 
@@ -22,8 +22,7 @@ GO1 monolith
 ### Build
 
     php scripts/stop.php
-    php scripts/build.php --skip-go --skip-drupal # For backend developer
-    php scripts/build.php --skip-go --skip-drupal # For frontend developer
+    php scripts/build.php --skip-drupal --skip-go
     php scripts/start.php
     php scripts/install.php
 
