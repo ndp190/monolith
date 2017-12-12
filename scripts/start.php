@@ -20,10 +20,4 @@ if ($hasCustom) {
     $domain = !empty($custom['features']['domain']) ? $custom['features']['domain'] : $domain;
 }
 
-if (PHP_OS === 'Darwin') {
-    passthru('docker-sync start');
-    passthru("MONOLITH_HOST_IP='{$ip}' ENV_HOSTNAME={$domain} docker-compose -f docker-compose.yml -f docker-compose-dev.yml up --force-recreate {$extraArgs}");
-}
-elseif (PHP_OS === 'Linux' || PHP_OS === 'Windows') {
-    passthru("MONOLITH_HOST_IP='{$ip}' ENV_HOSTNAME={$domain} docker-compose -f {$pwd}/docker-compose.yml up --force-recreate {$extraArgs}");
-}
+passthru("MONOLITH_HOST_IP='{$ip}' ENV_HOSTNAME={$domain} docker-compose -f {$pwd}/docker-compose.yml up --force-recreate {$extraArgs}");

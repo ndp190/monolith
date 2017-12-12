@@ -6,7 +6,6 @@ GO1 monolith
 
 ## 1. Dependencies
 
-- docker-sync & unison # Mac OS only - https://github.com/EugenMayer/docker-sync/wiki/1.-Installation and OS-Specific link
 - git
 - php7 & composer
 - golang:
