@@ -43,7 +43,7 @@ if ($domain) {
     $fix[] = $pwd . '/.data/resources/docker/web/fix-website.php';
     foreach ($fix as $file) {
         $source = file_get_contents($file);
-        $source = str_replace('http://localhost/GO1', 'http://' . $domain . '/GO1', $source);
+        $source = str_replace('localhost/GO1', $domain . '/GO1', $source);
         file_put_contents($file, $source);
     }
 }
@@ -54,9 +54,11 @@ if ('master' !== $tag && !empty($custom['features']['s3_key']) && !empty($custom
     // fetch custom apiom local
     $accessKey = $custom['features']['s3_key'];
     $secretKey = $custom['features']['s3_secret'];
-    $cmd = "AWS_ACCESS_KEY_ID=$accessKey AWS_SECRET_ACCESS_KEY=$secretKey aws s3 sync s3://apiomtest/$tag-prod/ $pwd/.data/resources/docker/web/apiom";
 
-    passthru($cmd);
+    foreach ([strtolower($tag), strtoupper($tag)] as $_tag) {
+        $cmd = "AWS_ACCESS_KEY_ID=$accessKey AWS_SECRET_ACCESS_KEY=$secretKey aws s3 sync s3://apiomtest/$_tag-prod/ $pwd/.data/resources/docker/web/apiom";
+        passthru($cmd);
+    }
 
     $dockerfilePath = $pwd . '/.data/resources/docker/web/Dockerfile';
     $dockerfile = file_get_contents($dockerfilePath);
