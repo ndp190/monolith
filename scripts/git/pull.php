@@ -7,7 +7,6 @@ require_once __DIR__ . '/../../php/vendor/go1.autoload.php';
 $cmd = implode(' ', $argv);
 $confirm = strpos($cmd, '--confirm') ? true : false;
 $reset = strpos($cmd, '--reset') ? true : false;
-$branch = 'master';
 
 $pwd = dirname(dirname(__DIR__));
 $projects = require __DIR__ . '/../_projects.php';
@@ -17,7 +16,7 @@ $custom = is_file($custom) ? json_decode(file_get_contents($custom), true) : [];
 
 $defaultBranch = 'master';
 
-return call_user_func(function () use ($confirm, $reset, $branch, $pwd, $projects, $custom, $defaultBranch) {
+return call_user_func(function () use ($confirm, $reset, $pwd, $projects, $custom, $defaultBranch) {
     foreach ($projects as $lang => $services) {
         foreach ($services as $name => $path) {
             $do = true;
