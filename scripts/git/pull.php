@@ -9,23 +9,30 @@ $confirm = strpos($cmd, '--confirm') ? true : false;
 $reset = strpos($cmd, '--reset') ? true : false;
 $branch = 'master';
 
-return call_user_func(function () use ($cmd, $confirm, $reset, $branch) {
-    $dir = dirname(dirname(__DIR__));
-    $projects = require __DIR__ . '/../_projects.php';
-    foreach ($projects as $folder => $repositories) {
-        foreach ($repositories as $name => $repo) {
+$pwd = dirname(dirname(__DIR__));
+$projects = require __DIR__ . '/../_projects.php';
+
+$custom = $pwd . '/build.json';
+$custom = is_file($custom) ? json_decode(file_get_contents($custom), true) : [];
+
+$defaultBranch = 'master';
+
+return call_user_func(function () use ($confirm, $reset, $branch, $pwd, $projects, $custom, $defaultBranch) {
+    foreach ($projects as $lang => $services) {
+        foreach ($services as $name => $path) {
             $do = true;
-            $target = "{$dir}/{$folder}/{$name}";
+            $branch = isset($custom['features']['services'][$name]['branch']) ? $custom['features']['services'][$name]['branch'] : $defaultBranch;
+            $target = "$pwd/$lang/$name";
 
             if ($confirm) {
                 echo "Do you want to pull {$name}/{$branch}? [y/n]";
                 $do = 'y' === trim(fgets(STDIN));
             }
 
-            if ($do) {
+            if ($do && is_dir($target)) {
                 $cmd = $reset
-                    ? "cd $target && git reset --hard && git checkout {$branch} && git pull origin {$branch}"
-                    : "cd $target && git checkout {$branch} && git pull origin {$branch}";
+                    ? "cd $target && git reset --hard && git checkout $branch && git pull origin $branch"
+                    : "cd $target && git checkout $branch && git pull origin $branch";
 
                 echo "$cmd\n";
                 passthru($cmd);

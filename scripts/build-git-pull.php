@@ -9,22 +9,21 @@ return function ($pwd, $projects, $custom) {
     foreach ($projects as $lang => $services) {
         foreach ($services as $name => $path) {
             $branch = isset($custom['features']['services'][$name]['branch']) ? $custom['features']['services'][$name]['branch'] : $defaultBranch;
-            $target = ('golang' === $lang) ? "$pwd/$lang/src/vendor/go1/$name" : "$pwd/$lang/$name";
+            $target = "$pwd/$lang/$name";
 
             if (!is_dir($target)) {
                 if ($single) {
-                    echo "git clone -q --single-branch --branch=$branch $path $target\n";
-                    passthru("git clone -q --single-branch --branch=$branch $path $target");
+                    $cmd = "git clone -q --single-branch --branch=$branch $path $target";
                 }
                 else {
-                    echo "git clone -q --branch=$branch $path $target\n";
-                    passthru("git clone -q --branch=$branch $path $target");
+                    $cmd = "git clone -q --branch=$branch $path $target";
                 }
             }
             else {
                 $cmd = "cd $target; git pull origin $branch; cd - >/dev/null";
-                passthru($cmd);
             }
+            echo "$cmd\n";
+            passthru($cmd);
         }
     }
 };
