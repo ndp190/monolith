@@ -18,7 +18,9 @@ foreach ($hooks as $hook) {
     passthru("curl -s -q -X POST '{$hook}' -H 'content-type: application/json' -d '{\"event\": \"start\"}' >/dev/null");
 }
 
-require __DIR__ . '/build.php';
+# ---------------------
+# Domain is still empty at the moment, request to get a domain.
+# ---------------------
 require_once $pwd . '/php/vendor/autoload.php';
 
 $client = new Client;
@@ -35,39 +37,17 @@ if (empty($domain) && isset($custom['get_public_dns_url'][0])) {
 }
 
 # ---------------------
-# Fix hard code in .data/resources/docker/fix-*.php
+# Default domain is localhost, we need to change it when we deploy to cloud.
 # ---------------------
 if ($domain) {
     echo "[x] Setup domain: $domain\n";
-    $fix[] = $pwd . '/.data/resources/docker/web/fix-apiom-ui.php';
-    $fix[] = $pwd . '/.data/resources/docker/web/fix-website.php';
-    foreach ($fix as $file) {
-        $source = file_get_contents($file);
-        $source = str_replace('localhost/GO1', $domain . '/GO1', $source);
-        file_put_contents($file, $source);
-    }
+    call_user_func(require __DIR__ . '/fix-web.php', $pwd, $domain);
 }
 
-# replace apiom image tag with customized
-$tag = $custom['features']['apiom_tag'] ?? 'master';
-if ('master' !== $tag && !empty($custom['features']['s3_key']) && !empty($custom['features']['s3_secret'])) {
-    // fetch custom apiom local
-    $accessKey = $custom['features']['s3_key'];
-    $secretKey = $custom['features']['s3_secret'];
-
-    foreach ([strtolower($tag), strtoupper($tag)] as $_tag) {
-        $cmd = "AWS_ACCESS_KEY_ID=$accessKey AWS_SECRET_ACCESS_KEY=$secretKey aws s3 sync s3://apiomtest/$_tag-prod/ $pwd/.data/resources/docker/web/apiom";
-        passthru($cmd);
-    }
-
-    $dockerfilePath = $pwd . '/.data/resources/docker/web/Dockerfile';
-    $dockerfile = file_get_contents($dockerfilePath);
-    $dockerfile = str_replace(
-        'COPY --from=ui /apiomui /apiomui',
-        "ADD ./apiom /apiomui",
-        $dockerfile);
-    file_put_contents($dockerfilePath, $dockerfile);
-}
+# ---------------------
+# Build every thing (php, web).
+# ---------------------
+require __DIR__ . '/build.php';
 
 # ---------------------
 # Start docker compose
