@@ -10,4 +10,3 @@ infrastructure/*
 dev/*
 nodejs/*
 resources/documentation
-.docker-sync/

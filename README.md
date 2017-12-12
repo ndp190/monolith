@@ -6,7 +6,7 @@ GO1 monolith
 
 ## 1. Dependencies
 
-- docker-sync & unison # Mac OS only - https://github.com/EugenMayer/docker-sync/wiki/1.-Installation and OS-Specific link
+- docker (at least 17.09.1-ce on MAC OS)
 - git
 - php7 & composer
 - golang:
@@ -21,6 +21,7 @@ GO1 monolith
 
 ### Build
 
+    php scripts/stop.php
     php scripts/build.php --skip-go --skip-web --skip-drupal # For backend developer
     php scripts/build.php --skip-go --skip-drupal # For frontend developer
     php scripts/start.php
@@ -28,6 +29,7 @@ GO1 monolith
 
 ### Rebuild
 
+    php scripts/stop.php
     php scripts/pull.php
     php scripts/git/pull.php --confirm # Add --reset if you want to reset the code
     php scripts/clean.php
@@ -35,6 +37,12 @@ GO1 monolith
     cd php && rm composer.lock && composer install -v && cd ..
     php scripts/start.php
     php scripts/install.php
+
+### Remove Data
+
+    php scripts/stop.php
+    php scripts/clear-data.php
+    php scripts/start.php
 
 ## 2. Notes
 
