@@ -168,6 +168,10 @@
                 "./libraries/kv",
                 "/app/libraries/kv"
             ],
+            "go1\\launcher\\": [
+                "./launcher",
+                "/app/launcher"
+            ],
             "go1\\lib\\": [
                 "./lib",
                 "/app/lib"
@@ -199,6 +203,10 @@
             "go1\\natero\\": [
                 "./natero",
                 "/app/natero"
+            ],
+            "go1\\neo4j_builder\\": [
+                "./libraries/neo4j_builder",
+                "/app/libraries/neo4j_builder"
             ],
             "go1\\note\\": [
                 "./note",
@@ -314,7 +322,7 @@
     "require": {
         "algolia/algoliasearch-client-php": "^1.14",
         "aws/aws-sdk-php": "^3.19.12",
-        "beberlei/assert": "^2.5",
+        "beberlei/assert": "^2.6",
         "behat/mink": "^1.7.0",
         "behat/mink-goutte-driver": "^1.2.0",
         "behat/transliterator": "^1.2",
