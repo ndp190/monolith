@@ -37,6 +37,7 @@ return [
         'history'        => 'git@code.go1.com.au:microservices/history.git',
         'index'          => 'git@code.go1.com.au:microservices/index.git',
         'interactive-li' => 'git@code.go1.com.au:microservices/interactive-li.git',
+        'launcher'       => 'git@code.go1.com.au:microservices/launcher.git',
         'lo'             => 'git@code.go1.com.au:microservices/lo.git',
         'lob'            => 'git@code.go1.com.au:microservices/lob.git',
         'low'            => 'git@code.go1.com.au:microservices/low.git',
