@@ -25,10 +25,7 @@ else {
 # Build PHP tools, from now we already have PHP libraries for later uses.
 !strpos($cmd, '--skip-php') && call_user_func(require $pwd . '/scripts/build-php.php', $pwd, $home, $projects);
 
-$skipBuildWeb = false !== strpos($cmd, '--skip-web') || in_array('skip-web', $customOptions);
-if (!$skipBuildWeb) {
-    call_user_func(require $pwd . '/scripts/build-web.php', $pwd, $home);
-}
+call_user_func(require $pwd . '/scripts/build-web.php', $pwd);
 
 if (empty($custom)) {
     !strpos($cmd, '--skip-drupal') && call_user_func(require $pwd . '/scripts/build-drupal.php', $pwd, $home);

@@ -22,7 +22,7 @@ GO1 monolith
 ### Build
 
     php scripts/stop.php
-    php scripts/build.php --skip-go --skip-web --skip-drupal # For backend developer
+    php scripts/build.php --skip-go --skip-drupal # For backend developer
     php scripts/build.php --skip-go --skip-drupal # For frontend developer
     php scripts/start.php
     php scripts/install.php
@@ -33,7 +33,7 @@ GO1 monolith
     php scripts/pull.php
     php scripts/git/pull.php --confirm # Add --reset if you want to reset the code
     php scripts/clean.php
-    php scripts/build.php --skip-web --skip-drupal --skip-go --skip-pull
+    php scripts/build.php --skip-drupal --skip-go --skip-pull
     cd php && rm composer.lock && composer install -v && cd ..
     php scripts/start.php
     php scripts/install.php

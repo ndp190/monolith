@@ -117,6 +117,8 @@ services:
             - './php/:/app/'
             - './.data/nginx/sites-available/:/etc/nginx/sites-available/'
             - './.data/nginx/autoload/:/autoload/'
+            - './web/ui/dist/:/apiomui/'
+            - './web/website/dist/:/website/'
         environment:
             - _DOCKER_RDS_DB_NAME=go1_dev
             - _DOCKER_RDS_HOSTNAME=mysql
