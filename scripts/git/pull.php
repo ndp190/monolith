@@ -5,8 +5,8 @@ namespace go1\monolith\git;
 require_once __DIR__ . '/../../php/vendor/go1.autoload.php';
 
 $cmd = implode(' ', $argv);
-$confirm = strpos($cmd, '--confirm') ? true : false;
-$reset = strpos($cmd, '--reset') ? true : false;
+$confirm = false !== strpos($cmd, '--confirm') ? true : false;
+$reset = false !== strpos($cmd, '--reset') ? true : false;
 
 $pwd = dirname(dirname(__DIR__));
 $projects = require __DIR__ . '/../_projects.php';
