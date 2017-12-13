@@ -11,7 +11,7 @@ $custom = $pwd . '/build.json';
 $custom = is_file($custom) ? json_decode(file_get_contents($custom), true) : [];
 $customOptions = isset($custom['options']) && is_array($custom['options']) ? $custom['options'] : [];
 
-!strpos($cmd, '--skip-pull') && call_user_func(require $pwd . '/scripts/build-git-pull.php', $pwd, $projects, $custom);
+false === strpos($cmd, '--skip-pull') && call_user_func(require $pwd . '/scripts/build-git-pull.php', $pwd, $projects, $custom);
 
 if (isset($custom['gitlab']['username']) && isset($custom['gitlab']['password'])) {
     echo "docker login registry.code.go1.com.au --username={$custom['gitlab']['username']} --password=*******\n";
@@ -23,14 +23,11 @@ else {
 }
 
 # Build PHP tools, from now we already have PHP libraries for later uses.
-!strpos($cmd, '--skip-php') && call_user_func(require $pwd . '/scripts/build-php.php', $pwd, $home, $projects);
+false === strpos($cmd, '--skip-php') && call_user_func(require $pwd . '/scripts/build-php.php', $pwd, $home, $projects);
 
-$skipBuildWeb = false !== strpos($cmd, '--skip-web') || in_array('skip-web', $customOptions);
-if (!$skipBuildWeb) {
-    call_user_func(require $pwd . '/scripts/build-web.php', $pwd, $home);
-}
+call_user_func(require $pwd . '/scripts/build-web.php', $pwd);
 
 if (empty($custom)) {
-    !strpos($cmd, '--skip-drupal') && call_user_func(require $pwd . '/scripts/build-drupal.php', $pwd, $home);
-    !strpos($cmd, '--skip-go') && call_user_func(require $pwd . '/scripts/build-go.php', $pwd, $home, $projects);
+    false === strpos($cmd, '--skip-drupal') && call_user_func(require $pwd . '/scripts/build-drupal.php', $pwd, $home);
+    false === strpos($cmd, '--skip-go') && call_user_func(require $pwd . '/scripts/build-go.php', $pwd, $home, $projects);
 }

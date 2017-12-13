@@ -70,14 +70,14 @@ $scan = function ($base) use (&$scan, &$map) {
     $tree = scandir($base);
 
     foreach ($tree as $node) {
-        if (strpos($node, '.php')) {
+        if (false !== strpos($node, '.php')) {
             echo "  \\- {$node}\n";
 
             $original = file_get_contents("$base/$node");
             $copy = $original;
 
             foreach ($map as $from => $to) {
-                if (strpos($copy, $from)) {
+                if (false !== strpos($copy, $from)) {
                     echo "        \\- {$from} -> {$to}\n";
                     $copy = str_replace($from, $to, $copy);
                 }

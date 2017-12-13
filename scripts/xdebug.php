@@ -10,7 +10,7 @@ require '/autoload/autoload.php';
 
 $cmd = implode(' ', $argv);
 
-if (!strpos($cmd, 'curl')) {
+if (false === strpos($cmd, 'curl')) {
     $curl = file_get_contents(__DIR__ . '/curl.bash');
     $curl = str_replace('#!/usr/bin/env bash', '', $curl);
     $curl = trim($curl);
