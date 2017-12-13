@@ -80,6 +80,7 @@ GO1 monolith
     - .data
     - drupal/gc/test
     - web/ui (if you're not #ui dev)
+    - php/quiz-rpc/bin/
 - To setup xdebug with PHPStorm, please read:
     - [Debug command line](resources/docs/debug-command-line.md)
     - [Debug web](resources/docs/debug-web.md)
