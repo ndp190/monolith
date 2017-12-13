@@ -196,5 +196,43 @@ function create_portal(Connection $db, string $name)
                 ],
             ]),
         ]);
+
+        $db->transactional(
+            function () use ($db, $name) {
+                $db->insert('gc_user', $row = [
+                    'uuid'         => $privateKey = Uuid::uuid4()->toString(),
+                    'instance'     => $name,
+                    'profile_id'   => null,
+                    'mail'         => "user.1@{$name}",
+                    'password'     => md5($privateKey),
+                    'created'      => time(),
+                    'login'        => time(),
+                    'access'       => time(),
+                    'status'       => 1,
+                    'first_name'   => 'Key',
+                    'last_name'    => 'Private',
+                    'allow_public' => 0,
+                    'data'         => '[]',
+                    'timestamp'    => time(),
+                ]);
+
+                $db->insert('gc_user', $row = [
+                    'uuid'         => $publicKey = Uuid::uuid4()->toString(),
+                    'instance'     => $name,
+                    'profile_id'   => null,
+                    'mail'         => "user.0@{$name}",
+                    'password'     => md5($publicKey),
+                    'created'      => time(),
+                    'login'        => time(),
+                    'access'       => time(),
+                    'status'       => 1,
+                    'first_name'   => 'Key',
+                    'last_name'    => 'Public',
+                    'allow_public' => 0,
+                    'data'         => '[]',
+                    'timestamp'    => time(),
+                ]);
+            }
+        );
     }
 }
