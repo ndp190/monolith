@@ -3,7 +3,8 @@ services:
     wkhtmltopdf:
         image: 'registry.code.go1.com.au/microservices/wkhtmltopdf:master'
     mysql:
-        build: ./.data/resources/docker/mysql
+        image: mysql:5.7
+        command: ["mysqld", "--sql-mode=NO_ENGINE_SUBSTITUTION"]
         environment:
             MYSQL_ROOT_PASSWORD: root
             MYSQL_USER: go1
