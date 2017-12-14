@@ -146,7 +146,7 @@ if (!$db->fetchColumn("SELECT 1 FROM gc_user WHERE mail = ?", [$mail])) {
         'access'       => $now,
         'login'        => $now,
         'timestamp'    => $now,
-        'data'         => json_encode(['roles' => [Roles::ROOT]]),
+        'data'         => json_encode(['roles' => [Roles::ROOT, Roles::DEVELOPER]]),
     ];
 
     $accountRow = ['instance' => $domain, 'uuid' => Uuid::uuid4()->toString(), 'data' => json_encode(['roles' => [Roles::ADMIN]])] + $userRow;

@@ -2,13 +2,14 @@
 
 namespace go1\monolith\scripts;
 
-return function ($pwd, $projects, $custom) {
+return function ($pwd, $projects, $projectsMap, $custom) {
     $defaultBranch = 'master';
     $single = !empty($custom);
 
     foreach ($projects as $lang => $services) {
         foreach ($services as $name => $path) {
-            $branch = isset($custom['features']['services'][$name]['branch']) ? $custom['features']['services'][$name]['branch'] : $defaultBranch;
+            $customName = isset($projectsMap[$lang][$name]) ? $projectsMap[$lang][$name] : $name;
+            $branch = isset($custom['features']['services'][$customName]['branch']) ? $custom['features']['services'][$customName]['branch'] : $defaultBranch;
             $target = "$pwd/$lang/$name";
 
             if (!is_dir($target)) {
