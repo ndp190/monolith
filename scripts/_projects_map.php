@@ -2,7 +2,7 @@
 
 namespace go1\monolith\scripts;
 
-$map = [
+return [
     'php/libraries'  => [
         //'graph_mock'     => 'graph-mock',
         'middleware'     => 'middlewares',

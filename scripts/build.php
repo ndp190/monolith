@@ -7,7 +7,7 @@ $pwd = dirname(__DIR__);
 $home = getenv('HOME');
 
 $projects = require __DIR__ . '/_projects.php';
-$projectsMap = require __DIR__ . '/../_projects_map.php';
+$projectsMap = require __DIR__ . '/_projects_map.php';
 $custom = $pwd . '/build.json';
 $custom = is_file($custom) ? json_decode(file_get_contents($custom), true) : [];
 $customOptions = isset($custom['options']) && is_array($custom['options']) ? $custom['options'] : [];
