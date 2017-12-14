@@ -13,7 +13,7 @@ GO1 monolith
     - `composer global require symfony/yaml`
     - glide: `curl https://glide.sh/get | sh`
     - `export PATH="/path/to/monolith/scripts:$PATH"`
-- nodejs & npm & bower & grunt
+- nodejs & npm & bower & grunt & compass & sass
 - /etc/hosts
     - `127.0.0.1	localhost staff.local website.local host portal1.go1.local portal2.go1.local`
 
@@ -47,7 +47,6 @@ GO1 monolith
 
 - `php ./scripts/build.php`: Here are some options:
     - `--skip-php`: Don't run composer commands. 
-    - `--skip-web`: Don't run npm commands.
     - `--skip-drupal`: Don't build drupal code base.
     - `--skip-go`: Don't build golang code base.
 - If you are frontend developers:

@@ -13,6 +13,7 @@ $gh = function ($path) use ($hasCustom) {
     return !$hasCustom ? $path : str_replace('git@github.com:', 'https://github.com/', $path);
 };
 
+// @note all keys (e.g. app, ui, website, assessor) under lang (e.g. php, web, golang) must be unique.
 return [
     'php'            => [
         'activity'       => 'git@code.go1.com.au:microservices/activity.git',

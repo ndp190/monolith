@@ -10,21 +10,23 @@ $reset = false !== strpos($cmd, '--reset') ? true : false;
 
 $pwd = dirname(dirname(__DIR__));
 $projects = require __DIR__ . '/../_projects.php';
+$projectsMap = require __DIR__ . '/../_projects_map.php';
 
 $custom = $pwd . '/build.json';
 $custom = is_file($custom) ? json_decode(file_get_contents($custom), true) : [];
 
 $defaultBranch = 'master';
 
-return call_user_func(function () use ($confirm, $reset, $pwd, $projects, $custom, $defaultBranch) {
+return call_user_func(function () use ($confirm, $reset, $pwd, $projects, $projectsMap, $custom, $defaultBranch) {
     foreach ($projects as $lang => $services) {
         foreach ($services as $name => $path) {
             $do = true;
-            $branch = isset($custom['features']['services'][$name]['branch']) ? $custom['features']['services'][$name]['branch'] : $defaultBranch;
+            $customName = isset($projectsMap[$lang][$name]) ? $projectsMap[$lang][$name] : $name;
+            $branch = isset($custom['features']['services'][$customName]['branch']) ? $custom['features']['services'][$customName]['branch'] : $defaultBranch;
             $target = "$pwd/$lang/$name";
 
             if ($confirm) {
-                echo "Do you want to pull {$name}/{$branch}? [y/n]";
+                echo "Do you want to pull branch '$branch' of $lang/$name? [y/n]";
                 $do = 'y' === trim(fgets(STDIN));
             }
 
