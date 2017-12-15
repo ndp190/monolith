@@ -22,7 +22,8 @@ $client = new Client;
 $pwd = dirname(__DIR__);
 $custom = $pwd . '/build.json';
 $custom = is_file($custom) ? json_decode(file_get_contents($custom), true) : [];
-$domain = $custom['features']['domain'] ?? 'default.go1.local';
+$instance = $custom['features']['domain'] ?? 'default.go1.local';
+$domain = $custom['features']['domain'] ?? 'localhost';
 $mail = $custom['features']['admin']['mail'] ?? 'staff@go1.co';
 
 # ---------------------
@@ -63,19 +64,20 @@ while ($retries < 5) {
 $databases = $con->getSchemaManager()->listDatabases();
 !in_array('go1_dev', $databases) && $con->getSchemaManager()->createDatabase('go1_dev');
 !in_array('quiz_dev', $databases) && $con->getSchemaManager()->createDatabase('quiz_dev');
+!in_array('scorm_dev', $databases) && $con->getSchemaManager()->createDatabase('scorm_dev');
 
 # ---------------------
 # POST $service/install
 # ---------------------
-function serviceInstall(Client $client, $name)
+function serviceInstall(Client $client, $domain, $name)
 {
     $retries = 0;
     $MAX_TRY = 5;
 
     while (1) {
         try {
-            $client->get("http://localhost/GO1/{$name}");
-            $client->get($url = "http://localhost/GO1/{$name}/install", ['http_errors' => false]);
+            $client->get("http://{$domain}/GO1/{$name}");
+            $client->get($url = "http://{$domain}/GO1/{$name}/install", ['http_errors' => false]);
             $client->post($url, ['http_errors' => false]);
 
             return;
@@ -110,18 +112,18 @@ foreach (array_keys($projects['php']) as $name) {
         continue;
     }
 
-    echo "[install] GET|POST http://localhost/GO1/{$name}/install\n";
-    serviceInstall($client, $name);
+    echo "[install] GET|POST http://{$domain}/GO1/{$name}/install\n";
+    serviceInstall($client, $domain, $name);
 }
 
-echo "[install] POST http://localhost/GO1/staff/api/install\n";
-$client->post('http://localhost/GO1/staff/api/install', ['http_errors' => false]);
+echo "[install] POST http://{$domain}/GO1/staff/api/install\n";
+$client->post("http://{$domain}/GO1/staff/api/install", ['http_errors' => false]);
 
 # ---------------------
 # Create portals
 # ---------------------
 $db = $c['dbs']['core'];
-create_portal($db, $domain);
+create_portal($db, $instance);
 create_portal($db, $accountsName);
 
 # ---------------------
@@ -149,7 +151,7 @@ if (!$db->fetchColumn("SELECT 1 FROM gc_user WHERE mail = ?", [$mail])) {
         'data'         => json_encode(['roles' => [Roles::ROOT, Roles::DEVELOPER]]),
     ];
 
-    $accountRow = ['instance' => $domain, 'uuid' => Uuid::uuid4()->toString(), 'data' => json_encode(['roles' => [Roles::ADMIN]])] + $userRow;
+    $accountRow = ['instance' => $instance, 'uuid' => Uuid::uuid4()->toString(), 'data' => json_encode(['roles' => [Roles::ADMIN]])] + $userRow;
     $db->insert('gc_user', $userRow);
     $userId = $db->lastInsertId('gc_user');
     $db->insert('gc_user', $accountRow);
