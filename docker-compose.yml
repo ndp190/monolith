@@ -110,6 +110,7 @@ services:
             - es
             - wkhtmltopdf
             - minio
+            - scormengine
         extra_hosts:
             - host:${MONOLITH_HOST_IP}
         ports:
@@ -145,8 +146,8 @@ services:
             # Quiz's environments
             - APP_ENV=monolith
             # Scorm's environments
-            - SCORMENGINE_ENDPOINT=http://host:9999/ScormEngineInterface/api/v1
-            - SCORMENGINE_LAUNCH=http://host:9999
+            - SCORMENGINE_ENDPOINT=http://scormengine/ScormEngineInterface/api/v1
+            - SCORMENGINE_LAUNCH=http://${ENV_HOSTNAME}:9999
             # Quiz rpc's environments
             - DB_WRITE_DSN=mysql:host=mysql;dbname=quiz_dev;charset=utf8
             - DB_WRITE_USERNAME=root
@@ -161,7 +162,7 @@ services:
             - AWS_SECRET_ACCESS_KEY=HamwosY54TnccBOXES4+BI2k3toOAlhk5Ecjfi1I
             - AWS_S3_VERSION=latest
             - AWS_S3_BUCKET=monolith
-            - AWS_S3_ENDPOINT=http://host:9900
+            - AWS_S3_ENDPOINT=http://${ENV_HOSTNAME}:9900
             - AWS_DEFAULT_REGION=us-east-1
             - ENV_HOSTNAME=${ENV_HOSTNAME}
         depends_on:
