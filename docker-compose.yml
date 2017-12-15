@@ -114,6 +114,8 @@ services:
             - host:${MONOLITH_HOST_IP}
         ports:
             - '80:80'
+            - '3000:3000'
+            - '3001:3001'
         volumes:
             - './php/:/app/'
             - './.data/nginx/sites-available/:/etc/nginx/sites-available/'
