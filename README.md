@@ -15,7 +15,7 @@ GO1 monolith
     - `export PATH="/path/to/monolith/scripts:$PATH"`
 - nodejs & npm & bower & grunt & compass & sass
 - /etc/hosts
-    - `127.0.0.1	localhost staff.local website.local host portal1.go1.local portal2.go1.local`
+    - `127.0.0.1	localhost portal1.go1.local portal2.go1.local`
 
 ## 2. Usage
 
@@ -60,11 +60,11 @@ GO1 monolith
     - http://localhost:9090/ — #ui live
     - http://localhost/v3/ — #api
     - http://localhost/GO1/user/ — #service
-    - http://staff.local — #staff, with some notes:
+    - http://localhost:3000 — #staff, with some notes:
         - You can use staff@go1.co/root to login.
     - http://localhost:7474/ - #neo4j admin
     - http://localhost:15672/ - rabbitMQ admin
-    - http://website.local — #website, to create portal:
+    - http://localhost:3001 — #website, to create portal:
         -Click 'Free Trial' -> email 'admin@portal1.go1.local' -> click 'Get Started' to add new portal.
     - http://localhost:9900/minio - #minio (s3) file management.
     - http://portal1.go1.local/ or http://portal1.go1.local:9090 to test issues related to domain.
