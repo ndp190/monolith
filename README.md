@@ -23,7 +23,7 @@ GO1 monolith
 
     php scripts/stop.php
     php scripts/build.php --skip-drupal --skip-go
-    php scripts/start.php
+    php scripts/start.php # Add --with-scorm if you want to start with scorm engine
     php scripts/install.php
 
 ### Rebuild
@@ -34,7 +34,7 @@ GO1 monolith
     php scripts/clean.php
     php scripts/build.php --skip-drupal --skip-go --skip-pull
     cd php && rm composer.lock && composer install -v && cd ..
-    php scripts/start.php
+    php scripts/start.php # Add --with-scorm if you want to start with scorm engine
     php scripts/install.php
 
 ### Remove Data
@@ -69,7 +69,7 @@ GO1 monolith
     - http://localhost:9900/minio - #minio (s3) file management.
     - http://portal1.go1.local/ or http://portal1.go1.local:9090 to test issues related to domain.
 - If you need to work with scorm engine:
-    - `php scripts/start-scorm.php`
+    - `php scripts/start.php --with-scorm`
 - Run test cases without Docker:
     ```
     $ cd php/[MICROSERVICE]

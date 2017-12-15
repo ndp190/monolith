@@ -5,14 +5,11 @@ namespace go1\monolith\scripts;
 $pwd       = dirname(__DIR__);
 $hasCustom = is_file($pwd . '/build.json');
 
-@mkdir("$pwd/.data");
-@mkdir("$pwd/.data/nginx");
-@mkdir("$pwd/.data/nginx/sites-available");
+@mkdir("$pwd/.data/nginx/sites-available", 0777, true);
 @unlink("$pwd/.data/nginx/sites-available/default.conf");
 @copy("$pwd/.data/nginx/app.conf", "$pwd/.data/nginx/sites-available/default.conf");
 
 $ip        = require 'ip.php';
-$ip        = str_replace("\n", '', $ip);
 $extraArgs = $hasCustom ? ' -d --build' : '';
 $domain    = 'localhost';
 if ($hasCustom) {
@@ -20,4 +17,7 @@ if ($hasCustom) {
     $domain = !empty($custom['features']['domain']) ? $custom['features']['domain'] : $domain;
 }
 
-passthru("MONOLITH_HOST_IP='{$ip}' ENV_HOSTNAME={$domain} docker-compose -f {$pwd}/docker-compose.yml up --force-recreate {$extraArgs}");
+$cmd = implode(' ', $argv);
+$scorm = false !== strpos($cmd, '--with-scorm') ? "-f {$pwd}/docker-compose-scorm.yml" : '';
+
+passthru("MONOLITH_HOST_IP='{$ip}' ENV_HOSTNAME={$domain} docker-compose -f {$pwd}/docker-compose.yml {$scorm} up --force-recreate {$extraArgs}");

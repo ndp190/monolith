@@ -47,17 +47,17 @@ if ($domain) {
 # ---------------------
 # Build every thing (php, web).
 # ---------------------
-require __DIR__ . '/build.php';
+passthru('php ' . __DIR__ . '/build.php');
 
 # ---------------------
 # Start docker compose
 # ---------------------
-require __DIR__ . '/start.php';
+passthru('php ' . __DIR__ . '/start.php --with-scorm');
 
 # ---------------------
 # Install database & setup default data.
 # ---------------------
-require __DIR__ . '/install.php';
+passthru('php ' . __DIR__ . '/install.php');
 
 # ---------------------
 # hook.completed
