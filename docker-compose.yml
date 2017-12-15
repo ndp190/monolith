@@ -110,7 +110,6 @@ services:
             - es
             - wkhtmltopdf
             - minio
-            - scormengine
         extra_hosts:
             - host:${MONOLITH_HOST_IP}
         ports:
@@ -145,9 +144,6 @@ services:
             - WKHTMLTOPDF_URL=http://wkhtmltopdf
             # Quiz's environments
             - APP_ENV=monolith
-            # Scorm's environments
-            - SCORMENGINE_ENDPOINT=http://scormengine/ScormEngineInterface/api/v1
-            - SCORMENGINE_LAUNCH=http://${ENV_HOSTNAME}:9999
             # Quiz rpc's environments
             - DB_WRITE_DSN=mysql:host=mysql;dbname=quiz_dev;charset=utf8
             - DB_WRITE_USERNAME=root
