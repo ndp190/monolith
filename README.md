@@ -15,7 +15,7 @@ GO1 monolith
     - `export PATH="/path/to/monolith/scripts:$PATH"`
 - nodejs & npm & bower & grunt & compass & sass
 - /etc/hosts
-    - `127.0.0.1	localhost portal1.go1.local portal2.go1.local`
+    - `127.0.0.1	localhost host portal1.go1.local portal2.go1.local`
 
 ## 2. Usage
 

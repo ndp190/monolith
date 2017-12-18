@@ -123,8 +123,8 @@ $client->post("http://{$domain}/GO1/staff/api/install", ['http_errors' => false]
 # Create portals
 # ---------------------
 $db = $c['dbs']['core'];
-create_portal($db, $instance);
-create_portal($db, $accountsName);
+createPortal($db, $instance);
+createPortal($db, $accountsName);
 
 # ---------------------
 # Create user for #staff.
@@ -167,9 +167,9 @@ if (!$db->fetchColumn("SELECT 1 FROM gc_user WHERE mail = ?", [$mail])) {
     ]);
 }
 
-passthru('docker exec -it monolith_web_1 /app/quiz/bin/console migrations:migrate --no-interaction -e monolith');
+installThroughContainers();
 
-function create_portal(Connection $db, string $name)
+function createPortal(Connection $db, string $name)
 {
     if (!$db->fetchColumn('SELECT 1 FROM gc_instance WHERE title = ?', [$name])) {
         $db->insert('gc_instance', [
@@ -237,4 +237,9 @@ function create_portal(Connection $db, string $name)
             }
         );
     }
+}
+
+function installThroughContainers() {
+    passthru('docker exec -it monolith_web_1 /app/quiz/bin/console migrations:migrate --no-interaction -e monolith');
+    passthru('docker exec -it monolith_scormengine_1 /install.sh');
 }

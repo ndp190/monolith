@@ -11,7 +11,7 @@ $hasCustom = is_file($pwd . '/build.json');
 
 $ip        = require 'ip.php';
 $extraArgs = $hasCustom ? ' -d --build' : '';
-$domain    = 'localhost';
+$domain    = 'host';
 if ($hasCustom) {
     $custom = json_decode(file_get_contents($pwd . '/build.json'), true);
     $domain = !empty($custom['features']['domain']) ? $custom['features']['domain'] : $domain;
