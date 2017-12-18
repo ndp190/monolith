@@ -20,5 +20,5 @@ if ($hasCustom) {
 $cmd = implode(' ', $argv);
 $scorm = false !== strpos($cmd, '--with-scorm') ? "-f {$pwd}/docker-compose-scorm.yml" : '';
 
-passthru("php {$pwd}/infrastructure/cron/build-cron.php");
+passthru("MONOLITH=1 php {$pwd}/infrastructure/cron/build-cron.php");
 passthru("MONOLITH_HOST_IP='{$ip}' ENV_HOSTNAME={$domain} docker-compose -f {$pwd}/docker-compose.yml {$scorm} up --force-recreate {$extraArgs}");
