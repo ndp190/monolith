@@ -1,5 +1,11 @@
 version: '2'
 services:
+    cron:
+        build: ./infrastructure/cron
+        mem_limit: 64M
+        environment:
+          - SSH_PRIVATE_KEY
+          - SERVICE_URL_PATTERN=http://web/GO1/SERVICE
     wkhtmltopdf:
         image: 'registry.code.go1.com.au/microservices/wkhtmltopdf:master'
     mysql:
