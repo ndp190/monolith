@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<properties>
+  <entry key="xAPIFilesPath">/Library/WebServer/Documents/xAPI/courses/${TenantName}</entry>
+  <src>
+    <entry key="DataPersistenceEngine">mysql</entry>
+    <entry key="SystemConnectionString">jdbc:mysql://mysql/scorm_dev?user=root&amp;password=root|com.mysql.jdbc.Driver</entry>
+    <entry key="TenantConnectionString">jdbc:mysql://mysql/scorm_dev?user=root&amp;password=root|com.mysql.jdbc.Driver</entry>
+    <!-- <entry key="DatabaseSchema">specify database schema</entry> -->
+  </src>
+</properties>

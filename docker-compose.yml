@@ -164,6 +164,7 @@ services:
             - AWS_SECRET_ACCESS_KEY=HamwosY54TnccBOXES4+BI2k3toOAlhk5Ecjfi1I
             - AWS_S3_VERSION=latest
             - AWS_S3_BUCKET=monolith
+            # s3 endpoint is a special url. It must be accessible from web and scormengine containers, and browser.
             - AWS_S3_ENDPOINT=http://${ENV_HOSTNAME}:9900
             - AWS_DEFAULT_REGION=us-east-1
             - ENV_HOSTNAME=${ENV_HOSTNAME}
