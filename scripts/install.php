@@ -8,9 +8,7 @@ use go1\util\portal\PortalHelper;
 use go1\util\user\Roles;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ConnectException;
-use Pimple\Container;
 use Ramsey\Uuid\Uuid;
-use Silex\Provider\DoctrineServiceProvider;
 
 require_once __DIR__ . '/../php/vendor/go1.autoload.php';
 require_once __DIR__ . '/../php/user/domain/password.php';
@@ -23,44 +21,10 @@ $pwd = dirname(__DIR__);
 $custom = $pwd . '/build.json';
 $custom = is_file($custom) ? json_decode(file_get_contents($custom), true) : [];
 $instance = $custom['features']['domain'] ?? 'default.go1.local';
-$domain = $custom['features']['domain'] ?? 'localhost';
 $mail = $custom['features']['admin']['mail'] ?? 'staff@go1.co';
 
-# ---------------------
-# If the table is not yet available => create it.
-# ---------------------
-$c = (new Container)->register(new DoctrineServiceProvider, ['dbs.options' => [
-    'install' => $base = [
-        'host'          => '127.0.0.1',
-        'user'          => 'root',
-        'password'      => 'root',
-        'port'          => '3306',
-        'driver'        => 'pdo_mysql',
-        'driverOptions' => [1002 => 'SET NAMES utf8'],
-    ],
-    'core'    => $base + ['dbname' => 'go1_dev'],
-]]);
+$con = require $pwd . '/scripts/wait.php';
 
-$con = $c['dbs']['install'];
-// wait for MySQL, sometime mysql can not ready immediately after docker-compose task
-$retries = 0;
-$MAX_TRY = 5;
-while ($retries < 5) {
-    try {
-        $con->ping();
-        break;
-    }
-    catch (\Exception $e) {
-        $retries += 1;
-        if ($retries > $MAX_TRY) {
-            echo "MySQL > hang up.\n";
-            exit(1);
-        }
-        $t = pow(2, $retries);
-        echo " - MySQL > waiting {$t}s . {$e->getMessage()}\n";
-        sleep($t);
-    }
-}
 $databases = $con->getSchemaManager()->listDatabases();
 !in_array('go1_dev', $databases) && $con->getSchemaManager()->createDatabase('go1_dev');
 !in_array('quiz_dev', $databases) && $con->getSchemaManager()->createDatabase('quiz_dev');
@@ -69,15 +33,15 @@ $databases = $con->getSchemaManager()->listDatabases();
 # ---------------------
 # POST $service/install
 # ---------------------
-function serviceInstall(Client $client, $domain, $name)
+function serviceInstall(Client $client, $name)
 {
     $retries = 0;
     $MAX_TRY = 5;
 
     while (1) {
         try {
-            $client->get("http://{$domain}/GO1/{$name}");
-            $client->get($url = "http://{$domain}/GO1/{$name}/install", ['http_errors' => false]);
+            $client->get("http://localhost/GO1/{$name}");
+            $client->get($url = "http://localhost/GO1/{$name}/install", ['http_errors' => false]);
             $client->post($url, ['http_errors' => false]);
 
             return;
@@ -112,12 +76,12 @@ foreach (array_keys($projects['php']) as $name) {
         continue;
     }
 
-    echo "[install] GET|POST http://{$domain}/GO1/{$name}/install\n";
-    serviceInstall($client, $domain, $name);
+    echo "[install] GET|POST http://localhost/GO1/{$name}/install\n";
+    serviceInstall($client, $name);
 }
 
-echo "[install] POST http://{$domain}/GO1/staff/api/install\n";
-$client->post("http://{$domain}/GO1/staff/api/install", ['http_errors' => false]);
+echo "[install] POST http://localhost/GO1/staff/api/install\n";
+$client->post("http://localhost/GO1/staff/api/install", ['http_errors' => false]);
 
 # ---------------------
 # Create portals

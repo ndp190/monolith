@@ -1,0 +1,48 @@
+<?php
+
+namespace go1\monolith\scripts;
+
+use Doctrine\DBAL\Connection;
+use Pimple\Container;
+use Silex\Provider\DoctrineServiceProvider;
+
+require_once __DIR__ . '/../php/vendor/go1.autoload.php';
+error_reporting(E_ERROR | E_PARSE);
+
+function is_json($string) {
+  return !empty($string) && is_string($string) && is_object(json_decode($string)) && json_last_error() == 0;
+}
+
+$c = (new Container)->register(new DoctrineServiceProvider, ['dbs.options' => [
+    'install' => $base = [
+        'host'          => '127.0.0.1',
+        'user'          => 'root',
+        'password'      => 'root',
+        'port'          => '3306',
+        'driver'        => 'pdo_mysql',
+        'driverOptions' => [1002 => 'SET NAMES utf8'],
+    ],
+    'core'    => $base + ['dbname' => 'go1_dev'],
+]]);
+/** @var Connection $con */
+$con = $c['dbs']['install'];
+
+while (true) {
+    try {
+        $mysqlAvailable = $con->ping();
+    }
+    catch (\Exception $exception) {
+        $mysqlAvailable = false;
+    }
+    $data = file_get_contents('http://localhost/GO1/interactive-li');
+    $webAvailable = is_json($data);
+    $info = json_decode($data);
+    $scormengineAvailable = $webAvailable && $info->scormengine;
+    if ($webAvailable && $scormengineAvailable && $mysqlAvailable) {
+        break;
+    }
+    echo "Waiting for web, scormengine and mysql. Sleep in 5 seconds...\n";
+    sleep(5);
+}
+
+return $con;
