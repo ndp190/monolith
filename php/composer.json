@@ -228,6 +228,10 @@
                 "./payment",
                 "/app/payment"
             ],
+            "go1\\po\\": [
+                "./po",
+                "/app/po"
+            ],
             "go1\\portal\\": [
                 "./portal",
                 "/app/portal"

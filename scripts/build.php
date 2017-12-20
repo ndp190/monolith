@@ -12,7 +12,7 @@ $custom = $pwd . '/build.json';
 $custom = is_file($custom) ? json_decode(file_get_contents($custom), true) : [];
 $customOptions = isset($custom['options']) && is_array($custom['options']) ? $custom['options'] : [];
 
-false === strpos($cmd, '--skip-pull') && call_user_func(require $pwd . '/scripts/build-git-pull.php', $pwd, $projects, $projectsMap, $custom);
+call_user_func(require $pwd . '/scripts/build-git-pull.php', $pwd, $projects, $projectsMap, $custom, false === strpos($cmd, '--skip-pull'));
 
 if (isset($custom['gitlab']['username']) && isset($custom['gitlab']['password'])) {
     echo "docker login registry.code.go1.com.au --username={$custom['gitlab']['username']} --password=*******\n";
