@@ -52,6 +52,7 @@ return [
         'onboard'        => 'git@code.go1.com.au:microservices/onboard.git',
         'payment'        => 'git@code.go1.com.au:microservices/payment.git',
         'portal'         => 'git@code.go1.com.au:microservices/portal.git',
+        'po'             => 'git@code.go1.com.au:microservices/po.git',
         'quiz'           => 'git@code.go1.com.au:microservices/quiz.git',
         'quiz-rpc'       => 'git@code.go1.com.au:microservices/quiz-rpc.git',
         'report'         => 'git@code.go1.com.au:microservices/report.git',
