@@ -2,7 +2,7 @@
   "author": "First And Last <who@created-this.env>",
   "created": 1513821438,
   "gitlab": {
-    "#comment": "Only authenticated user can pull the docker images."
+    "#comment": "Only authenticated user can pull the docker images.",
     "username": "STRING",
     "password": "STRING"
   },
