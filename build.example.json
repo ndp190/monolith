@@ -1,11 +1,12 @@
 {
-  "author": "Name <email>",
+  "author": "First And Last <who@created-this.env>",
   "created": 1513821438,
   "gitlab": {
     "#comment": "Only authenticated user can pull the docker images."
     "username": "STRING",
     "password": "STRING"
   },
+  "#comment_0": "=====================",
   "#comment_1": "Supporting events:",
   "#comment_2": " Before building start: POST $url -d { event: 'start'                  }",
   "#comment_3": " Every 1 minute:        POST $url -d { event: 'builing'                }",
