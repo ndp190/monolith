@@ -1,0 +1,32 @@
+{
+  "author": "Name <email>",
+  "created": 1513821438,
+  "gitlab": {
+    "#comment": "Only authenticated user can pull the docker images."
+    "username": "STRING",
+    "password": "STRING"
+  },
+  "#comment_1": "Supporting events:",
+  "#comment_2": " Before building start: POST $url -d { event: 'start'                  }",
+  "#comment_3": " Every 1 minute:        POST $url -d { event: 'builing'                }",
+  "#comment_4": " On building completed: POST $url -d { event: 'completed'              }",
+  "#comment_5": " On error:              POST $url -d { event: 'error', 'error': STRING }",
+  "webhooks": [
+    "https://api.go1.co/builder/webhook?token=STRING&buildID=STRING"
+  ],
+  "features": {
+    "domain": "ec2-11-22-333-44.ap-southeast-2.compute.amazonaws.com",
+    "admin": {
+      "first_name": "First",
+      "last_name":  "Last",
+      "mail":       "example@email.com",
+      "password":  "ExamplePassword"
+    },
+    "services": {
+      "#comment-branch":  "Use custom branch for a certain service.",
+      "mail":             { "branch": "GO1P-12345" },
+      "#comment-exclude": "TODO: Our system has a lot of services, in most cases we don't need, just exclude unneeded services our of our testing environment.",
+      "staff":            { "excluded": true }
+    }
+  }
+}
