@@ -140,6 +140,10 @@
                 "./explore",
                 "/app/explore"
             ],
+            "go1\\featuretoggle\\": [
+                "./featuretoggle",
+                "/app/featuretoggle"
+            ],
             "go1\\finder\\": [
                 "./finder",
                 "/app/finder"
@@ -366,7 +370,9 @@
         "php-curl-class/php-curl-class": "^7.3",
         "phpunit/phpunit": "^6.0",
         "pimple/pimple": "^v3.0.0",
+        "predis/service-provider": "^2.0",
         "psr/log": "~1.0",
+        "qandidate/toggle": "^1.1",
         "ralouphie/mimey": "^1.0",
         "ramsey/uuid": "^3.4",
         "rappasoft/laravel-helpers": "dev-master",

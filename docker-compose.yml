@@ -19,6 +19,10 @@ services:
             - './.data/mysql:/var/lib/mysql'
         ports:
             - '3306:3306'
+    redis:
+        image: redis:alpine
+        ports:
+            - '6379:6379'
     neo4j:
         image: neo4j
         environment:
@@ -140,6 +144,7 @@ services:
             - _DOCKER_CACHE_BACKEND=memcached
             - _DOCKER_CACHE_HOST=memcached
             - _DOCKER_CACHE_PORT=11211
+            - _DOCKER_REDIS_DSN=tcp://redis:6379
             - MEMCACHED_HOST=memcached
             - MEMCACHED_PORT=11211
             - _DOCKER_QUEUE_HOST=queue

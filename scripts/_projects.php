@@ -33,6 +33,7 @@ return [
         'entity'         => 'git@code.go1.com.au:microservices/entity.git',
         'exim'           => 'git@code.go1.com.au:microservices/exim.git',
         'explore'        => 'git@code.go1.com.au:microservices/explore.git',
+        'featuretoggle'  => 'git@code.go1.com.au:microservices/featuretoggles.git',
         'finder'         => 'git@code.go1.com.au:microservices/finder.git',
         'graphin'        => 'git@code.go1.com.au:microservices/graphin.git',
         'history'        => 'git@code.go1.com.au:microservices/history.git',
