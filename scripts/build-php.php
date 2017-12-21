@@ -6,19 +6,21 @@ function buildComposerJson($pwd, $projects, $baseDir = 'php')
 {
     $json = json_decode(file_get_contents("$pwd/php/composer.json"), true);
     foreach (array_keys($projects) as $service) {
+        # @todo Remove this hack after updating mbosi-export service.
         if (($baseDir === 'php/libraries' && $service === 'report_helpers') || ($baseDir === 'php' && $service === 'mbosi-export')) {
-            // @todo Remove this hack after updating mbosi-export service.
             continue;
         }
+
         if ($baseDir === 'php' && strpos($service, '-') !== false) {
             $namespace = 'go1\\' . str_replace('-', '', ucwords($service, '-')) . '\\';
         }
         else {
             $namespace = "go1\\$service\\";
         }
+
         $json['autoload']['psr-4'][$namespace] = [
-            $baseDir === 'php' ? "./$service" : "./libraries/$service",
-            $baseDir === 'php' ? "/app/$service" : "/app/libraries/$service",
+            ($baseDir === 'php') ? "./$service" : "./libraries/$service",
+            ($baseDir === 'php') ? "/app/$service" : "/app/libraries/$service",
         ];
 
         if (file_exists("$pwd/$baseDir/$service/composer.json")) {
