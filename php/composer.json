@@ -132,6 +132,10 @@
                 "./entity",
                 "/app/entity"
             ],
+            "go1\\etc\\": [
+                "./etc",
+                "/app/etc"
+            ],
             "go1\\exim\\": [
                 "./exim",
                 "/app/exim"

@@ -27,22 +27,26 @@ $c = (new Container)->register(new DoctrineServiceProvider, ['dbs.options' => [
 /** @var Connection $con */
 $con = $c['dbs']['install'];
 
-while (true) {
-    try {
-        $mysqlAvailable = $con->ping();
+return function ($withScorm) use ($con) {
+    $waitFor = $withScorm ? 'web, mysql and scormengine' : 'web and mysql';
+    while (true) {
+        try {
+            $mysqlAvailable = $con->ping();
+        }
+        catch (\Exception $exception) {
+            $mysqlAvailable = false;
+        }
+        $data = file_get_contents('http://localhost/GO1/interactive-li');
+        $webAvailable = is_json($data);
+        $info = json_decode($data);
+        $scormengineAvailable = $webAvailable && $info->scormengine;
+        $allAvailable = $withScorm ? $webAvailable && $scormengineAvailable && $mysqlAvailable : $webAvailable && $mysqlAvailable;
+        if ($allAvailable) {
+            break;
+        }
+        echo "Waiting for $waitFor. Sleep in 5 seconds...\n";
+        sleep(5);
     }
-    catch (\Exception $exception) {
-        $mysqlAvailable = false;
-    }
-    $data = file_get_contents('http://localhost/GO1/interactive-li');
-    $webAvailable = is_json($data);
-    $info = json_decode($data);
-    $scormengineAvailable = $webAvailable && $info->scormengine;
-    if ($webAvailable && $scormengineAvailable && $mysqlAvailable) {
-        break;
-    }
-    echo "Waiting for web, scormengine and mysql. Sleep in 5 seconds...\n";
-    sleep(5);
-}
 
-return $con;
+    return $con;
+};
