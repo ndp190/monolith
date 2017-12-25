@@ -57,7 +57,7 @@ passthru('php ' . __DIR__ . '/start.php --with-scorm');
 # ---------------------
 # Install database & setup default data.
 # ---------------------
-passthru('php ' . __DIR__ . '/install.php');
+passthru('php ' . __DIR__ . '/install.php --with-scorm');
 
 # ---------------------
 # hook.completed
