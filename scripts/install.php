@@ -23,7 +23,10 @@ $custom = is_file($custom) ? json_decode(file_get_contents($custom), true) : [];
 $instance = $custom['features']['domain'] ?? 'default.go1.local';
 $mail = $custom['features']['admin']['mail'] ?? 'staff@go1.co';
 
-$con = require $pwd . '/scripts/wait.php';
+$cmd = implode(' ', $argv);
+$withScorm = false !== strpos($cmd, '--with-scorm');
+
+$con = call_user_func(require $pwd . '/scripts/wait.php', $withScorm);
 
 $databases = $con->getSchemaManager()->listDatabases();
 !in_array('go1_dev', $databases) && $con->getSchemaManager()->createDatabase('go1_dev');
@@ -131,7 +134,7 @@ if (!$db->fetchColumn("SELECT 1 FROM gc_user WHERE mail = ?", [$mail])) {
     ]);
 }
 
-installThroughContainers();
+installThroughContainers($withScorm);
 
 function createPortal(Connection $db, string $name)
 {
@@ -203,7 +206,9 @@ function createPortal(Connection $db, string $name)
     }
 }
 
-function installThroughContainers() {
+function installThroughContainers($withScorm = false) {
     passthru('docker exec -it monolith_web_1 /app/quiz/bin/console migrations:migrate --no-interaction -e monolith');
-    passthru('docker exec -it monolith_scormengine_1 /install.sh');
+    if ($withScorm) {
+        passthru('docker exec -it monolith_scormengine_1 /install.sh');
+    }
 }

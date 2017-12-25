@@ -35,7 +35,7 @@ GO1 monolith
     php scripts/build.php --skip-drupal --skip-go --skip-pull
     cd php && rm composer.lock && composer install -v && cd ..
     php scripts/start.php # Add --with-scorm if you want to start with scorm engine
-    php scripts/install.php
+    php scripts/install.php # Add --with-scorm if you want to install scorm engine
 
 ### Remove Data
 
