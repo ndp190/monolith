@@ -10,7 +10,7 @@ $hasCustom = is_file($pwd . '/build.json');
 @copy("$pwd/.data/nginx/app.conf", "$pwd/.data/nginx/sites-available/default.conf");
 
 $ip        = require 'ip.php';
-$extraArgs = $hasCustom ? ' -d' : '';
+$extraArgs = $hasCustom ? ' -d --build' : '';
 $domain    = 'host';
 if ($hasCustom) {
     $custom = json_decode(file_get_contents($pwd . '/build.json'), true);
@@ -21,5 +21,4 @@ $cmd = implode(' ', $argv);
 $scorm = false !== strpos($cmd, '--with-scorm') ? "-f {$pwd}/docker-compose-scorm.yml" : '';
 
 passthru("MONOLITH=1 php {$pwd}/infrastructure/cron/build-cron.php");
-passthru("MONOLITH_HOST_IP='{$ip}' ENV_HOSTNAME={$domain} docker-compose -f {$pwd}/docker-compose.yml build --pull");
 passthru("MONOLITH_HOST_IP='{$ip}' ENV_HOSTNAME={$domain} docker-compose -f {$pwd}/docker-compose.yml {$scorm} up --force-recreate {$extraArgs}");
