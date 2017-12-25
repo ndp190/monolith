@@ -36,10 +36,10 @@ return function ($withScorm) use ($con) {
         catch (\Exception $exception) {
             $mysqlAvailable = false;
         }
-        $data = file_get_contents('http://localhost/GO1/interactive-li');
-        $webAvailable = is_json($data);
-        $info = json_decode($data);
-        $scormengineAvailable = $webAvailable && $info->scormengine;
+        $webData = file_get_contents('http://localhost/GO1/interactive-li');
+        $webAvailable = is_json($webData);
+        $scormData = file_get_contents('http://localhost:9999');
+        $scormengineAvailable = false !== strpos($scormData, 'Apache Tomcat');
         $allAvailable = $withScorm ? $webAvailable && $scormengineAvailable && $mysqlAvailable : $webAvailable && $mysqlAvailable;
         if ($allAvailable) {
             break;

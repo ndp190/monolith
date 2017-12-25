@@ -45,6 +45,11 @@ if ($domain) {
 }
 
 # ---------------------
+# Make sure all images are updated (some images are cached).
+# ---------------------
+passthru('php ' . __DIR__ . '/pull.php');
+
+# ---------------------
 # Build every thing (php, web).
 # ---------------------
 passthru('php ' . __DIR__ . '/build.php');
