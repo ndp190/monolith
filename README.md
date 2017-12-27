@@ -108,5 +108,4 @@ GO1 monolith
 
 ## 4. TODO
 
-- Install #cron (GO1P-16718)
 - Install #realtime (GO1P-xxxxx)
