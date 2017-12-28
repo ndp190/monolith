@@ -71,7 +71,6 @@ return [
         'subscription'   => 'git@code.go1.com.au:microservices/subscription.git',
         'support'        => 'git@code.go1.com.au:microservices/support.git',
         'user'           => 'git@code.go1.com.au:microservices/user.git',
-        'video'          => 'git@code.go1.com.au:microservices/video.git',
         'vote'           => 'git@code.go1.com.au:microservices/vote.git',
     ],
     'php/libraries'  => [
@@ -137,3 +136,4 @@ return [
 #   'status'   => 'git@code.go1.com.au:microservices/status.git',
 #   'uptime'   => 'git@code.go1.com.au:microservices/uptime.git',
 #   'workshop' => 'git@code.go1.com.au:microservices/workshop.git',
+#   'video'    => 'git@code.go1.com.au:microservices/video.git',
