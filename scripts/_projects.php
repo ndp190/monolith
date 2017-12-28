@@ -63,6 +63,7 @@ return [
         's3'             => 'git@code.go1.com.au:microservices/s3.git',
         'scorm'          => 'git@code.go1.com.au:microservices/scorm.git',
         'scraping'       => 'git@code.go1.com.au:microservices/scraping.git',
+        'share'          => 'git@code.go1.com.au:microservices/share.git',
         'sms'            => 'git@code.go1.com.au:microservices/sms.git',
         'social'         => 'git@code.go1.com.au:microservices/social.git',
         'sso'            => 'git@code.go1.com.au:microservices/sso.git',
