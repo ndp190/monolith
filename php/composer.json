@@ -276,6 +276,10 @@
                 "./scraping",
                 "/app/scraping"
             ],
+            "go1\\share\\": [
+                "./share",
+                "/app/share"
+            ],
             "go1\\sms\\": [
                 "./sms",
                 "/app/sms"
