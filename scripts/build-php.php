@@ -83,5 +83,5 @@ function buildComposerJson($pwd, $projects, $baseDir = 'php')
 return function ($pwd, $home, $projects) {
     buildComposerJson($pwd, $projects['php'], 'php');
     buildComposerJson($pwd, $projects['php/libraries'], 'php/libraries');
-    passthru("cd $pwd/php && composer install -vvv --no-scripts -vvv");
+    passthru("cd $pwd/php && composer install -vvv --no-scripts --ignore-platform-reqs -vvv");
 };
