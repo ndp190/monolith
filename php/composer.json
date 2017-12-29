@@ -320,6 +320,10 @@
                 "./libraries/util",
                 "/app/libraries/util"
             ],
+            "go1\\command\\": [
+                "./libraries/command",
+                "/app/libraries/command"
+            ],
             "go1\\video\\": [
                 "./video",
                 "/app/video"
