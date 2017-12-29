@@ -79,6 +79,7 @@ return [
         # 'schema'         => 'git@code.go1.com.au:go1/schema.git',
         # 'stash'          => 'git@code.go1.com.au:microservices/stash.git',
         'app'            => $gh('git@github.com:go1com/app.git'),
+        'command'        => $gh('git@github.com:go1com/command_bus.git'),
         'edge'           => $gh('git@github.com:go1com/edge.git'),
         'flood'          => $gh('git@github.com:go1com/flood.git'),
         'jwt_middleware' => $gh('git@github.com:go1com/JwtMiddleware.git'),
