@@ -73,7 +73,7 @@ services:
         environment:
             - QUEUE_URL=amqp://go1:go1@queue:5672/
             - SERVICE_URL_PATTERN=http://web/GO1/SERVICE/consume
-            - CONSUMER_activity=asm.#,note.#,group.#,user.#,portal.#,award.#,enrolment.#,lo.#,eck.#,plan.#,ro.#,coupon.#,credit.#,contract.#
+            - CONSUMER_activity=asm.#,note.#,group.#,user.#,portal.#,award.#,enrolment.#,lo.#,eck.#,plan.#,ro.#,coupon.#,credit.#,contract.#,manual-record.#
             - CONSUMER_algolia=lo.create,lo.update,lo.delete,vote.#
             - CONSUMER_api=do.public-api.webhook-request,lo.#,enrolment.#,user.#,ro.create,ro.delete
             - CONSUMER_assessor=lo.delete,enrolment.delete,enrolment.create
