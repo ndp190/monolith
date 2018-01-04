@@ -84,7 +84,7 @@ return [
         'flood'          => $gh('git@github.com:go1com/flood.git'),
         'jwt_middleware' => $gh('git@github.com:go1com/JwtMiddleware.git'),
         'kv'             => $gh('git@github.com:go1com/kv.git'),
-        'middleware'     => 'git@code.go1.com.au:go1/middlewares.git',
+        'middleware'     => $gh('git@github.com:go1com/middlewares.git'),
         'neo4j_builder'  => $gh('git@github.com:go1com/neo4j_builder.git'),
         'report_helpers' => $gh('git@github.com:go1com/report_helpers.git'),
         'util'           => $gh('git@github.com:go1com/util.git'),
