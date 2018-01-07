@@ -55,7 +55,7 @@ deploy:production:
   tags: ["deploy", "docker"]
   cache: { paths: ["vendor/"] }
   variables:
-    SERVICE_TAGS: "dev"
+    SERVICE_TAGS: "production"
     SERVICE_80_NAME: "xxxxx"
     MEM: 128M
     _DOCKER_ENV: "production"
