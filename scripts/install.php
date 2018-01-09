@@ -139,6 +139,7 @@ installThroughContainers($withScorm);
 function createPortal(Connection $db, string $name)
 {
     if (!$db->fetchColumn('SELECT 1 FROM gc_instance WHERE title = ?', [$name])) {
+        echo "[install] Creating portal {$name}\n";
         $db->insert('gc_instance', [
             'title'      => $name,
             'status'     => 1,
@@ -166,6 +167,7 @@ function createPortal(Connection $db, string $name)
             ]),
         ]);
 
+        echo "[install] Creating user.0 and user.1 for portal {$name}\n";
         $db->transactional(
             function () use ($db, $name) {
                 $db->insert('gc_user', $row = [
@@ -207,8 +209,10 @@ function createPortal(Connection $db, string $name)
 }
 
 function installThroughContainers($withScorm = false) {
+    echo "[install] Install quiz database\n";
     passthru('docker exec -it monolith_web_1 /app/quiz/bin/console migrations:migrate --no-interaction -e monolith');
     if ($withScorm) {
+        echo "[install] Install scormengine database\n";
         passthru('docker exec -it monolith_scormengine_1 /install.sh');
     }
 }
