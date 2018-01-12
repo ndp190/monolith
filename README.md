@@ -98,6 +98,7 @@ GO1 monolith
 - `php scripts/migration/util/fix-namespace.php` - fix namespace errors, because not all microservices come with new
   version of util library.
 - `php scripts/ecs-ssh.php staging staff-dev` - SSH to #staff-dev ECS.
+    - `php scripts/ecs-ssh.php staging api-v3-master` - SSH to #gateway-dev ECS.
 - Dummy: Generate dummy content for testing.
     1. Make sure the services are up. Ref (4).
     - `docker exec monolith_web_1 bash -c 'php /scripts/dummy/generate.php'`
