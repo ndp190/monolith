@@ -102,20 +102,19 @@ if (!$db->fetchColumn("SELECT 1 FROM gc_user WHERE mail = ?", [$mail])) {
     $password = $custom['features']['admin']['password'] ?? 'root';
     $userRow = [
         'uuid'         => Uuid::uuid4()->toString(),
-        'name'         => $mail,
+        'instance'     => $accountsName,
+        'profile_id'   => 1,
         'mail'         => $mail,
         'password'     => _password_crypt('sha512', $password, _password_generate_salt(10)),
-        'first_name'   => $custom['features']['admin']['first_name'] ?? 'Staff',
-        'last_name'    => $custom['features']['admin']['last_name'] ?? 'Local',
-        'profile_id'   => 1,
-        'instance'     => $accountsName,
-        'allow_public' => 0,
-        'status'       => 1,
         'created'      => $now = time(),
         'access'       => $now,
         'login'        => $now,
-        'timestamp'    => $now,
+        'status'       => 1,
+        'first_name'   => $custom['features']['admin']['first_name'] ?? 'Staff',
+        'last_name'    => $custom['features']['admin']['last_name'] ?? 'Local',
         'data'         => json_encode(['roles' => [Roles::ROOT, Roles::DEVELOPER]]),
+        'timestamp'    => $now,
+        'allow_public' => 0,
     ];
 
     $accountRow = ['instance' => $instance, 'uuid' => Uuid::uuid4()->toString(), 'data' => json_encode(['roles' => [Roles::ADMIN]])] + $userRow;
@@ -208,7 +207,8 @@ function createPortal(Connection $db, string $name)
     }
 }
 
-function installThroughContainers($withScorm = false) {
+function installThroughContainers($withScorm = false)
+{
     echo "[install] Install quiz database\n";
     echo shell_exec('docker exec -it monolith_web_1 /app/quiz/bin/console migrations:migrate --no-interaction -e monolith');
     if ($withScorm) {
