@@ -178,5 +178,6 @@ services:
             - AWS_S3_ENDPOINT=http://${ENV_HOSTNAME}:9900
             - AWS_DEFAULT_REGION=us-east-1
             - ENV_HOSTNAME=${ENV_HOSTNAME}
+            - GATEWAY_URL=http://${ENV_HOSTNAME}/v3/
         depends_on:
             - queue
