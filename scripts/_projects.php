@@ -23,7 +23,6 @@ return [
         'assignment'     => 'git@code.go1.com.au:microservices/assignment.git',
         'award'          => 'git@code.go1.com.au:microservices/award.git',
         'cloudinary'     => 'git@code.go1.com.au:microservices/cloudinary.git',
-        'console'        => 'git@code.go1.com.au:go1/console.git',
         'contract'       => 'git@code.go1.com.au:microservices/contract.git',
         'coupon'         => 'git@code.go1.com.au:microservices/coupon.git',
         'credit'         => 'git@code.go1.com.au:microservices/credit.git',
@@ -130,6 +129,7 @@ return [
 # PHP
 # ---
 #   'batch'    => 'git@code.go1.com.au:microservices/batch.git',
+#   'console'        => 'git@code.go1.com.au:go1/console.git',
 #   'endpoint' => 'git@code.go1.com.au:microservices/endpoint.git',
 #   'lib'      => 'git@code.go1.com.au:microservices/lib.git',
 #   'natero'   => 'git@code.go1.com.au:microservices/natero.git',
