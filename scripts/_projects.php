@@ -73,9 +73,6 @@ return [
         'vote'           => 'git@code.go1.com.au:microservices/vote.git',
     ],
     'php/libraries'  => [
-        # 'clients'        => 'git@code.go1.com.au:go1/clients.git',
-        # 'graph_mock'     => 'git@code.go1.com.au:go1/graph-mock.git',
-        # 'schema'         => 'git@code.go1.com.au:go1/schema.git',
         # 'stash'          => 'git@code.go1.com.au:microservices/stash.git',
         'app'            => $gh('git@github.com:go1com/app.git'),
         'command'        => $gh('git@github.com:go1com/command_bus.git'),
@@ -104,7 +101,6 @@ return [
         'website'          => 'git@code.go1.com.au:web/go1web.git',
     ],
     'infrastructure' => [
-        #'memcached'     => 'git@code.go1.com.au:server/memcached.git',
         'ci'            => 'git@code.go1.com.au:go1/ci.git',
         'cron'          => 'git@code.go1.com.au:microservices/cron.git',
         'deploy_helper' => $gh('git@github.com:go1com/deploy_helper.git'),
@@ -115,7 +111,6 @@ return [
         'wait-for-it'   => 'https://github.com/vishnubob/wait-for-it.git',
     ],
     'nodejs'         => [
-        #'report' => 'git@code.go1.com.au:microservices/report-index.git',
         # @TODO: realtime
     ],
     'resources'      => [
@@ -138,3 +133,10 @@ return [
 #   'uptime'   => 'git@code.go1.com.au:microservices/uptime.git',
 #   'workshop' => 'git@code.go1.com.au:microservices/workshop.git',
 #   'video'    => 'git@code.go1.com.au:microservices/video.git',
+# NodeJS
+# ---
+#   'report' => 'git@code.go1.com.au:microservices/report-index.git',
+#
+# infrastructure
+# ---
+#   'memcached'     => 'git@code.go1.com.au:server/memcached.git',
