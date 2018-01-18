@@ -101,7 +101,6 @@ return [
         'website'          => 'git@code.go1.com.au:web/go1web.git',
     ],
     'infrastructure' => [
-        'ci'            => 'git@code.go1.com.au:go1/ci.git',
         'cron'          => 'git@code.go1.com.au:microservices/cron.git',
         'deploy_helper' => $gh('git@github.com:go1com/deploy_helper.git'),
         'docker-php'    => 'https://github.com/go1com/docker-php.git',
