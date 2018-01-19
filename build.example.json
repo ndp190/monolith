@@ -29,5 +29,9 @@
       "#comment-exclude": "TODO: Our system has a lot of services, in most cases we don't need, just exclude unneeded services our of our testing environment.",
       "staff":            { "excluded": true }
     }
-  }
+  },
+  "background": false,
+  "debug": false,
+  "rebuild": false,
+  "scorm": false
 }
