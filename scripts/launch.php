@@ -37,14 +37,6 @@ if (empty($domain) && isset($custom['get_public_dns_url'][0])) {
 }
 
 # ---------------------
-# Default domain is localhost, we need to change it when we deploy to cloud.
-# ---------------------
-if ($domain) {
-    echo "[x] Setup domain: $domain\n";
-    call_user_func(require __DIR__ . '/fix-web.php', $pwd, $domain);
-}
-
-# ---------------------
 # Make sure all images are updated (some images are cached).
 # ---------------------
 passthru('php ' . __DIR__ . '/pull.php');
