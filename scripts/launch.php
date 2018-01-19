@@ -57,12 +57,12 @@ passthru('php ' . __DIR__ . '/build.php');
 # ---------------------
 # Start docker compose
 # ---------------------
-passthru('php ' . __DIR__ . '/start.php --with-scorm');
+passthru('php ' . __DIR__ . '/start.php');
 
 # ---------------------
 # Install database & setup default data.
 # ---------------------
-passthru('php ' . __DIR__ . '/install.php --with-scorm');
+passthru('php ' . __DIR__ . '/install.php');
 
 # ---------------------
 # hook.completed

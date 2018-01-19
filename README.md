@@ -23,8 +23,8 @@ GO1 monolith
 
     php scripts/stop.php
     php scripts/build.php --skip-drupal --skip-go
-    php scripts/start.php # Add --with-scorm if you want to start with scorm engine
-    php scripts/install.php # Add --with-scorm if you want to install scorm engine
+    php scripts/start.php
+    php scripts/install.php
 
 ### Rebuild
 
@@ -34,8 +34,8 @@ GO1 monolith
     php scripts/clean.php
     php scripts/build.php --skip-drupal --skip-go --skip-pull
     cd php && rm composer.lock && composer install -v && cd ..
-    php scripts/start.php # Add --with-scorm if you want to start with scorm engine
-    php scripts/install.php # Add --with-scorm if you want to install scorm engine
+    php scripts/start.php
+    php scripts/install.php
 
 ### Remove Data
 
@@ -68,8 +68,8 @@ GO1 monolith
         -Click 'Free Trial' -> email 'admin@portal1.go1.local' -> click 'Get Started' to add new portal.
     - http://localhost:9900/minio - #minio (s3) file management.
     - http://portal1.go1.local/ or http://portal1.go1.local:9090 to test issues related to domain.
-- If you need to work with scorm engine:
-    - `php scripts/start.php --with-scorm`
+- If you need to work with scorm engine: Edit build.json
+    - `"scorm": true`
 - Run test cases without Docker:
     ```
     $ cd php/[MICROSERVICE]

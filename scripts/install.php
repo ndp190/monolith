@@ -23,10 +23,7 @@ $custom = is_file($custom) ? json_decode(file_get_contents($custom), true) : [];
 $instance = $custom['features']['domain'] ?? 'default.go1.local';
 $mail = $custom['features']['admin']['mail'] ?? 'staff@go1.co';
 
-$cmd = implode(' ', $argv);
-$withScorm = false !== strpos($cmd, '--with-scorm');
-
-$con = call_user_func(require $pwd . '/scripts/wait.php', $withScorm);
+$con = call_user_func(require $pwd . '/scripts/wait.php', !empty($custom['scorm']));
 
 $databases = $con->getSchemaManager()->listDatabases();
 !in_array('go1_dev', $databases) && $con->getSchemaManager()->createDatabase('go1_dev');
