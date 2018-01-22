@@ -208,9 +208,9 @@ function createPortal(Connection $db, string $name)
 function installThroughContainers($withScorm = false)
 {
     echo "[install] Install quiz database\n";
-    echo shell_exec('docker exec -it monolith_web_1 /app/quiz/bin/console migrations:migrate --no-interaction -e monolith');
+    passthru('docker exec monolith_web_1 /app/quiz/bin/console migrations:migrate --no-interaction -e monolith');
     if ($withScorm) {
         echo "[install] Install scormengine database\n";
-        echo shell_exec('docker exec -it monolith_scormengine_1 /install.sh');
+        passthru('docker exec monolith_scormengine_1 /install.sh');
     }
 }
