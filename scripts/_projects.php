@@ -47,6 +47,7 @@ return [
         'mail'           => 'git@code.go1.com.au:microservices/mail.git',
         'mbosi-export'   => 'git@code.go1.com.au:microservices/mbosi-export.git',
         'migration'      => 'git@code.go1.com.au:microservices/migration.git',
+        'my-team'        => 'git@code.go1.com.au:microservices/my-team.git',
         'note'           => 'git@code.go1.com.au:microservices/note.git',
         'notify'         => 'git@code.go1.com.au:microservices/notify.git',
         'oembed'         => 'git@code.go1.com.au:microservices/oembed.git',
