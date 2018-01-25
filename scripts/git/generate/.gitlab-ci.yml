@@ -1,70 +1,130 @@
-before_script:
-  - eval $(ssh-agent -s)
-  - ssh-add <(echo "$SSH_PRIVATE_KEY")
-  - mkdir -p ~/.ssh
-  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+image: go1com/ci-php:php7
 
-phpunit:
+# Predefined scopes
+.autoscale-runner: &autoscale-runner
+  retry: 1
+  tags:
+    - autoscale
+
+.setup-ssh-agent: &setup-ssh-agent
+  before_script:
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | ssh-add -
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+
+stages:
+  - build
+  - test
+  - package
+  - deploy
+  - dev
+  - release
+  - staging
+  - production
+
+build:composer:
+  stage: build
   tags: ["php7", "phpunit", "composer"]
   cache: { paths: ["vendor/"] }
-  script: composer install -q --no-dev && phpunit --coverage-text --colors=never
+  artifacts: { paths: ["vendor/"] }
+  script: composer install -q --no-dev
+  except:
+    - "tags"
+
+test:phpunit:
+  stage: test
+  tags: ["php7", "phpunit", "composer"]
+  script: phpunit --coverage-text --colors=never
+  except:
+    - "tags"
+
+package:docker:
+  image: go1com/ci-deploy
+  stage: package
+  <<: *autoscale-runner
+  <<: *setup-ssh-agent
+  script:
+    - export TAG_NAME=`date +"%Y%m%d"`-${CI_PIPELINE_ID}
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG $CI_REGISTRY_IMAGE:$TAG_NAME
+    - docker push $CI_REGISTRY_IMAGE:$TAG_NAME
+  only: ["master", "/^hotfix-.*$/"]
+  except:
+    - "tags"
+  dependencies:
+    - build:composer
 
 deploy:master:
-  type: deploy
-  only: ["DISABLED-master"]
-  tags: ["deploy", "docker"]
-  cache: { paths: ["vendor/"] }
+  image: go1com/ci-deploy
+  stage: dev
+  <<: *autoscale-runner
+  environment:
+    name: master
+    url: https://api-dev.go1.co/xxxxx-service/
   variables:
     SERVICE_TAGS: "dev"
     SERVICE_80_NAME: "xxxxx"
     MEM: 64M
+    DOCKER_TAG: "master"
     _DOCKER_ENV: "dev"
   script:
-  - composer install --no-dev
-  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
-  - docker build -t ${CI_REGISTRY_IMAGE}:${CI_BUILD_REF_NAME} .
-  - docker push ${CI_REGISTRY_IMAGE}:${CI_BUILD_REF_NAME}
-  - ecs-cli configure --region ${AWS_DEFAULT_REGION} --access-key ${AWS_ACCESS_KEY_ID} --secret-key ${AWS_SECRET_ACCESS_KEY} --cluster staging
-  - ecs-cli compose --file docker-compose.yml --project-name xxxxx-dev service up
-  # - curl -sSL -o deploy_helper.phar https://github.com/go1com/deploy_helper/releases/download/v0.3/deploy_helper.phar
-  # - php deploy_helper.phar dev xxxxx
+    - ecs-cli configure --region ${AWS_DEFAULT_REGION} --access-key ${AWS_ACCESS_KEY_ID} --secret-key ${AWS_SECRET_ACCESS_KEY} --cluster staging
+    - ecs-cli compose --file docker-compose.yml --project-name xxxxx-dev service up
+  only: ["master"]
+  dependencies:
+    - package:docker
+
+create:releasetag:
+  stage: release
+  <<: *autoscale-runner
+  script:
+    - export TAG_NAME=`date +"%Y%m%d"`-${CI_PIPELINE_ID}
+    - 'curl -i -XPOST -H "PRIVATE-TOKEN: $GITLAB_TOKEN" -H "SUDO: $GITLAB_USER_LOGIN" "https://code.go1.com.au/api/v4/projects/$CI_PROJECT_ID/repository/tags?tag_name=$TAG_NAME&ref=$CI_COMMIT_SHA"'
+  only: ["master", "/^hotfix-.*$/"]
 
 deploy:staging:
-  type: deploy
-  only: ["DISABLED-staging"]
-  tags: ["deploy", "docker"]
-  cache: { paths: ["vendor/"] }
+  image: go1com/ci-deploy
+  stage: staging
+  <<: *autoscale-runner
   variables:
-    SERVICE_TAGS: "dev"
+    SERVICE_TAGS: "staging"
     SERVICE_80_NAME: "xxxxx"
     MEM: 64M
     _DOCKER_ENV: "staging"
+  environment:
+    name: staging
+    url: https://api-staging.go1.co/xxxxx-service/
   script:
-  - composer install --no-dev
-  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
-  - docker build -t ${CI_REGISTRY_IMAGE}:${CI_BUILD_REF_NAME} .
-  - docker push ${CI_REGISTRY_IMAGE}:${CI_BUILD_REF_NAME}
+  - export DOCKER_TAG=${CI_COMMIT_TAG}
+  - echo "Deploy Staging service using Dockerimage ${DOCKER_TAG}"
   - ecs-cli configure --region ${AWS_DEFAULT_REGION} --access-key ${AWS_ACCESS_KEY_ID} --secret-key ${AWS_SECRET_ACCESS_KEY} --cluster staging
   - ecs-cli compose --file docker-compose.yml --project-name xxxxx-staging service up
   # - curl -sSL -o deploy_helper.phar https://github.com/go1com/deploy_helper/releases/download/v0.3/deploy_helper.phar
   # - php deploy_helper.phar staging xxxxx
+  when: manual
+  only: ["tags"]
 
 deploy:production:
-  type: deploy
-  only: ["DISABLED-production"]
-  tags: ["deploy", "docker"]
-  cache: { paths: ["vendor/"] }
+  image: go1com/ci-deploy
+  stage: production
+  <<: *autoscale-runner
   variables:
     SERVICE_TAGS: "production"
     SERVICE_80_NAME: "xxxxx"
     MEM: 128M
     _DOCKER_ENV: "production"
+  environment:
+    name: production
+    url: https://api.go1.co/xxxxx-service/
   script:
-  - composer install --no-dev
-  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
-  - docker build -t ${CI_REGISTRY_IMAGE}:${CI_BUILD_REF_NAME} .
-  - docker push ${CI_REGISTRY_IMAGE}:${CI_BUILD_REF_NAME}
+  - export DOCKER_TAG=${CI_COMMIT_TAG}
+  - echo "Deploy Production service using Dockerimage ${DOCKER_TAG}"
   - ecs-cli configure --region ${AWS_DEFAULT_REGION} --access-key ${AWS_ACCESS_KEY_ID} --secret-key ${AWS_SECRET_ACCESS_KEY} --cluster production
   - ecs-cli compose --file docker-compose.yml --project-name xxxxx-production service up
   # - curl -sSL -o deploy_helper.phar https://github.com/go1com/deploy_helper/releases/download/v0.3/deploy_helper.phar
   # - php deploy_helper.phar production xxxxx
+  when: manual
+  only: ["tags"]
