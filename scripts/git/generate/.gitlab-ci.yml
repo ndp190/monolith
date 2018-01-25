@@ -77,7 +77,6 @@ deploy:master:
     MEM: 64M
     DOCKER_TAG: "master"
     _DOCKER_ENV: "dev"
-    _DOCKER_REDIS_DSN: $REDIS_DSN
   script:
     - ecs-cli configure --region ${AWS_DEFAULT_REGION} --access-key ${AWS_ACCESS_KEY_ID} --secret-key ${AWS_SECRET_ACCESS_KEY} --cluster staging
     - ecs-cli compose --file docker-compose.yml --project-name xxxxx-dev service up
@@ -102,7 +101,6 @@ deploy:staging:
     SERVICE_80_NAME: "xxxxx"
     MEM: 64M
     _DOCKER_ENV: "staging"
-    _DOCKER_REDIS_DSN: $REDIS_DSN
   environment:
     name: staging
     url: https://api-staging.go1.co/xxxxx-service/
@@ -125,7 +123,6 @@ deploy:production:
     SERVICE_80_NAME: "xxxxx"
     MEM: 128M
     _DOCKER_ENV: "production"
-    _DOCKER_REDIS_DSN: $REDIS_DSN
   environment:
     name: production
     url: https://api.go1.co/xxxxx-service/
@@ -138,4 +135,3 @@ deploy:production:
   # - php deploy_helper.phar production xxxxx
   when: manual
   only: ["tags"]
- 
