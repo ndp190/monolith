@@ -1,18 +1,17 @@
 version: "2"
 services:
   web:
-    image: registry.code.go1.com.au/microservices/xxxxx:${CI_BUILD_REF_NAME}
+    image: ${CI_REGISTRY_IMAGE}:${DOCKER_TAG}
     mem_limit: $MEM
     ports: ["80"]
-    volumes_from: ["data"]
     environment:
       - SERVICE_TAGS
       - SERVICE_80_NAME
+      - _DOCKER_ENV
       - _DOCKER_ACCOUNTS_NAME
       - _DOCKER_CACHE_BACKEND
       - _DOCKER_CACHE_HOST
       - _DOCKER_CACHE_PORT
-      - _DOCKER_ENV
       - _DOCKER_QUEUE_HOST
       - _DOCKER_QUEUE_PASSWORD
       - _DOCKER_QUEUE_PORT
