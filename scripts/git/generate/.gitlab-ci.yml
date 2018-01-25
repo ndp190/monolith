@@ -32,13 +32,6 @@ build:composer:
   except:
     - "tags"
 
-test:lint:
-  stage: test
-  tags: ["php7", "phpunit"]
-  script: find domain controller App.php -name '*.inc' -o -name '*.php' -print0 | xargs -0 -n1 php -l
-  except:
-    - "tags"
-
 test:phpunit:
   stage: test
   tags: ["php7", "phpunit", "composer"]
