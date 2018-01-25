@@ -123,7 +123,7 @@ deploy:production:
   variables:
     SERVICE_TAGS: "production"
     SERVICE_80_NAME: "xxxxx"
-    MEM: 64M
+    MEM: 128M
     _DOCKER_ENV: "production"
     _DOCKER_REDIS_DSN: $REDIS_DSN
   environment:
