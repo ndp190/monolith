@@ -130,11 +130,14 @@ services:
             - host:${MONOLITH_HOST_IP}
         ports:
             - '80:80'
+            - '443:443'
             - '3000:3000'
             - '3001:3001'
         volumes:
             - './php/:/app/'
-            - './.data/nginx/sites-available/:/etc/nginx/sites-available/'
+            - './.data/nginx/snippets/:/etc/nginx/snippets/'
+            - './.data/nginx/certs/:/etc/nginx/certs/'
+            - './.data/nginx/sites-available/default.conf:/etc/nginx/sites-available/default.conf'
             - './.data/nginx/autoload/:/autoload/'
             - './web/ui/dist/:/apiomui/'
             - './web/website/dist/:/website/'

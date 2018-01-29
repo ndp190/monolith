@@ -1,0 +1,8 @@
+version: '2'
+services:
+    web:
+        volumes:
+            - './.data/nginx/snippets/:/etc/nginx/snippets/'
+            - './.data/nginx/certs/:/etc/nginx/certs/'
+            - './.data/nginx/sites-available/default-https.conf:/etc/nginx/sites-available/default.conf'
+
