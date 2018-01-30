@@ -33,5 +33,6 @@
   "background": false,
   "debug": false,
   "rebuild": false,
-  "scorm": false
+  "scorm": false,
+  "https": true
 }
