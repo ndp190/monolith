@@ -36,6 +36,10 @@
                 "./mbosi-export/./tests",
                 "/app/mbosi-export/./tests"
             ],
+            "go1\\MyTeam\\": [
+                "./my-team",
+                "/app/my-team"
+            ],
             "go1\\QuizRpc\\": [
                 "./quiz-rpc",
                 "/app/quiz-rpc"
@@ -211,6 +215,10 @@
             "go1\\migration\\": [
                 "./migration",
                 "/app/migration"
+            ],
+            "go1\\my_team\\": [
+                "./my-team/./",
+                "/app/my-team/./"
             ],
             "go1\\natero\\": [
                 "./natero",
