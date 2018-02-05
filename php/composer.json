@@ -36,10 +36,6 @@
                 "./mbosi-export/./tests",
                 "/app/mbosi-export/./tests"
             ],
-            "go1\\MyTeam\\": [
-                "./my-team",
-                "/app/my-team"
-            ],
             "go1\\QuizRpc\\": [
                 "./quiz-rpc",
                 "/app/quiz-rpc"
@@ -331,6 +327,10 @@
             "go1\\util\\": [
                 "./libraries/util",
                 "/app/libraries/util"
+            ],
+            "go1\\util_es\\": [
+                "./libraries/util_es",
+                "/app/libraries/util_es"
             ],
             "go1\\video\\": [
                 "./video",
