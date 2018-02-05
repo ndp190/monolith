@@ -11,17 +11,19 @@ function buildComposerJson($pwd, $projects, $baseDir = 'php')
             continue;
         }
 
-        if ($baseDir === 'php' && strpos($service, '-') !== false) {
-            $namespace = 'go1\\' . str_replace('-', '', ucwords($service, '-')) . '\\';
-        }
-        else {
-            $namespace = "go1\\$service\\";
-        }
+        if ($service !== 'my-team') {
+            if ($baseDir === 'php' && strpos($service, '-') !== false) {
+                $namespace = 'go1\\' . str_replace('-', '', ucwords($service, '-')) . '\\';
+            }
+            else {
+                $namespace = "go1\\$service\\";
+            }
 
-        $json['autoload']['psr-4'][$namespace] = [
-            ($baseDir === 'php') ? "./$service" : "./libraries/$service",
-            ($baseDir === 'php') ? "/app/$service" : "/app/libraries/$service",
-        ];
+            $json['autoload']['psr-4'][$namespace] = [
+                ($baseDir === 'php') ? "./$service" : "./libraries/$service",
+                ($baseDir === 'php') ? "/app/$service" : "/app/libraries/$service",
+            ];
+        }
 
         if (file_exists("$pwd/$baseDir/$service/composer.json")) {
             $sub = json_decode(file_get_contents("$pwd/$baseDir/{$service}/composer.json"), true);

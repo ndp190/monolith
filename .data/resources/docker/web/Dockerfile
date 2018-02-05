@@ -2,7 +2,7 @@ FROM go1com/php:7-nginx
 
 RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS \
     && apk --update add supervisor \
-    && pecl install -o -f xdebug-beta \
+    && pecl install -o -f xdebug \
     && docker-php-ext-enable xdebug \
     && apk del .build-deps
 

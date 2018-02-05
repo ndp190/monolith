@@ -212,6 +212,10 @@
                 "./migration",
                 "/app/migration"
             ],
+            "go1\\my_team\\": [
+                "./my-team/./",
+                "/app/my-team/./"
+            ],
             "go1\\natero\\": [
                 "./natero",
                 "/app/natero"
@@ -323,6 +327,10 @@
             "go1\\util\\": [
                 "./libraries/util",
                 "/app/libraries/util"
+            ],
+            "go1\\util_es\\": [
+                "./libraries/util_es",
+                "/app/libraries/util_es"
             ],
             "go1\\video\\": [
                 "./video",
