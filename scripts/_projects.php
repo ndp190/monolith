@@ -17,7 +17,6 @@ $gh = function ($path) use ($hasCustom) {
 return [
     'php'            => [
         'activity'       => 'git@code.go1.com.au:microservices/activity.git',
-        'algolia'        => 'git@code.go1.com.au:microservices/algolia.git',
         'api'            => 'git@code.go1.com.au:microservices/api.git',
         'assessor'       => 'git@code.go1.com.au:microservices/assessor.git',
         'assignment'     => 'git@code.go1.com.au:microservices/assignment.git',
@@ -124,8 +123,9 @@ return [
 # ---------------------
 # PHP
 # ---
+#   'algolia'  => 'git@code.go1.com.au:microservices/algolia.git',
 #   'batch'    => 'git@code.go1.com.au:microservices/batch.git',
-#   'console'        => 'git@code.go1.com.au:go1/console.git',
+#   'console'  => 'git@code.go1.com.au:go1/console.git',
 #   'endpoint' => 'git@code.go1.com.au:microservices/endpoint.git',
 #   'lib'      => 'git@code.go1.com.au:microservices/lib.git',
 #   'natero'   => 'git@code.go1.com.au:microservices/natero.git',
