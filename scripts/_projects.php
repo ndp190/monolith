@@ -85,6 +85,7 @@ return [
         'report_helpers' => $gh('git@github.com:go1com/report_helpers.git'),
         'util'           => $gh('git@github.com:go1com/util.git'),
         'util_es'        => $gh('git@github.com:go1com/util_es.git'),
+        'util_dataset'   => $gh('git@github.com:go1com/util_dataset.git'),
     ],
     'drupal'         => [
         'accounts' => 'git@code.go1.com.au:go1/accounts.git',

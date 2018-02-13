@@ -328,6 +328,10 @@
                 "./libraries/util",
                 "/app/libraries/util"
             ],
+            "go1\\util_dataset\\": [
+                "./libraries/util_dataset",
+                "/app/libraries/util_dataset"
+            ],
             "go1\\util_es\\": [
                 "./libraries/util_es",
                 "/app/libraries/util_es"
