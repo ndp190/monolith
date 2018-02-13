@@ -1,4 +1,4 @@
-GO1 monolith
+GO1 monolith ![](https://img.shields.io/packagist/php-v/go1/monolith.svg)
 ====
 
 > This project is **not yet useful** for community as we are trying to opensource the GO1 LMS.
