@@ -1,0 +1,7 @@
+{
+  "name": "go1/monolith",
+  "license": "proprietary",
+  "require": {
+    "php": "^7.1"
+  }
+}
