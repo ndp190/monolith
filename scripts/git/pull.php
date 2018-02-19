@@ -5,8 +5,9 @@ namespace go1\monolith\git;
 require_once __DIR__ . '/../../php/vendor/go1.autoload.php';
 
 $cmd = implode(' ', $argv);
-$confirm = false !== strpos($cmd, '--confirm') ? true : false;
-$reset = false !== strpos($cmd, '--reset') ? true : false;
+$confirm = false !== strpos($cmd, '--confirm');
+$reset = false !== strpos($cmd, '--reset');
+$multiProcess = false !== strpos($cmd, '--faster');
 
 $pwd = dirname(dirname(__DIR__));
 $projects = require __DIR__ . '/../_projects.php';
@@ -17,7 +18,10 @@ $custom = is_file($custom) ? json_decode(file_get_contents($custom), true) : [];
 
 $defaultBranch = 'master';
 
-return call_user_func(function () use ($confirm, $reset, $pwd, $projects, $projectsMap, $custom, $defaultBranch) {
+return call_user_func(function () use ($confirm, $reset, $pwd, $projects, $projectsMap, $custom, $defaultBranch, $multiProcess) {
+    $canFork = $multiProcess && function_exists('pcntl_fork');
+    $maxProcesses = 4;
+    $children = [];
     foreach ($projects as $lang => $services) {
         foreach ($services as $name => $path) {
             $do = true;
@@ -35,9 +39,33 @@ return call_user_func(function () use ($confirm, $reset, $pwd, $projects, $proje
                     ? "cd $target && git reset --hard && git checkout $branch && git pull origin $branch"
                     : "cd $target && git checkout $branch && git pull origin $branch";
 
+                if ($canFork && $maxProcesses > 1) {
+                    if (count($children) >= $maxProcesses) {
+                        $result = pcntl_wait($childStatus);
+                        unset($children[$result]);
+                    }
+                    switch($pid = pcntl_fork()) {
+                        case 0:
+                            echo "$cmd\n";
+                            passthru($cmd);
+                            exit(0);
+                        case -1:
+                            break;
+                        default:
+                            $children[$pid] = true;
+                            continue 2;
+                    }
+                }
+
                 echo "$cmd\n";
                 passthru($cmd);
             }
+        }
+    }
+
+    if ($canFork) {
+        foreach (array_keys($children) as $childPid) {
+            pcntl_waitpid($childPid, $childStatus);
         }
     }
 });

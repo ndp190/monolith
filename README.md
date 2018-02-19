@@ -30,7 +30,7 @@ GO1 monolith
 
     php scripts/stop.php
     php scripts/pull.php
-    php scripts/git/pull.php --confirm # Add --reset if you want to reset the code
+    php scripts/git/pull.php --confirm# Add --reset if you want to reset the code, --faster to spawn multiple processes
     php scripts/clean.php
     php scripts/build.php --skip-drupal --skip-go --skip-pull
     cd php && rm composer.lock && composer install -v && cd ..
