@@ -30,7 +30,7 @@ GO1 monolith ![](https://img.shields.io/packagist/php-v/go1/monolith.svg)
 
     php scripts/stop.php
     php scripts/pull.php
-    php scripts/git/pull.php --confirm --reset --faster 
+    php scripts/git/pull.php --confirm --reset --faster
         # --reset if you want to reset the code
         # --faster to spawn multiple processes
     php scripts/clean.php
