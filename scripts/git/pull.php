@@ -8,20 +8,17 @@ $cmd = implode(' ', $argv);
 $confirm = false !== strpos($cmd, '--confirm');
 $reset = false !== strpos($cmd, '--reset');
 $multiProcess = false !== strpos($cmd, '--faster');
-
 $pwd = dirname(dirname(__DIR__));
 $projects = require __DIR__ . '/../_projects.php';
 $projectsMap = require __DIR__ . '/../_projects_map.php';
-
 $custom = $pwd . '/build.json';
 $custom = is_file($custom) ? json_decode(file_get_contents($custom), true) : [];
-
 $defaultBranch = 'master';
 
 return call_user_func(function () use ($confirm, $reset, $pwd, $projects, $projectsMap, $custom, $defaultBranch, $multiProcess) {
     $canFork = $multiProcess && function_exists('pcntl_fork');
     $maxProcesses = 4;
-    $children = [];
+    $processes = [];
     foreach ($projects as $lang => $services) {
         foreach ($services as $name => $path) {
             $do = true;
@@ -40,11 +37,11 @@ return call_user_func(function () use ($confirm, $reset, $pwd, $projects, $proje
                     : "cd $target && git checkout $branch && git pull origin $branch";
 
                 if ($canFork && $maxProcesses > 1) {
-                    if (count($children) >= $maxProcesses) {
-                        $result = pcntl_wait($childStatus);
-                        unset($children[$result]);
+                    if (count($processes) >= $maxProcesses) {
+                        $result = pcntl_wait($processStatus);
+                        unset($processes[$result]);
                     }
-                    switch($pid = pcntl_fork()) {
+                    switch ($pid = pcntl_fork()) {
                         case 0:
                             echo "$cmd\n";
                             passthru($cmd);
@@ -52,7 +49,7 @@ return call_user_func(function () use ($confirm, $reset, $pwd, $projects, $proje
                         case -1:
                             break;
                         default:
-                            $children[$pid] = true;
+                            $processes[$pid] = true;
                             continue 2;
                     }
                 }
@@ -64,8 +61,8 @@ return call_user_func(function () use ($confirm, $reset, $pwd, $projects, $proje
     }
 
     if ($canFork) {
-        foreach (array_keys($children) as $childPid) {
-            pcntl_waitpid($childPid, $childStatus);
+        foreach (array_keys($processes) as $processId) {
+            pcntl_waitpid($processId, $processStatus);
         }
     }
 });

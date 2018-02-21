@@ -30,7 +30,9 @@ GO1 monolith ![](https://img.shields.io/packagist/php-v/go1/monolith.svg)
 
     php scripts/stop.php
     php scripts/pull.php
-    php scripts/git/pull.php --confirm# Add --reset if you want to reset the code, --faster to spawn multiple processes
+    php scripts/git/pull.php --confirm --reset --faster 
+        # --reset if you want to reset the code
+        # --faster to spawn multiple processes
     php scripts/clean.php
     php scripts/build.php --skip-drupal --skip-go --skip-pull
     cd php && rm composer.lock && composer install -v && cd ..
