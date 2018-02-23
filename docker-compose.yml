@@ -53,8 +53,8 @@ services:
             - '9900:9900'
         environment:
             # https://docs.minio.io/docs/minio-server-configuration-guide
-            - MINIO_ACCESS_KEY=7OOP3Q0CCOHE47YKT0Q2
-            - MINIO_SECRET_KEY=HamwosY54TnccBOXES4+BI2k3toOAlhk5Ecjfi1I
+            - MINIO_ACCESS_KEY=FAKE_7OOP3Q0CCOHE47YKT0Q2
+            - MINIO_SECRET_KEY=FAKE_HamwosY54TnccBOXES4+BI2k3toOAlhk5Ecjfi1I
             - MINIO_REGION=us-east-1
         command: server --address :9900 /export
     es:
@@ -174,8 +174,8 @@ services:
             - ES_HOST=http://es:9200
             - GO1_USER=http://web/GO1/user
             # S3's environments: https://github.com/minio/cookbook/blob/master/docs/aws-sdk-for-php-with-minio.md
-            - AWS_ACCESS_KEY_ID=7OOP3Q0CCOHE47YKT0Q2
-            - AWS_SECRET_ACCESS_KEY=HamwosY54TnccBOXES4+BI2k3toOAlhk5Ecjfi1I
+            - AWS_ACCESS_KEY_ID=FAKE_7OOP3Q0CCOHE47YKT0Q2
+            - AWS_SECRET_ACCESS_KEY=FAKE_HamwosY54TnccBOXES4+BI2k3toOAlhk5Ecjfi1I
             - AWS_S3_VERSION=latest
             - AWS_S3_BUCKET=monolith
             # s3 endpoint is a special url. It must be accessible from web and scormengine containers, and browser.
