@@ -2,6 +2,8 @@
 
 namespace go1\monolith\migration\util;
 
+# @TODO: Consider using phpactor (http://phpactor.github.io/phpactor/)
+
 use go1\util\edge\EdgeHelper;
 use go1\util\edge\EdgeTypes;
 use go1\util\enrolment\EnrolmentHelper;
