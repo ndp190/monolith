@@ -76,7 +76,7 @@ services:
             - QUEUE_URL=amqp://go1:go1@queue:5672/
             - SERVICE_URL_PATTERN=http://web/GO1/SERVICE/consume
             - CONSUMER_activity=asm.#,note.#,group.#,user.#,portal.#,award.#,enrolment.#,lo.#,eck.#,plan.#,ro.#,coupon.#,credit.#,contract.#,manual-record.#,vote.#
-            - CONSUMER_algolia=lo.create,lo.update,lo.delete,vote.#
+            # - CONSUMER_algolia=lo.create,lo.update,lo.delete,vote.#
             - CONSUMER_api=do.public-api.webhook-request,lo.#,enrolment.#,user.#,ro.create,ro.delete
             - CONSUMER_assessor=lo.delete,enrolment.delete,enrolment.create
             - CONSUMER_award=enrolment.#,plan.create,award.#,group.item.create
@@ -89,7 +89,7 @@ services:
             - CONSUMER_index=portal.#,portal-config.#,user.#,lo.#,enrolment.#,ro.#,asm.assignment.#,asm.submission.#,group.#,eck.#,manual-record.#,transaction.#,quiz.user_answer.#,lo_group.#,coupon.#,credit.#,award.#,plan.#,custom-tag.#,activity.#,contract.#,metric.#
             - CONSUMER_lazy=do.#
             - CONSUMER_low=group.#,enrolment.#,lo.create
-            - CONSUMER_my-team=ro.create,ro.delete,user.update,post_enrolment.#,process.my-team
+            - CONSUMER_my-team=ro.create,ro.delete,user.update<-index,post_enrolment.#,process.my-team
             - CONSUMER_notify=enrolment.#,user.#,user-email.#,note.#,ro.#,award.#,plan.#,asm.#,lo.#,group.#,portal.#
             - CONSUMER_oembed=lo.update
             - CONSUMER_quiz-rpc=user.update,enrolment.delete
