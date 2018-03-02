@@ -26,6 +26,6 @@ class XxxxxServiceProvider implements ServiceProviderInterface, BootableProvider
     {
         $app->get('/install', 'ctrl.install:post');
         $app->post('/consume', 'ctrl.consumer:post');
-        $app->get('/cron', 'ctrl.cron:post');
+        $app->post('/cron', 'ctrl.cron:post');
     }
 }
